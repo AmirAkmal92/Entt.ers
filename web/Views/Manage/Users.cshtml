@@ -1,5 +1,5 @@
 ﻿@using Entt.Ers.Models
-@model List<ApplicationUser>
+@model List<UsersViewModel>
 @{
     ViewBag.Title = "Users";
 }
@@ -30,6 +30,7 @@
                         <th>User Name</th>
                         <th>Email</th>
                         <th>Branch Code</th>
+                        <th>Roles</th>
                         <th class="text-right">Actions</th>
                     </tr>
                 </thead>
@@ -40,13 +41,20 @@
                             <td>
                                 <div class="media">
                                     <div class="media-body media-middle">
-                                        <a href="/Manage/UserInfo/@item.Id" class="text-semibold">@item.FullName</a>
+                                        <a href="/Manage/UserInfo/@item.User.Id" class="text-semibold">@item.User.FullName</a>
                                     </div>
                                 </div>
                             </td>
-                            <td>@item.UserName</td>
-                            <td>@item.Email</td>
-                            <td>@item.BranchCode</td>
+                            <td>@item.User.UserName</td>
+                            <td>@item.User.Email</td>
+                            <td>@item.User.BranchCode</td>
+                            <td>
+                                @if (item.Roles.Any())
+                            { <span>
+                                @string.Join(", ", item.Roles.Select(r=> r))</span>}
+                            else
+                            { <span>Basic User</span> }
+                        </td>
                             <td class="text-right">
                                 <ul class="icons-list">
                                     <li class="dropdown">
@@ -55,9 +63,10 @@
                                             <span class="caret"></span>
                                         </a>
                                         <ul class="dropdown-menu dropdown-menu-right">
-                                            <li><a href="/User/Edit/@item.Id"><i class="icon-file-pdf"></i> Edit</a></li>
+                                            <li><a href="/User/Edit/@item.User.Id"><i class="icon-file-pdf"></i> Edit</a></li>
+                                            <li><a href="/Manage/UserRoles/@item.User.Id"><i class="icon-accessibility"></i> Roles</a></li>
                                             <li class="divider"></li>
-                                            <li><a href="/User/Delete/@item.Id"><i class="icon-warning2"></i> Delete</a></li>
+                                            <li><a href="/User/Delete/@item.User.Id"><i class="icon-warning2"></i> Delete</a></li>
                                         </ul>
                                     </li>
                                 </ul>

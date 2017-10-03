@@ -83,4 +83,23 @@ namespace Entt.Ers.Models
         public string SelectedProvider { get; set; }
         public ICollection<System.Web.Mvc.SelectListItem> Providers { get; set; }
     }
+
+    public class UsersViewModel
+    {
+        public ApplicationUser User { get; set; }
+        public IList<string> Roles { get; set; }
+    }
+
+    public class ManageUserRoleViewModel
+    {
+        public string Id { get; set; }
+        public string UserFullName { get; set; }
+        public IList<UserRoleViewModel> Roles { get; set; }
+    }
+
+    public class UserRoleViewModel
+    {
+        public string RoleName { get; set; }
+        public bool Assigned { get; set; }
+    }
 }

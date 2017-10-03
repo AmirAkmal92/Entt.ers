@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using Entt.Ers.Models;
 using System.Data.Entity;
+using System.Collections.Generic;
 
 namespace Entt.Ers.Controllers
 {
@@ -15,6 +16,7 @@ namespace Entt.Ers.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationRoleManager _roleManager;
         private ApplicationDbContext m_context = new ApplicationDbContext();
         private AimsReportDataContext m_noncoreContext = new AimsReportDataContext();
 
@@ -22,10 +24,11 @@ namespace Entt.Ers.Controllers
         {
         }
 
-        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
+        public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager, ApplicationRoleManager roleManager)
         {
             UserManager = userManager;
             SignInManager = signInManager;
+            RoleManager = roleManager;
         }
 
         public ApplicationSignInManager SignInManager
@@ -52,10 +55,28 @@ namespace Entt.Ers.Controllers
             }
         }
 
+        public ApplicationRoleManager RoleManager
+        {
+            get
+            {
+                return _roleManager ?? HttpContext.GetOwinContext().Get<ApplicationRoleManager>();
+            }
+            private set
+            {
+                _roleManager = value;
+            }
+        }
+
         public async Task<ActionResult> Users()
         {
+            var model = new List<UsersViewModel>();
             var users = await m_context.Users.ToListAsync();
-            return View(users);
+            foreach (var user in users)
+            {
+                var roles = await UserManager.GetRolesAsync(user.Id);
+                model.Add(new UsersViewModel {  User = user, Roles = roles });
+            }
+            return View(model);
         }
 
         public ActionResult AddUser()
@@ -357,6 +378,60 @@ namespace Entt.Ers.Controllers
             return View(model);
         }
 
+        public async Task<ActionResult> UserRoles(string id)
+        {
+            var user = await UserManager.FindByIdAsync(id);
+            if (user == null)
+            {
+                return HttpNotFound();
+            }
+
+            var userRoles = await UserManager.GetRolesAsync(user.Id);
+            var model = new ManageUserRoleViewModel { Id = id, UserFullName = user.FullName, Roles = new List<UserRoleViewModel>() };
+            foreach (var role in m_context.Roles)
+            {
+                model.Roles.Add(new UserRoleViewModel { RoleName = role.Name, Assigned = userRoles.Contains(role.Name) });
+            }
+            return View(model);
+        }
+
+        //
+        // POST: /Manage/UserRoles
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> UserRoles(ManageUserRoleViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = await UserManager.FindByIdAsync(model.Id);
+                if (user == null)
+                {
+                    return HttpNotFound();
+                }
+
+                var userRoles = await UserManager.GetRolesAsync(user.Id);
+                var selectedRole = model.Roles.Where(r => r.Assigned).Select( w => w.RoleName) ?? new string[] { };
+                var result = await UserManager.AddToRolesAsync(user.Id, selectedRole.Except(userRoles).ToArray<string>());
+
+                if (!result.Succeeded)
+                {
+                    ModelState.AddModelError("", result.Errors.First());
+                    return View();
+                }
+                result = await UserManager.RemoveFromRolesAsync(user.Id, userRoles.Except(selectedRole).ToArray<string>());
+                if (!result.Succeeded)
+                {
+                    ModelState.AddModelError("", result.Errors.First());
+                    return View();
+                }
+                
+                return RedirectToAction("Users", "Manage");
+            }
+
+            ModelState.AddModelError("", "Something failed.");
+            return View(model);
+        }
+
         //
         // GET: /Manage/ManageLogins
         public async Task<ActionResult> ManageLogins(ManageMessageId? message)
@@ -466,5 +541,6 @@ namespace Entt.Ers.Controllers
         }
 
         #endregion
+        
     }
 }

@@ -6,6 +6,7 @@ using Microsoft.Owin.Security.Cookies;
 using Microsoft.Owin.Security.Google;
 using Owin;
 using Entt.Ers.Models;
+using Microsoft.AspNet.Identity.EntityFramework;
 
 namespace Entt.Ers
 {
@@ -18,6 +19,7 @@ namespace Entt.Ers
             app.CreatePerOwinContext(ApplicationDbContext.Create);
             app.CreatePerOwinContext<ApplicationUserManager>(ApplicationUserManager.Create);
             app.CreatePerOwinContext<ApplicationSignInManager>(ApplicationSignInManager.Create);
+            app.CreatePerOwinContext<ApplicationRoleManager>(ApplicationRoleManager.Create);
 
             // Enable the application to use a cookie to store information for the signed in user
             // and to use a cookie to temporarily store information about a user logging in with a third party login provider
@@ -34,7 +36,7 @@ namespace Entt.Ers
                         validateInterval: TimeSpan.FromMinutes(30),
                         regenerateIdentity: (manager, user) => user.GenerateUserIdentityAsync(manager))
                 }
-            });            
+            });
             app.UseExternalSignInCookie(DefaultAuthenticationTypes.ExternalCookie);
 
             // Enables the application to temporarily store user information when they are verifying the second factor in the two-factor authentication process.
@@ -63,6 +65,20 @@ namespace Entt.Ers
             //    ClientId = "",
             //    ClientSecret = ""
             //});
+
+            //create default roles
+            var context = new ApplicationDbContext();
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
+            if (!roleManager.RoleExists("Administrator"))
+            {
+                var role = new IdentityRole() { Name = "Administrator" };
+                roleManager.Create(role);
+            }
+            if (!roleManager.RoleExists("HQ Users"))
+            {
+                var role = new IdentityRole() { Name = "HQ Users" };
+                roleManager.Create(role);
+            }
         }
     }
 }
