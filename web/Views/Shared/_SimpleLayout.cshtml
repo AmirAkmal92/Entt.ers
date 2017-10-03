@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - ERS</title>
+    @*@Styles.Render("~/Content/css")*@
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+    <link href="/Content/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
+    <link href="/Content/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="/Content/core.css" rel="stylesheet" type="text/css">
+    <link href="/Content/components.css" rel="stylesheet" type="text/css">
+    <link href="/Content/colors.css" rel="stylesheet" type="text/css">
+    @Scripts.Render("~/bundles/modernizr")
+
+</head>
+<body class="login-container">
+    <div class="navbar navbar-inverse bg-danger-700">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/"><img src="~/Content/images/ers.png" alt="EnTT Reporting System"></a>
+            <ul class="nav navbar-nav pull-right visible-xs-block">
+                <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
+            </ul>
+        </div>        
+    </div>
+    <div class="page-container">
+        <div class="page-content">
+            <div class="content-wrapper">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+
+    @Scripts.Render("~/bundles/jquery")
+        @Scripts.Render("~/bundles/bootstrap")
+    @RenderSection("scripts", required: false)
+
+    <div class="footer text-muted">
+        &copy; 2017 <a href="/">EnTT Platform</a> by <a href="http://www.azrolmn.tech/" target="_blank">Bespoke Technology Sdn. Bhd.</a>
+    </div>
+</body>
+</html>

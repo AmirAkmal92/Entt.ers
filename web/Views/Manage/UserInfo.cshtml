@@ -1,0 +1,74 @@
+﻿@model Entt.Ers.Models.UpdateUserViewModel
+@{
+    ViewBag.Title = "View User Information";
+}
+
+
+@section PageHeader {
+    <ul class="breadcrumb breadcrumb-caret position-right">
+        <li><a href="/">Home</a></li>
+        <li><a href="/Manage/Users">Users</a></li>
+        <li class="active">User Information</li>
+    </ul>
+}
+
+
+@using (Html.BeginForm("UserInfo", "Manage", FormMethod.Post, new { @class = "form-horizontal form-validate", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="panel panel-flat">
+        <div class="panel-body">
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+            <fieldset>
+                <legend class="text-semibold"><i class="icon-reading position-left"></i> User Information</legend>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">User Name :</label>
+                    <div class="col-lg-4">
+                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", required = "required", @readonly = "readonly" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">*Full Name:</label>
+                    <div class="col-lg-4">
+                        @Html.TextBoxFor(m => m.FullName, new { @class = "form-control", placeholder = "Example: Norma binti Abdul Hamid", required = "required" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">*Email:</label>
+                    <div class="col-lg-4">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", required = "required", @type = "email" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">*Branch :</label>
+                    <div class="col-lg-4">
+                        @Html.DropDownListFor(m => m.BranchCode, ViewBag.Branches as IEnumerable<System.Web.Mvc.SelectListItem>, "-- Please Select --", new { @class = "form-control bootstrap-select", required = true, data_width = "100%" })
+                    </div>
+                </div>
+                @Html.HiddenFor(m => m.Id)
+            </fieldset>
+            <hr />
+            <div>
+                <a href="/Manage/Users" class="btn btn-default legitRipple">Back </a>
+                <div class="pull-right">
+                    <a href="/Manage/SetPassword/@Model.Id" class="btn bg-warning-400 legitRipple">Reset Password</a>
+                    <button type="submit" class="btn btn-primary">Update <i class="icon-arrow-right14 position-right"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+@section scripts {
+
+    <script type="text/javascript" src="~/Scripts/bootstrap_select.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery_ui/widgets.min.js"></script>
+    <script>
+        $.fn.selectpicker.defaults = {
+            iconBase: '',
+            tickIcon: 'icon-checkmark3'
+        }
+        $('.bootstrap-select').selectpicker();
+
+    </script>
+}

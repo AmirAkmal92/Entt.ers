@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="PittisNonCoreProdDataSet" targetNamespace="http://tempuri.org/PittisNonCoreProdDataSet.xsd" xmlns:mstns="http://tempuri.org/PittisNonCoreProdDataSet.xsd" xmlns="http://tempuri.org/PittisNonCoreProdDataSet.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="0" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="NonCoreConnectionString" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="NonCoreConnectionString (Web.config)" ParameterPrefix="@" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.NonCoreConnectionString.ConnectionString" Provider="System.Data.SqlClient" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="uv_GetAssetByItemReportRegisteredTableAdapter" GeneratorDataComponentClassName="uv_GetAssetByItemReportRegisteredTableAdapter" Name="uv_GetAssetByItemReportRegistered" UserDataComponentName="uv_GetAssetByItemReportRegisteredTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="NonCoreConnectionString (Web.config)" DbObjectName="PittisNonCoreProd.dbo.uv_GetAssetByItemReportRegistered" DbObjectType="View" FillMethodModifier="Public" FillMethodName="Fill" GenerateMethods="Both" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GeneratorSourceName="Fill" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="Fill">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="false">
+                    <CommandText>SELECT BatchId, Ownership, SerialNumber, DateComission, DateRegistered, AssetNumber, AssetName, AssetStatus, VendorId, Vendor, Remark, CategoryName FROM dbo.uv_GetAssetByItemReportRegistered</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="BatchId" DataSetColumn="BatchId" />
+              <Mapping SourceColumn="Ownership" DataSetColumn="Ownership" />
+              <Mapping SourceColumn="SerialNumber" DataSetColumn="SerialNumber" />
+              <Mapping SourceColumn="DateComission" DataSetColumn="DateComission" />
+              <Mapping SourceColumn="DateRegistered" DataSetColumn="DateRegistered" />
+              <Mapping SourceColumn="AssetNumber" DataSetColumn="AssetNumber" />
+              <Mapping SourceColumn="AssetName" DataSetColumn="AssetName" />
+              <Mapping SourceColumn="AssetStatus" DataSetColumn="AssetStatus" />
+              <Mapping SourceColumn="VendorId" DataSetColumn="VendorId" />
+              <Mapping SourceColumn="Vendor" DataSetColumn="Vendor" />
+              <Mapping SourceColumn="Remark" DataSetColumn="Remark" />
+              <Mapping SourceColumn="CategoryName" DataSetColumn="CategoryName" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="PittisNonCoreProdDataSet" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="True" msprop:Generator_DataSetName="PittisNonCoreProdDataSet" msprop:Generator_UserDSName="PittisNonCoreProdDataSet">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="uv_GetAssetByItemReportRegistered" msprop:Generator_TableClassName="uv_GetAssetByItemReportRegisteredDataTable" msprop:Generator_TableVarName="tableuv_GetAssetByItemReportRegistered" msprop:Generator_TablePropName="uv_GetAssetByItemReportRegistered" msprop:Generator_RowDeletingName="uv_GetAssetByItemReportRegisteredRowDeleting" msprop:Generator_RowChangingName="uv_GetAssetByItemReportRegisteredRowChanging" msprop:Generator_RowEvHandlerName="uv_GetAssetByItemReportRegisteredRowChangeEventHandler" msprop:Generator_RowDeletedName="uv_GetAssetByItemReportRegisteredRowDeleted" msprop:Generator_UserTableName="uv_GetAssetByItemReportRegistered" msprop:Generator_RowChangedName="uv_GetAssetByItemReportRegisteredRowChanged" msprop:Generator_RowEvArgName="uv_GetAssetByItemReportRegisteredRowChangeEvent" msprop:Generator_RowClassName="uv_GetAssetByItemReportRegisteredRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="BatchId" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnBatchId" msprop:Generator_ColumnPropNameInRow="BatchId" msprop:Generator_ColumnPropNameInTable="BatchIdColumn" msprop:Generator_UserColumnName="BatchId" type="xs:string" minOccurs="0" />
+              <xs:element name="Ownership" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnOwnership" msprop:Generator_ColumnPropNameInRow="Ownership" msprop:Generator_ColumnPropNameInTable="OwnershipColumn" msprop:Generator_UserColumnName="Ownership" type="xs:string" minOccurs="0" />
+              <xs:element name="SerialNumber" msprop:Generator_ColumnVarNameInTable="columnSerialNumber" msprop:Generator_ColumnPropNameInRow="SerialNumber" msprop:Generator_ColumnPropNameInTable="SerialNumberColumn" msprop:Generator_UserColumnName="SerialNumber" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="DateComission" msprop:Generator_ColumnVarNameInTable="columnDateComission" msprop:Generator_ColumnPropNameInRow="DateComission" msprop:Generator_ColumnPropNameInTable="DateComissionColumn" msprop:Generator_UserColumnName="DateComission" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="DateRegistered" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnDateRegistered" msprop:Generator_ColumnPropNameInRow="DateRegistered" msprop:Generator_ColumnPropNameInTable="DateRegisteredColumn" msprop:Generator_UserColumnName="DateRegistered" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="AssetNumber" msprop:Generator_ColumnVarNameInTable="columnAssetNumber" msprop:Generator_ColumnPropNameInRow="AssetNumber" msprop:Generator_ColumnPropNameInTable="AssetNumberColumn" msprop:Generator_UserColumnName="AssetNumber" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AssetName" msprop:Generator_ColumnVarNameInTable="columnAssetName" msprop:Generator_ColumnPropNameInRow="AssetName" msprop:Generator_ColumnPropNameInTable="AssetNameColumn" msprop:Generator_UserColumnName="AssetName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="AssetStatus" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnAssetStatus" msprop:Generator_ColumnPropNameInRow="AssetStatus" msprop:Generator_ColumnPropNameInTable="AssetStatusColumn" msprop:Generator_UserColumnName="AssetStatus" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="VendorId" msdata:DataType="System.Guid, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" msprop:Generator_ColumnVarNameInTable="columnVendorId" msprop:Generator_ColumnPropNameInRow="VendorId" msprop:Generator_ColumnPropNameInTable="VendorIdColumn" msprop:Generator_UserColumnName="VendorId" type="xs:string" minOccurs="0" />
+              <xs:element name="Vendor" msprop:Generator_ColumnVarNameInTable="columnVendor" msprop:Generator_ColumnPropNameInRow="Vendor" msprop:Generator_ColumnPropNameInTable="VendorColumn" msprop:Generator_UserColumnName="Vendor" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="Remark" msprop:Generator_ColumnVarNameInTable="columnRemark" msprop:Generator_ColumnPropNameInRow="Remark" msprop:Generator_ColumnPropNameInTable="RemarkColumn" msprop:Generator_UserColumnName="Remark" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="CategoryName" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnCategoryName" msprop:Generator_ColumnPropNameInRow="CategoryName" msprop:Generator_ColumnPropNameInTable="CategoryNameColumn" msprop:Generator_UserColumnName="CategoryName" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="255" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

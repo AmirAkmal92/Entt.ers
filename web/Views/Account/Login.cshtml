@@ -1,0 +1,50 @@
+﻿@using Entt.Ers.Models
+@model LoginViewModel
+@{
+    ViewBag.Title = "Log in";
+    Layout = "~/Views/Shared/_SimpleLayout.cshtml";
+}
+
+<div class="page-container">
+    <div class="page-content">
+        <div class="content-wrapper">
+            @using (Html.BeginForm("Login", "Account", new { ReturnUrl = ViewBag.ReturnUrl }, FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="panel panel-body login-form">
+                    <div class="text-center">
+                        @*<div class="icon-object border-slate-300 text-slate-300"><i class="icon-anchor"></i></div>*@
+                        <img src="~/Content/images/pos.png" />
+                        <h5 class="content-group">EnTT Reporting System <small class="display-block">Access Login</small></h5>
+                    </div>
+                    <div class="form-group has-feedback has-feedback-left">                        
+                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", placeholder = "Username" })
+                        <div class="form-control-feedback">
+                            <i class="icon-user text-muted"></i>
+                        </div>
+                        @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group has-feedback has-feedback-left">                        
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", placeholder = "Password" })
+                        <div class="form-control-feedback">
+                            <i class="icon-lock2 text-muted"></i>
+                        </div>
+                        @Html.ValidationMessageFor(m => m.Password, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn bg-danger-400 btn-block">Sign in <i class="icon-circle-right2 position-right"></i></button>
+                    </div>
+                    @Html.ValidationSummary("", new { @class = "text-danger" })
+                    @*<div class="text-center">
+                        <a href="/Account/ForgotPassword">Forgot password?</a>
+                    </div>*@
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

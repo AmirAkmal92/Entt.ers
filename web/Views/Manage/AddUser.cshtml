@@ -1,0 +1,80 @@
+﻿@using Entt.Ers.Models
+@model RegisterViewModel
+@{
+    ViewBag.Title = "Create User Access";
+}
+
+@section PageHeader {
+    <ul class="breadcrumb breadcrumb-caret position-right">
+        <li><a href="/">Home</a></li>
+        <li><a href="/Manage/Users">Manage</a></li>
+        <li class="active">Create User</li>
+    </ul>
+}
+
+
+@using (Html.BeginForm("AddUser", "Manage", FormMethod.Post, new { @class = "form-horizontal form-validate", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <div class="panel panel-flat">
+        <div class="panel-body">
+            @Html.ValidationSummary("", new { @class = "text-danger" })
+            <fieldset>
+                <legend class="text-semibold"><i class="icon-reading position-left"></i> User Information</legend>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">*User Name :</label>
+                    <div class="col-lg-4">
+                        @Html.TextBoxFor(m => m.UserName, new { @class = "form-control", required = "required" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">*Full Name:</label>
+                    <div class="col-lg-4">
+                        @Html.TextBoxFor(m => m.FullName, new { @class = "form-control", placeholder = "Example: Norazrol Hisham", required = "required" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">*Email:</label>
+                    <div class="col-lg-4">
+                        @Html.TextBoxFor(m => m.Email, new { @class = "form-control", required = "required" })
+                    </div>
+                </div>                                 
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">*Password :</label>
+                    <div class="col-lg-4">
+                        @Html.PasswordFor(m => m.Password, new { @class = "form-control", required = "required" })
+                    </div>
+                </div>
+                <div class="form-group">                    
+                    <label class="col-lg-2 control-label">*Confirm Password :</label>
+                    <div class="col-lg-4">
+                        @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control", required = "required" })
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-lg-2 control-label">*Branch :</label>
+                    <div class="col-lg-4">
+                        @Html.DropDownListFor(m => m.BranchCode, ViewBag.Branches as IEnumerable<System.Web.Mvc.SelectListItem>, "-- Please Select --", new { @class = "form-control bootstrap-select", required = true, data_width = "100%" })
+                    </div>
+                </div>
+            </fieldset>
+            <div class="text-right">
+                <button type="submit" class="btn btn-primary">Submit <i class="icon-arrow-right14 position-right"></i></button>
+            </div>
+        </div>
+    </div>
+}
+
+@section scripts {
+
+    <script type="text/javascript" src="~/Scripts/bootstrap_select.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery_ui/widgets.min.js"></script>
+    <script>
+        $.fn.selectpicker.defaults = {
+            iconBase: '',
+            tickIcon: 'icon-checkmark3'
+        }
+        $('.bootstrap-select').selectpicker();
+       
+    </script>
+}

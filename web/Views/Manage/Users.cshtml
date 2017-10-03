@@ -1,0 +1,106 @@
+﻿@using Entt.Ers.Models
+@model List<ApplicationUser>
+@{
+    ViewBag.Title = "Users";
+}
+
+@section PageHeader {
+    <ul class="breadcrumb breadcrumb-caret position-right">
+        <li><a href="/">Home</a></li>
+        <li><a href="/Manage/Users">Manage</a></li>
+        <li class="active">Users</li>
+    </ul>
+    <div class="heading-elements">
+        <div class="heading-btn-group">
+            <a href="/Manage/AddUser" class="btn btn-link btn-float has-text text-size-small"><i class="icon-add-to-list text-indigo-400"></i> <span>Add User</span></a>
+        </div>
+    </div>
+}
+
+<div class="row">
+    <div class="panel panel-flat">
+        <div class="panel-heading">
+            <h6 class="panel-title">Senarai Pengguna Sistem</h6>
+        </div>
+        <div class="panel-body">
+            <table class="table table-striped text-nowrap table-users">
+                <thead>
+                    <tr>
+                        <th>Full Name</th>
+                        <th>User Name</th>
+                        <th>Email</th>
+                        <th>Branch Code</th>
+                        <th class="text-right">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <div class="media">
+                                    <div class="media-body media-middle">
+                                        <a href="/Manage/UserInfo/@item.Id" class="text-semibold">@item.FullName</a>
+                                    </div>
+                                </div>
+                            </td>
+                            <td>@item.UserName</td>
+                            <td>@item.Email</td>
+                            <td>@item.BranchCode</td>
+                            <td class="text-right">
+                                <ul class="icons-list">
+                                    <li class="dropdown">
+                                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                            <i class="icon-menu7"></i>
+                                            <span class="caret"></span>
+                                        </a>
+                                        <ul class="dropdown-menu dropdown-menu-right">
+                                            <li><a href="/User/Edit/@item.Id"><i class="icon-file-pdf"></i> Edit</a></li>
+                                            <li class="divider"></li>
+                                            <li><a href="/User/Delete/@item.Id"><i class="icon-warning2"></i> Delete</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script type="text/javascript" src="/Scripts/datatables.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/ripple.min.js"></script>
+    <script>
+        $.extend($.fn.dataTable.defaults, {
+            autoWidth: false,
+            columnDefs: [{
+                orderable: false,
+                width: '100px',
+                targets: [5]
+            }],
+            dom: '<"datatable-header"fl><"datatable-scroll"t><"datatable-footer"ip>',
+            language: {
+                search: '<span>Filter:</span> _INPUT_',
+                searchPlaceholder: 'Type to filter...',
+                lengthMenu: '<span>Show:</span> _MENU_',
+                paginate: { 'first': 'First', 'last': 'Last', 'next': '&rarr;', 'previous': '&larr;' }
+            },
+            drawCallback: function () {
+                $(this).find('tbody tr').slice(-3).find('.dropdown, .btn-group').addClass('dropup');
+            },
+            preDrawCallback: function () {
+                $(this).find('tbody tr').slice(-3).find('.dropdown, .btn-group').removeClass('dropup');
+            }
+        });
+        $('.table-users').DataTable({
+            lengthMenu: [[10, 25, 50, -1], [10, 25, 50, "All"]]
+        });
+    </script>
+
+}
+
+
+

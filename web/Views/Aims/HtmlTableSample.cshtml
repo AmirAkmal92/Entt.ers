@@ -1,0 +1,245 @@
+﻿@using Entt.Ers.Models
+@model DeviceAtBranchSummaryViewModel
+@{
+    ViewBag.Title = "Device At Branch Summary Report";
+}
+
+@section header {
+    <style>
+        .form-horizontal .checkbox .checker, .form-horizontal .checkbox-inline .checker { top: 18px; }
+        .content-group { margin-bottom: 0px !important; }
+    </style>
+}
+
+@section PageHeader {
+    <ul class="breadcrumb breadcrumb-caret position-right">
+        <li><a href="/">Home</a></li>
+        <li><a href="#">AIMS</a></li>
+        <li class="active">Device At Branch Summary Report</li>
+    </ul>
+    <div class="heading-elements">
+        <div class="heading-btn-group">
+            <a href="/Aims/Print" class="btn btn-link btn-float has-text text-size-small"><i class="icon-printer text-indigo-400"></i> <span>Print</span></a>
+        </div>
+    </div>
+}
+
+<div class="row">
+    <div class="panel panel-default border-grey">
+        <div class="panel-heading">
+            <h5 class="panel-title"><i class="icon-search4 text-size-base position-left"></i>Filter<a class="heading-elements-toggle"><i class="icon-more"></i></a></h5>
+            <div class="heading-elements">
+                <ul class="icons-list">
+                    <li><a data-action="collapse" class=""></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="panel-body">
+            @using (Html.BeginForm("DeviceAtBranchSummary", "Aims", FormMethod.Post, new { @class = "form-horizontal form-validate", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="input-group content-group">
+                    <label class="col-lg-1 control-label">Branch:</label>
+                    <div class="col-lg-6 input-group">
+                        <div class="multi-select-full">
+                            @Html.DropDownListFor(m => m.SearchBranches, (IEnumerable<SelectListItem>)ViewBag.Branches, new { @class = "multiselect-select-all-filtering", multiple = "multiple" })
+                        </div>
+                    </div>
+                    <div class="input-group-btn">
+                        <button type="submit" class="btn btn-primary btn-xlg legitRipple">View</button>
+                    </div>
+                
+                </div>
+            }
+        </div>
+    </div>
+    <div class="panel panel-flat">
+        <div class="panel-heading">
+            <h5 class="panel-title text-semibold">Device At Branch Summary Report</h5>
+        </div>
+        <div class="panel-heading">
+            <h6 class="panel-title">1. Item at PPL</h6>
+        </div>
+        <div class="panel-body">
+            <table class="table border-dashed text-nowrap table-assets">
+                <thead>
+                    <tr>
+                        <th>Branch Name</th>
+                        <th>No</th>
+                        <th>Product No</th>
+                        <th>Asset Category</th>
+                        <th>Asset Name</th>
+                        <th>Quantity In Hand</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var item in Model.ItemsAtPpl)
+                {
+                    <tr>
+                        <td>@item.BranchName</td>
+                        <td>@item.No</td>
+                        <td>@item.ProductNo</td>
+                        <td>@item.AssetCategory</td>
+                        <td>@item.AssetName</td>
+                        <td>@item.Quantity</td>
+                    </tr>
+                }
+                </tbody>
+                @if (Model.ItemsAtPpl.Count > 0)
+                {
+                    <tfoot><tr><td colspan="4"></td><td class="text-right text-bold">Total </td><td class="text-bold">@Model.ItemsAtPpl.Sum(i => i.Quantity)</td></tr></tfoot>
+                }
+            </table>
+        </div>
+        <div class="panel-heading">
+            <h6 class="panel-title">2. Item Out for Repair (Reason of Repairing)</h6>
+        </div>
+        <div class="panel-body">
+            <table class="table table-framed text-nowrap table-assets-out">
+                <thead>
+                    <tr>
+                        <th>Branch Name</th>
+                        <th>No</th>
+                        <th>Product No</th>
+                        <th>Asset Category</th>
+                        <th>Asset Name</th>
+                        <th>Date Send Repair</th>
+                        <th>Quantity</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.ItemsOutAtPpl)
+                    {
+                        <tr>
+                            <td>@item.BranchName</td>
+                            <td>@item.No</td>
+                            <td>@item.ProductNo</td>
+                            <td>@item.AssetCategory</td>
+                            <td>@item.AssetName</td>
+                            <td>@string.Format("{0:dd/MM/yyyy}", item.DateSendRepair)</td>
+                            <td>@item.Quantity</td>
+                        </tr>
+                    }
+                </tbody>
+                @if (Model.ItemsOutAtPpl.Count > 0)
+                {
+                    <tfoot><tr><td colspan="5"></td><td class="text-right text-bold">Total </td><td class="text-bold">@Model.ItemsOutAtPpl.Sum(i => i.Quantity)</td></tr></tfoot>
+                }
+            </table>
+        </div>
+        <div class="panel-heading">
+            <h6 class="panel-title">3. Item Pending Delivery</h6>
+        </div>
+        <div class="panel-body">
+            <table class="table table-framed text-nowrap table-assets">
+                <thead>
+                    <tr>
+                        <th>Branch Name</th>
+                        <th>No</th>
+                        <th>Product No</th>
+                        <th>Asset Category</th>
+                        <th>Asset Name</th>
+                        <th>Quantity Requested</th>
+                        <th>Quantity Approved</th>
+                        <th>Quantity Allocated</th>
+                        <th>Quantity Pending</th>
+                        <th>Date Actual Request</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+                <tfoot><tr><td colspan="10" class="text-center text-size-small">No data available</td></tr></tfoot>
+            </table>
+        </div>
+        <div class="panel-heading">
+            <h6 class="panel-title">4. Item Relocated to Other Branch</h6>
+        </div>
+        <div class="panel-body">
+            <table class="table table-framed text-nowrap table-assets">
+                <thead>
+                    <tr>
+                        <th>Branch Name</th>
+                        <th>No</th>
+                        <th>Product No</th>
+                        <th>Asset Category</th>
+                        <th>Asset Name</th>
+                        <th>Quantity Relocated</th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+                <tfoot><tr><td colspan="6" class="text-center text-size-small">No data available</td></tr></tfoot>
+            </table>
+        </div>
+    </div>
+</div>
+
+
+@section scripts {
+    <script type="text/javascript" src="/Scripts/bootstrap_multiselect.js"></script>
+    <script type="text/javascript" src="/Scripts/datatables.min.js"></script>
+    <script type="text/javascript" src="/Scripts/uniform.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/ripple.min.js"></script>
+    <script>
+        $('.multiselect-select-all-filtering').multiselect({
+            includeSelectAllOption: true,
+            enableFiltering: true,
+            templates: {
+                filter: '<li class="multiselect-item multiselect-filter"><i class="icon-search4"></i> <input class="form-control" type="text"></li>'
+            },
+            onSelectAll: function () {
+                $.uniform.update();
+            }
+        });
+        $(".styled, .multiselect-container input").uniform({ radioClass: 'choice' });
+        var t = $('.table-assets').DataTable({
+            "ordering": false,
+            "searching": false,
+            "paging": false,
+            "scrollX": true,
+            "info": false,
+            "responsive": true,
+                "columnDefs": [
+                    { "visible": false, "targets": 0 }
+                ],
+                "drawCallback": function (settings) {
+                    var api = this.api();
+                    var rows = api.rows({ page: 'current' }).nodes();
+                    var last = null;
+
+                    api.column(0, { page: 'current' }).data().each(function (group, i) {
+                        if (last !== group) {
+                            $(rows).eq(i).before(
+                                '<tr class="group"><td colspan="5" class="text-semibold">' + group + '</td></tr>'
+                            );
+                            last = group;
+                        }
+                    });
+                }
+        });
+        var t = $('.table-assets-out').DataTable({
+            "ordering": false,
+            "searching": false,
+            "paging": false,
+            "scrollX": true,
+            "info": false,
+            "responsive": true,
+            "columnDefs": [
+                { "visible": false, "targets": 0 }
+            ],
+            "drawCallback": function (settings) {
+                var api = this.api();
+                var rows = api.rows({ page: 'current' }).nodes();
+                var last = null;
+
+                api.column(0, { page: 'current' }).data().each(function (group, i) {
+                    if (last !== group) {
+                        $(rows).eq(i).before(
+                            '<tr class="group"><td colspan="6" class="text-semibold">' + group + '</td></tr>'
+                        );
+                        last = group;
+                    }
+                });
+            }
+        });
+    </script>
+}
+

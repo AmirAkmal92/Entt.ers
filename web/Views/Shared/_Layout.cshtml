@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - ERS</title>
+    @*@Styles.Render("~/Content/css")*@
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,300,100,500,700,900" rel="stylesheet" type="text/css">
+    <link href="/Content/icons/icomoon/styles.css" rel="stylesheet" type="text/css">
+    <link href="/Content/bootstrap.css" rel="stylesheet" type="text/css">
+    <link href="/Content/core.css" rel="stylesheet" type="text/css">
+    <link href="/Content/components.css" rel="stylesheet" type="text/css">
+    <link href="/Content/colors.css" rel="stylesheet" type="text/css">
+    @Scripts.Render("~/bundles/modernizr")
+    @RenderSection("header", required: false)
+</head>
+<body>
+    <div class="navbar navbar-inverse bg-danger-700">
+        <div class="navbar-header">
+            <a class="navbar-brand" href="/"><img src="~/Content/images/ers.png" alt="EnTT Reporting System"></a>
+            <ul class="nav navbar-nav pull-right visible-xs-block">
+                <li><a data-toggle="collapse" data-target="#navbar-mobile"><i class="icon-tree5"></i></a></li>
+            </ul>
+        </div>
+        <div class="navbar-collapse collapse" id="navbar-mobile">
+            <ul class="nav navbar-nav navbar-right">
+                <li class="dropdown dropdown-user">
+                    <a class="dropdown-toggle" data-toggle="dropdown">
+                        @*<img src="assets/images/placeholder.jpg" alt="">*@
+                        <span>@ViewData["FullName"]</span>
+                        <i class="caret"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-right">
+                        <li><a href="#"><i class="icon-user-plus"></i> My profile</a></li>
+                        <li><a href="/Account/LogOut"><i class="icon-switch2"></i> Logout</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="navbar navbar-default" id="navbar-second">
+        <ul class="nav navbar-nav no-border visible-xs-block">
+            <li><a class="text-center collapsed" data-toggle="collapse" data-target="#navbar-second-toggle"><i class="icon-menu7"></i></a></li>
+        </ul>
+        <div class="navbar-collapse collapse" id="navbar-second-toggle">
+            <ul class="nav navbar-nav navbar-nav-material">
+                <li class="active"><a href="/"><i class="icon-display4 position-left"></i> Dashboard</a></li>
+                <li class="dropdown mega-menu mega-menu-wide">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i class="icon-file-spreadsheet position-left"></i> AIMS <span class="caret"></span></a>
+                    <div class="dropdown-menu dropdown-content">
+                        <div class="dropdown-content-body">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <ul class="menu-list">
+                                        <li class="dropdown-header">Reports</li>
+                                        <li><a href="/Aims/DeviceAtBranchSummary"><i class="icon-list3"></i> Device at Branch Summary</a></li>
+                                        <li><a href="#"><i class="icon-list3"></i> Device at Branch Detail</a></li>
+                                        <li><a href="#"><i class="icon-list3"></i> Request Asset By Branch Detail</a></li>
+                                        <li><a href="#"><i class="icon-list3"></i> Asset Assignment by Branch Detail</a></li>
+                                        <li><a href="#"><i class="icon-list3"></i> Asset SLA by Item</a></li>
+                                    </ul>
+                                </div>
+                                <div class="col-md-6">                                    
+                                    <ul class="menu-list">
+                                        <li class="dropdown-header">&nbsp;</li>
+                                        
+                                        <li><a href="#"><i class="icon-list3"></i> Repair and Maintenance by Branch</a></li>
+                                        <li><a href="#"><i class="icon-list3"></i> Return Asset Replacement by Branch</a></li>
+                                        <li><a href="#"><i class="icon-list3"></i> Asset for Disposal by Branch</a></li>
+                                        <li><a href="/Aims/StockStatus"><i class="icon-list3"></i> Stock Status by Item</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="icon-file-spreadsheet position-left"></i> SNB <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu width-250">
+                        <li class="dropdown-header">Listing</li>
+                        <li class="dropdown">
+                            <a href="/Report/Personnel"><i class="icon-users4"></i> Personnel Reports</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="icon-file-spreadsheet position-left"></i> VERSUS <span class="caret"></span>
+                    </a>
+                </li>
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        <i class="icon-make-group position-left"></i> ADMINISTRATOR <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu width-250">
+                        <li class="dropdown-header">Maintenance</li>
+                        <li class="dropdown">
+                            <a href="/Manage/Users"><i class="icon-users4"></i> User Listing</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+    </div>
+    <div class="page-header">
+        <div class="page-header-content">
+            <div class="page-title">
+                <h4>
+                    @*<i class="icon-home position-left"></i>*@
+                    <img src="~/Content/images/pos.png" width="50" alt="Pos Malaysia" />
+                    <span class="text-semibold"> Dashboard</span> - EnTT Reporting System
+                </h4>
+                @RenderSection("PageHeader", required: false)
+            </div>
+        </div>
+    </div>
+    
+    <div class="page-container">
+        <!-- Page content -->
+        <div class="page-content">
+            <!-- Main content -->
+            <div class="content-wrapper">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+    @*<script type="text/javascript" src="/Scripts/pace.min.js"></script>*@
+    <script type="text/javascript" src="/Scripts/blockui.min.js"></script>
+    <script type="text/javascript" src="/Scripts/nicescroll.min.js"></script>
+    <script type="text/javascript" src="/Scripts/drilldown.js"></script>
+    <script type="text/javascript" src="/Scripts/app.js"></script>
+    <script type="text/javascript" src="/Scripts/moment.min.js"></script>
+    <script type="text/javascript" src="/Scripts/dashboard.js"></script>
+    @RenderSection("scripts", required: false)
+
+    <div class="footer text-muted">
+        &copy; 2017 <a href="/">EnTT Platform</a> by <a href="http://www.azrolmn.tech/" target="_blank">Bespoke Technology Sdn. Bhd.</a>
+    </div>
+</body>
+</html>

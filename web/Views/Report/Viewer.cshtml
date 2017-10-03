@@ -1,0 +1,38 @@
+﻿@using ReportViewerForMvc;
+
+@{
+    ViewBag.Title = "LocalReportExample";
+}
+
+
+<div class="row">
+    <div class="panel panel-default border-grey">
+        <div class="panel-heading">
+            <h5 class="panel-title"><i class="icon-search4 text-size-base position-left"></i>Filter<a class="heading-elements-toggle"><i class="icon-more"></i></a></h5>
+            <div class="heading-elements">
+                <ul class="icons-list">
+                    <li><a data-action="collapse" class=""></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="panel-body">
+
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="panel panel-default border-grey">
+        <div class="panel-body">
+            @Html.ReportViewer(ViewBag.ReportViewer as Microsoft.Reporting.WebForms.ReportViewer)
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script type="text/javascript">
+    $(function () {
+        $("iframe[src*='Viewer']").width("95%");
+    });
+</script>
+}

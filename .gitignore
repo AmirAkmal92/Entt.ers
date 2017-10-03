@@ -1,0 +1,6 @@
+/packages
+/web/bin
+/web/obj
+*.suo
+/.vs
+*.ers.csproj.user
