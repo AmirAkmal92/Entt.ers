@@ -97,7 +97,7 @@ namespace Entt.Ers.Controllers
                 var datasetDeviceAtPpl = m_context.GetBranchDeviceDetailsAtPplDataSet(model.SearchBranches);
                 var datasetDeviceOutRepair = m_context.GetBranchDeviceDetailsOutRepairDataSet(model.SearchBranches);
                 var datasetDevicePendingDelivery = m_context.GetBranchDeviceSummaryPendingDeliveryDataSet(model.SearchBranches);
-                var datasetDeviceRelocated = m_context.GetBranchDeviceSummaryItemRelocatedDataSet(model.SearchBranches);
+                var datasetDeviceRelocated = m_context.GetBranchDeviceDetailsItemRelocatedDataSet(model.SearchBranches);
 
                 reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\Aims\AimsBranchDeviceDetailsReport.rdlc";
                 reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", datasetDeviceAtPpl.Tables[0]));

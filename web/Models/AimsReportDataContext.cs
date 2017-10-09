@@ -89,6 +89,19 @@ namespace Entt.Ers.Models
             return dataset;
         }
 
+        public DataSet GetBranchDeviceDetailsItemRelocatedDataSet(string[] branches)
+        {
+            var dataset = new DataSet();
+            var branchList = string.Join(",", branches.Select(item => "'" + item + "'"));
+            using (var sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["NonCoreConnectionString"].ConnectionString))
+            {
+                string queryString = $"SELECT ROW_NUMBER() OVER(PARTITION BY [BranchCode] Order By [BranchCode]) AS [Row] ,[BranchCode],[BranchOwnerShip] ,[CategoryName] ,[AssetNumber] ,[AssetName] ,[SerialNumber] ,[Remark] ,[DateOfAssetTransfer] ,[AssetToRelocateTo] ,[UserId] FROM [dbo].[uv_GetAssetRelocationByBranch] WHERE BranchCode IN ({branchList}) ORDER BY BranchCode, CategoryName, AssetNumber, SerialNumber";
+                var sqlDataAapter = new SqlDataAdapter(queryString, sqlConnection);
+                sqlDataAapter.Fill(dataset);
+            }
+            return dataset;
+        }
+
         public DataSet GetStockStatusDataSet(string[] categories)
         {
             var dataset = new DataSet();
