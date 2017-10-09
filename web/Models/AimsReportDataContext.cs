@@ -20,13 +20,14 @@ namespace Entt.Ers.Models
             }
             return dataset;
         }
+        
         public DataSet GetBranchDeviceSummaryOutRepairDataSet(string[] branches)
         {
             var dataset = new DataSet();
             var branchList = string.Join(",", branches.Select(item => "'" + item + "'"));
             using (var sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["NonCoreConnectionString"].ConnectionString))
             {
-                string queryString = $"SELECT ROW_NUMBER() OVER(PARTITION BY [BranchOwnerShip] Order By [BranchOwnerShip]) AS [Row],[BranchOwnerShip], [AssetNumber], [CategoryName], [AssetName], [DateSendDeviceToVendor], COUNT(*) AS Total FROM [dbo].[uv_GetAssetRepairDetailByBranch] WHERE BranchCode IN ({branchList}) GROUP BY BranchCode, BranchOwnerShip,AssetNumber,CategoryName,AssetName,DateSendDeviceToVendor ORDER BY BranchCode, AssetNumber,DateSendDeviceToVendor";
+                string queryString = $"SELECT ROW_NUMBER() OVER(PARTITION BY [BranchCode] Order By [BranchCode]) AS [Row],[BranchCode],[BranchName],[CategoryName],[AssetNumber],[AssetName],[DateSendDeviceToHQ], COUNT(*) AS Total FROM [dbo].[uv_Aims_GetAssetRepairDetailByBranch] WHERE BranchCode IN ({branchList}) AND AssetRepairStatus != 'Successfully Repaired' GROUP BY BranchCode,BranchName,AssetNumber,CategoryName,AssetName,[DateSendDeviceToHQ] ORDER BY [BranchCode], [CategoryName],[AssetNumber]";
                 var sqlDataAapter = new SqlDataAdapter(queryString, sqlConnection);
                 sqlDataAapter.Fill(dataset);
             }
@@ -53,6 +54,35 @@ namespace Entt.Ers.Models
             using (var sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["NonCoreConnectionString"].ConnectionString))
             {
                 string queryString = $"SELECT ROW_NUMBER() OVER(PARTITION BY [BranchOwnerShip] Order By [BranchOwnerShip]) AS [Row],[BranchOwnerShip],[CategoryName],[AssetNumber],[AssetName], COUNT(*) AS [Total] FROM [dbo].[uv_GetAssetRelocationByBranch] WHERE BranchCode IN ({branchList}) GROUP BY BranchOwnerShip, AssetNumber, CategoryName, AssetName ORDER BY BranchOwnerShip, CategoryName, AssetName";
+                var sqlDataAapter = new SqlDataAdapter(queryString, sqlConnection);
+                sqlDataAapter.Fill(dataset);
+            }
+            return dataset;
+        }
+
+        //
+        //Branch Device Details
+
+        public DataSet GetBranchDeviceDetailsAtPplDataSet(string[] branches)
+        {
+            var dataset = new DataSet();
+            var branchList = string.Join(",", branches.Select(item => "'" + item + "'"));
+            using (var sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["NonCoreConnectionString"].ConnectionString))
+            {
+                string queryString = $"SELECT ROW_NUMBER() OVER(PARTITION BY [BranchOwnerShip] Order By [BranchOwnerShip]) AS [Row],[BranchOwnerShip],[AssetNumber],[CategoryName],[AssetName],[SerialNumber],[StatusName] FROM [dbo].[uv_GetAssetDetailByBranch]  WHERE BranchCode IN ({branchList}) GROUP BY BranchOwnerShip, AssetNumber, CategoryName, AssetName,SerialNumber,StatusName ORDER BY BranchOwnerShip, CategoryName, AssetName";
+                var sqlDataAapter = new SqlDataAdapter(queryString, sqlConnection);
+                sqlDataAapter.Fill(dataset);
+            }
+            return dataset;
+        }
+
+        public DataSet GetBranchDeviceDetailsOutRepairDataSet(string[] branches)
+        {
+            var dataset = new DataSet();
+            var branchList = string.Join(",", branches.Select(item => "'" + item + "'"));
+            using (var sqlConnection = new SqlConnection(ConfigurationManager.ConnectionStrings["NonCoreConnectionString"].ConnectionString))
+            {
+                string queryString = $"SELECT ROW_NUMBER() OVER(PARTITION BY [BranchCode] Order By [BranchCode]) AS [Row],[BranchCode],[BranchName],[CategoryName],[AssetNumber],[AssetName],[SerialNumber],[DateSendDeviceToHQ],[DateSendDeviceToVendor],[ReasonForRepair],[Details],[AssetRepairStatus] FROM [dbo].[uv_Aims_GetAssetRepairDetailByBranch] WHERE BranchCode IN ({branchList}) AND AssetRepairStatus != 'Successfully Repaired' ORDER BY [BranchCode], [CategoryName],[AssetNumber]";
                 var sqlDataAapter = new SqlDataAdapter(queryString, sqlConnection);
                 sqlDataAapter.Fill(dataset);
             }

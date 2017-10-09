@@ -62,6 +62,55 @@ namespace Entt.Ers.Controllers
             return View(model);
         }
 
+        public ActionResult DeviceAtBranchDetails()
+        {
+            var reportViewer = new ReportViewer()
+            {
+                KeepSessionAlive = false,
+                ProcessingMode = ProcessingMode.Local,
+                SizeToReportContent = true,
+                Width = Unit.Percentage(100),
+                Height = Unit.Percentage(100)
+            };
+
+            ViewBag.ReportViewer = reportViewer;
+            ViewBag.Branches = m_context.GetBrances().Select(w => new SelectListItem { Text = w.Name, Value = w.Code });
+            var model = new DeviceAtBranchSummaryViewModel();
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult DeviceAtBranchDetails(DeviceAtBranchSummaryViewModel model)
+        {
+            var reportViewer = new ReportViewer()
+            {
+                KeepSessionAlive = false,
+                ProcessingMode = ProcessingMode.Local,
+                SizeToReportContent = true,
+                Width = Unit.Percentage(100),
+                Height = Unit.Percentage(100)
+            };
+
+            if (ModelState.IsValid && model.SearchBranches != null)
+            {
+                var datasetDeviceAtPpl = m_context.GetBranchDeviceDetailsAtPplDataSet(model.SearchBranches);
+                var datasetDeviceOutRepair = m_context.GetBranchDeviceDetailsOutRepairDataSet(model.SearchBranches);
+                var datasetDevicePendingDelivery = m_context.GetBranchDeviceSummaryPendingDeliveryDataSet(model.SearchBranches);
+                var datasetDeviceRelocated = m_context.GetBranchDeviceSummaryItemRelocatedDataSet(model.SearchBranches);
+
+                reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\Aims\AimsBranchDeviceDetailsReport.rdlc";
+                reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", datasetDeviceAtPpl.Tables[0]));
+                reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet2", datasetDeviceOutRepair.Tables[0]));
+                reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet3", datasetDevicePendingDelivery.Tables[0]));
+                reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet4", datasetDeviceRelocated.Tables[0]));
+            }
+
+            ViewBag.ReportViewer = reportViewer;
+            ViewBag.Branches = m_context.GetBrances().Select(w => new SelectListItem { Text = w.Name, Value = w.Code });
+            return View(model);
+        }
+
         public ActionResult StockStatus()
         {
             ViewBag.Categories = m_context.GetAssetCategoryList().Select(w => new SelectListItem { Text = w, Value = w });

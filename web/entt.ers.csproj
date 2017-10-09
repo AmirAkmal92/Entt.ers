@@ -380,6 +380,7 @@
     <Content Include="Views\Aims\StockStatus.cshtml" />
     <Content Include="Views\Aims\HtmlTableSample.cshtml" />
     <Content Include="Views\Manage\UserRoles.cshtml" />
+    <Content Include="Views\Aims\DeviceAtBranchDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -404,6 +405,7 @@
     <EmbeddedResource Include="Migrations\201709260921536_base.resx">
       <DependentUpon>201709260921536_base.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Aims\AimsBranchDeviceDetailsReport.rdlc" />
     <EmbeddedResource Include="Reports\Aims\AimsBranchDeviceSummaryReport.rdlc" />
     <EmbeddedResource Include="Reports\Aims\AimsStockStatusReport.rdlc" />
     <EmbeddedResource Include="Reports\Report1.rdlc" />
