@@ -83,7 +83,7 @@ namespace Entt.Ers.Controllers
         [Authorize(Roles = "Administrator")]
         public ActionResult AddUser()
         {
-            ViewBag.Branches = m_noncoreContext.GetBrances().Select(w => new SelectListItem { Text = w.Name, Value = w.Code });
+            ViewBag.Branches = m_noncoreContext.GetBranches(true).Select(w => new SelectListItem { Text = w.Name, Value = w.Code });
             var model = new RegisterViewModel();
             return View(model);
         }
@@ -107,7 +107,7 @@ namespace Entt.Ers.Controllers
                 AddErrors(result);
             }
 
-            ViewBag.Branches = m_noncoreContext.GetBrances().Select(w => new SelectListItem { Text = w.Name, Value = w.Code });
+            ViewBag.Branches = m_noncoreContext.GetBranches(true).Select(w => new SelectListItem { Text = w.Name, Value = w.Code });
             return View(model);
         }
 
@@ -125,7 +125,7 @@ namespace Entt.Ers.Controllers
             var model = new UpdateUserViewModel { Id = user.Id, UserName = user.UserName, FullName = user.FullName, Email = user.Email, BranchCode = user.BranchCode };
             var roles = UserManager.GetRoles(user.Id);
             model.IsAdministrator = roles.Contains("Administrator");
-            ViewBag.Branches = m_noncoreContext.GetBrances().Select(w => new SelectListItem { Text = w.Name, Value = w.Code });
+            ViewBag.Branches = m_noncoreContext.GetBranches(true).Select(w => new SelectListItem { Text = w.Name, Value = w.Code });
             return View(model);
         }
 
@@ -150,7 +150,7 @@ namespace Entt.Ers.Controllers
                 }
                 AddErrors(result);
             }
-            ViewBag.Branches = m_noncoreContext.GetBrances().Select(w => new SelectListItem { Text = w.Name, Value = w.Code });
+            ViewBag.Branches = m_noncoreContext.GetBranches(true).Select(w => new SelectListItem { Text = w.Name, Value = w.Code });
             return View(model);
         }
 

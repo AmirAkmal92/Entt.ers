@@ -25,7 +25,7 @@ namespace Entt.Ers.Controllers
             };
 
             ViewBag.ReportViewer = reportViewer;
-            ViewBag.Branches = m_context.GetBrances().Select(w => new SelectListItem { Text = w.Name, Value = w.Code });
+            ViewBag.Branches = m_context.GetBranches(false).Select(w => new SelectListItem { Text = w.Name, Value = w.Code });
             var model = new DeviceAtBranchSummaryViewModel();
             return View(model);
         }
@@ -58,7 +58,7 @@ namespace Entt.Ers.Controllers
             }
                         
             ViewBag.ReportViewer = reportViewer;
-            ViewBag.Branches = m_context.GetBrances().Select(w => new SelectListItem { Text = w.Name, Value = w.Code });
+            ViewBag.Branches = m_context.GetBranches(false).Select(w => new SelectListItem { Text = w.Name, Value = w.Code });
             return View(model);
         }
 
@@ -74,7 +74,7 @@ namespace Entt.Ers.Controllers
             };
 
             ViewBag.ReportViewer = reportViewer;
-            ViewBag.Branches = m_context.GetBrances().Select(w => new SelectListItem { Text = w.Name, Value = w.Code });
+            ViewBag.Branches = m_context.GetBranches(false).Select(w => new SelectListItem { Text = w.Name, Value = w.Code });
             var model = new DeviceAtBranchSummaryViewModel();
             return View(model);
         }
@@ -107,7 +107,7 @@ namespace Entt.Ers.Controllers
             }
 
             ViewBag.ReportViewer = reportViewer;
-            ViewBag.Branches = m_context.GetBrances().Select(w => new SelectListItem { Text = w.Name, Value = w.Code });
+            ViewBag.Branches = m_context.GetBranches(false).Select(w => new SelectListItem { Text = w.Name, Value = w.Code });
             return View(model);
         }
 

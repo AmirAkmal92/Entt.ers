@@ -223,12 +223,10 @@ namespace Entt.Ers.Models
 
         }
 
-        public IList<Branch> GetBrances()
+        public IList<Branch> GetBranches(bool addHq)
         {
-            var list = new List<Branch>
-            {
-                new Branch { Code = "HQ", Name = "Headquarters" }
-            };
+            var list = new List<Branch>();
+            if (addHq) list.Add(new Branch { Code = "HQ", Name = "Headquarters" });
 
             var connString = ConfigurationManager.ConnectionStrings["NonCoreConnectionString"].ConnectionString;
             var conn = new SqlConnection(connString);
