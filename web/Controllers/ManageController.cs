@@ -11,7 +11,7 @@ using System.Collections.Generic;
 
 namespace Entt.Ers.Controllers
 {
-    //[Authorize]
+    [Authorize]
     public class ManageController : ApplicationBaseController
     {
         private ApplicationSignInManager _signInManager;
@@ -67,6 +67,7 @@ namespace Entt.Ers.Controllers
             }
         }
 
+        [Authorize(Roles ="Administrator")]
         public async Task<ActionResult> Users()
         {
             var model = new List<UsersViewModel>();
@@ -79,6 +80,7 @@ namespace Entt.Ers.Controllers
             return View(model);
         }
 
+        [Authorize(Roles = "Administrator")]
         public ActionResult AddUser()
         {
             ViewBag.Branches = m_noncoreContext.GetBrances().Select(w => new SelectListItem { Text = w.Name, Value = w.Code });
@@ -99,7 +101,7 @@ namespace Entt.Ers.Controllers
                 {
                     //roles
                     //await UserManager.AddToRoleAsync(user.Id, "Customer");
-                    await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
+                    //await SignInManager.SignInAsync(user, isPersistent: false, rememberBrowser: false);
                     return RedirectToAction("Users", "Manage");
                 }
                 AddErrors(result);

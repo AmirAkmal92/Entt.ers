@@ -79,6 +79,16 @@ namespace Entt.Ers
                 var role = new IdentityRole() { Name = "HQ Users" };
                 roleManager.Create(role);
             }
+            if (!roleManager.RoleExists("Aims"))
+            {
+                var role = new IdentityRole() { Name = "Aims" };
+                roleManager.Create(role);
+            }
+            if (!roleManager.RoleExists("SNB"))
+            {
+                var role = new IdentityRole() { Name = "SNB" };
+                roleManager.Create(role);
+            }
         }
     }
 }
