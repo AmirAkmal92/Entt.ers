@@ -9,7 +9,7 @@ namespace Entt.Ers
             var list = new Dictionary<int, string>
             {
                 { 7, "7 Days" },
-                { 15, "15 Days" },
+                { 14, "14 Days" },
                 { 30, "30 Days" }
             };
             return list;

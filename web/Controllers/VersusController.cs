@@ -1,6 +1,7 @@
 ﻿using Entt.Ers.Models;
 using Microsoft.Reporting.WebForms;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
@@ -41,11 +42,18 @@ namespace Entt.Ers.Controllers
                 Height = Unit.Percentage(100)
             };
 
-            if (ModelState.IsValid && model.ReportDate.HasValue)
+            if (ModelState.IsValid)
             {
                 var day = int.Parse(model.ReportDay);
-                var dataset = m_context.GetDeliveryExceptionReportDataSet(model.ReportDate.Value, day);
+                var dataset = m_context.GetDeliveryExceptionReportDataSet(model.ReportDate, day);
                 reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\Versus\DeliveryExceptionVsPod.rdlc";
+
+                var parameters = new List<ReportParameter>
+                {
+                    new ReportParameter("reportDate", model.ReportDate.ToString("dd/MM/yyyy")),
+                    new ReportParameter("day", model.ReportDay)
+                };
+                reportViewer.LocalReport.SetParameters(parameters);
                 reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", dataset.Tables[0]));
             }
 

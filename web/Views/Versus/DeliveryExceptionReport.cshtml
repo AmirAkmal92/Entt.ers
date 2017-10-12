@@ -47,7 +47,7 @@
                                 @Html.TextBoxFor(m => m.ReportDate, "{0:yyyy-MM-dd}", new { @class = "form-control datepicker-format" })
                             </div>
                         </div>
-                        <label class="col-md-1 control-label">Report Type:</label>
+                        <label class="col-md-1 control-label">Prefix:</label>
                         <div class="col-md-2">
                             <div class="multi-select-full">
                                 @Html.DropDownListFor(m => m.ReportDay, ViewBag.ReportDays as IEnumerable<System.Web.Mvc.SelectListItem>, new { @class = "form-control bootstrap-select", required = true, data_width = "100%", @placeholder = "Select Date" })

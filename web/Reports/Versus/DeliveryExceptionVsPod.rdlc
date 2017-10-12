@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
-  <Body>
+<Body>
         <ReportItems>
           <Textbox Name="Textbox23">
             <CanGrow>true</CanGrow>
@@ -1089,7 +1089,7 @@
               </TablixMembers>
             </TablixRowHierarchy>
             <DataSetName>DataSet1</DataSetName>
-            <Top>0.8in</Top>
+            <Top>1.175in</Top>
             <Left>0.19833in</Left>
             <Height>0.63333in</Height>
             <Width>11.33332in</Width>
@@ -1100,6 +1100,36 @@
               </Border>
             </Style>
           </Tablix>
+          <Textbox Name="Textbox1">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>="Report Date: " + Format(Parameters!reportDate.Value, "dd/MM/yyyy")</Value>
+                    <Style />
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:DefaultName>Textbox1</rd:DefaultName>
+            <Top>0.69667in</Top>
+            <Left>0.205in</Left>
+            <Height>0.25in</Height>
+            <Width>4.775in</Width>
+            <ZIndex>2</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
         </ReportItems>
         <Height>2.02167in</Height>
         <Style />
@@ -1224,7 +1254,6 @@
       </Fields>
     </DataSet>
   </DataSets>
-  
   <ReportParameters>
     <ReportParameter Name="reportDate">
       <DataType>DateTime</DataType>
