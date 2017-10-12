@@ -234,6 +234,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\NonCoreDataModels.cs" />
+    <Compile Include="Models\ReportEngine.cs" />
     <Compile Include="Models\VersusReportViewModels.cs" />
     <Compile Include="PittisNonCoreProdDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -386,6 +387,7 @@
     <Content Include="Views\Manage\UserRoles.cshtml" />
     <Content Include="Views\Aims\DeviceAtBranchDetails.cshtml" />
     <Content Include="Views\Versus\DeliveryExceptionReport.cshtml" />
+    <Content Include="Views\Versus\ExpectedArrivalReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -415,6 +417,7 @@
     <EmbeddedResource Include="Reports\Aims\AimsStockStatusReport.rdlc" />
     <EmbeddedResource Include="Reports\Report1.rdlc" />
     <EmbeddedResource Include="Reports\Versus\DeliveryExceptionVsPod.rdlc" />
+    <EmbeddedResource Include="Reports\Versus\ExpectedArrivalDestinationOffice.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

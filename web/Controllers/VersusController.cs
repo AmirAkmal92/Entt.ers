@@ -61,5 +61,65 @@ namespace Entt.Ers.Controllers
             ViewBag.ReportDays = ApplicationHelper.GetReportDays().Select(w => new SelectListItem { Text = w.Value, Value = w.Key.ToString() });
             return View(model);
         }
+
+        public ActionResult ExpectedArrivalReport()
+        {
+            var reportViewer = ReportEngine.Create();
+            ViewBag.ReportViewer = reportViewer;
+            var model = new StandardReportViewModel { ReportDate = DateTime.Today };
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult ExpectedArrivalReport(StandardReportViewModel model)
+        {
+            var reportViewer = ReportEngine.Create();
+            if (ModelState.IsValid)
+            {
+                var dataset = m_context.ExpectedArrivalReportDataSet(model.ReportDate);
+                reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\Versus\ExpectedArrivalDestinationOffice.rdlc";
+
+                var parameters = new List<ReportParameter>
+                {
+                    new ReportParameter("reportDate", model.ReportDate.ToShortDateString())
+                };
+                reportViewer.LocalReport.SetParameters(parameters);
+                reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", dataset.Tables[0]));
+            }
+
+            ViewBag.ReportViewer = reportViewer;
+            return View(model);
+        }
+
+        public ActionResult NoAcceptanceReport()
+        {
+            var reportViewer = ReportEngine.Create();
+            ViewBag.ReportViewer = reportViewer;
+            var model = new StandardReportViewModel { ReportDate = DateTime.Today };
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult NoAcceptanceReport(StandardReportViewModel model)
+        {
+            var reportViewer = ReportEngine.Create();
+            if (ModelState.IsValid)
+            {
+                var dataset = m_context.ExpectedArrivalReportDataSet(model.ReportDate);
+                reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\Versus\NoAcceptanceReport.rdlc";
+
+                var parameters = new List<ReportParameter>
+                {
+                    new ReportParameter("reportDate", model.ReportDate.ToString("dd/MM/yyyy"))
+                };
+                reportViewer.LocalReport.SetParameters(parameters);
+                reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", dataset.Tables[0]));
+            }
+
+            ViewBag.ReportViewer = reportViewer;
+            return View(model);
+        }
     }
 }
