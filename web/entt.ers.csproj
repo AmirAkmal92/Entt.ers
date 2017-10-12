@@ -388,6 +388,7 @@
     <Content Include="Views\Aims\DeviceAtBranchDetails.cshtml" />
     <Content Include="Views\Versus\DeliveryExceptionReport.cshtml" />
     <Content Include="Views\Versus\ExpectedArrivalReport.cshtml" />
+    <Content Include="Views\Versus\NoAcceptanceReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -412,12 +413,13 @@
     <EmbeddedResource Include="Migrations\201709260921536_base.resx">
       <DependentUpon>201709260921536_base.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Aims\AimsBranchDeviceDetailsReport.rdlc" />
-    <EmbeddedResource Include="Reports\Aims\AimsBranchDeviceSummaryReport.rdlc" />
-    <EmbeddedResource Include="Reports\Aims\AimsStockStatusReport.rdlc" />
+    <Content Include="Reports\Aims\AimsBranchDeviceDetailsReport.rdlc" />
+    <Content Include="Reports\Aims\AimsBranchDeviceSummaryReport.rdlc" />
+    <Content Include="Reports\Aims\AimsStockStatusReport.rdlc" />
     <EmbeddedResource Include="Reports\Report1.rdlc" />
-    <EmbeddedResource Include="Reports\Versus\DeliveryExceptionVsPod.rdlc" />
-    <EmbeddedResource Include="Reports\Versus\ExpectedArrivalDestinationOffice.rdlc" />
+    <Content Include="Reports\Versus\DeliveryExceptionVsPod.rdlc" />
+    <Content Include="Reports\Versus\ExpectedArrivalDestinationOffice.rdlc" />
+    <Content Include="Reports\Versus\NoAcceptance.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

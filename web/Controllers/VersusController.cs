@@ -108,11 +108,11 @@ namespace Entt.Ers.Controllers
             if (ModelState.IsValid)
             {
                 var dataset = m_context.ExpectedArrivalReportDataSet(model.ReportDate);
-                reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\Versus\NoAcceptanceReport.rdlc";
+                reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\Versus\NoAcceptance.rdlc";
 
                 var parameters = new List<ReportParameter>
                 {
-                    new ReportParameter("reportDate", model.ReportDate.ToString("dd/MM/yyyy"))
+                    new ReportParameter("reportDate", model.ReportDate.ToShortDateString())
                 };
                 reportViewer.LocalReport.SetParameters(parameters);
                 reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", dataset.Tables[0]));
