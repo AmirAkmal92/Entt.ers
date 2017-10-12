@@ -4,3 +4,4 @@
 *.suo
 /.vs
 *.ers.csproj.user
+/web/Properties/PublishProfiles

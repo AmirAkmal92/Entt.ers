@@ -4,6 +4,17 @@ namespace Entt.Ers
 {
     public class ApplicationHelper
     {
+        public static Dictionary<int, string> GetReportDays()
+        {
+            var list = new Dictionary<int, string>
+            {
+                { 7, "7 Days" },
+                { 15, "15 Days" },
+                { 30, "30 Days" }
+            };
+            return list;
+        }
+
         public static Dictionary<string, string> GetBranches()
         {
             var list = new Dictionary<string, string>
