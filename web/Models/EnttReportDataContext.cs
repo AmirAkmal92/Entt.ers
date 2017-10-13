@@ -41,10 +41,10 @@ namespace Entt.Ers.Models
         {
             var dataset = new DataSet();
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["EnttConnectionString"].ConnectionString))
-            using (var cmd = new SqlCommand("Entt.usp_expected_arrival_report", conn))
+            using (var cmd = new SqlCommand("Entt.usp_no_acceptance", conn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.Parameters.Add("@reportDate", SqlDbType.Date).Value = reportDate;
+                cmd.Parameters.Add("@reportDate", SqlDbType.NVarChar, 8).Value = reportDate.ToString("ddMMyyyy");
                 var sqlDataAapter = new SqlDataAdapter(cmd);
                 sqlDataAapter.Fill(dataset);
             }

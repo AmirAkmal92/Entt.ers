@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2008/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition">
 <Body>
         <ReportItems>
           <Textbox Name="Textbox23">
@@ -42,7 +42,7 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>1.9in</Width>
+                  <Width>2.4in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.6in</Width>
@@ -324,7 +324,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Count(Fields!DateTime.Value)</Value>
+                                  <Value>=Fields!Total.Value</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                   </Style>
@@ -464,7 +464,7 @@
             <Top>1.175in</Top>
             <Left>0.19833in</Left>
             <Height>0.63333in</Height>
-            <Width>5.46666in</Width>
+            <Width>5.96666in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -585,14 +585,6 @@
         <CommandText>Entt.usp_expected_arrival_report</CommandText>
       </Query>
       <Fields>
-        <Field Name="DateTime">
-          <DataField>DateTime</DataField>
-          <rd:TypeName>System.DateTime</rd:TypeName>
-        </Field>
-        <Field Name="Postcode">
-          <DataField>Postcode</DataField>
-          <rd:TypeName>System.String</rd:TypeName>
-        </Field>
         <Field Name="BranchCode">
           <DataField>BranchCode</DataField>
           <rd:TypeName>System.String</rd:TypeName>
@@ -608,6 +600,10 @@
         <Field Name="StateName">
           <DataField>StateName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Total">
+          <DataField>Total</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
       </Fields>
     </DataSet>

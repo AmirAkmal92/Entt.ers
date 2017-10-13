@@ -107,7 +107,7 @@ namespace Entt.Ers.Controllers
             var reportViewer = ReportEngine.Create();
             if (ModelState.IsValid)
             {
-                var dataset = m_context.ExpectedArrivalReportDataSet(model.ReportDate);
+                var dataset = m_context.NoAcceptanceReportDataSet(model.ReportDate);
                 reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\Versus\NoAcceptance.rdlc";
 
                 var parameters = new List<ReportParameter>
