@@ -42,19 +42,19 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>4in</Width>
+                  <Width>3in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.7in</Width>
+                  <Width>0.65in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.7in</Width>
+                  <Width>0.65in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.7in</Width>
+                  <Width>0.65in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>0.7in</Width>
+                  <Width>0.65in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
@@ -889,7 +889,7 @@
               <TablixMembers>
                 <TablixMember>
                   <TablixHeader>
-                    <Size>1.4in</Size>
+                    <Size>1.35in</Size>
                     <CellContents>
                       <Textbox Name="Textbox2">
                         <CanGrow>true</CanGrow>
@@ -925,7 +925,7 @@
                 </TablixMember>
                 <TablixMember>
                   <TablixHeader>
-                    <Size>1.4in</Size>
+                    <Size>1.35in</Size>
                     <CellContents>
                       <Textbox Name="Textbox12">
                         <CanGrow>true</CanGrow>
@@ -974,7 +974,7 @@
                     </SortExpression>
                   </SortExpressions>
                   <TablixHeader>
-                    <Size>1.4in</Size>
+                    <Size>1.35in</Size>
                     <CellContents>
                       <Textbox Name="StateName">
                         <CanGrow>true</CanGrow>
@@ -1023,7 +1023,7 @@
                 </TablixMember>
                 <TablixMember>
                   <TablixHeader>
-                    <Size>1.4in</Size>
+                    <Size>1.35in</Size>
                     <CellContents>
                       <Textbox Name="Textbox28">
                         <CanGrow>true</CanGrow>
@@ -1063,7 +1063,7 @@
             <Top>1.175in</Top>
             <Left>0.19833in</Left>
             <Height>1.38333in</Height>
-            <Width>8.2in</Width>
+            <Width>6.95in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -1105,7 +1105,7 @@
         <Height>2.55833in</Height>
         <Style />
       </Body>
-      <Width>11.18998in</Width>
+      <Width>7.5in</Width>
       <Page>
         <PageFooter>
           <Height>0.4389in</Height>
