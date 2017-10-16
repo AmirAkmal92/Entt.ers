@@ -3,7 +3,7 @@
 @model PrefixReportViewModel
 
 @{
-    ViewBag.Title = "Delivery Exception Report";
+    ViewBag.Title = "PUP vs POD Report";
 }
 
 @section header {
@@ -22,7 +22,7 @@
     <ul class="breadcrumb breadcrumb-caret position-left">
         <li><a href="/">Home</a></li>
         <li><a href="#">Versus</a></li>
-        <li class="active">Delivery Exception Report</li>
+        <li class="active">PUP vs POD Report</li>
     </ul>
 }
 
@@ -37,7 +37,7 @@
             </div>
         </div>
         <div class="panel-body">
-            @using (Html.BeginForm("DeliveryExceptionReport", "Versus", FormMethod.Post, new { @class = "form-horizontal form-validate", role = "form" }))
+            @using (Html.BeginForm("PupVsPod", "Versus", FormMethod.Post, new { @class = "form-horizontal form-validate", role = "form" }))
             {
                 @Html.AntiForgeryToken()
                     <div class="row">

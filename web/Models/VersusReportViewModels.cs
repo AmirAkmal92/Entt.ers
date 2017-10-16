@@ -8,7 +8,7 @@ namespace Entt.Ers.Models
         public string SelectedBranch { get; set; }
     }
 
-    public class DeliveryExceptionReportViewModel
+    public class PrefixReportViewModel
     {
         public DateTime ReportDate { get; set; }
         public string ReportDay { get; set; }

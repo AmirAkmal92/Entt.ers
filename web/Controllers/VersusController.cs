@@ -25,13 +25,13 @@ namespace Entt.Ers.Controllers
 
             ViewBag.ReportViewer = reportViewer;
             ViewBag.ReportDays = ApplicationHelper.GetReportDays().Select(w => new SelectListItem { Text = w.Value, Value = w.Key.ToString() });
-            var model = new DeliveryExceptionReportViewModel { ReportDate = DateTime.Today,  ReportDay = 7.ToString()};
+            var model = new PrefixReportViewModel { ReportDate = DateTime.Today,  ReportDay = 7.ToString()};
             return View(model);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeliveryExceptionReport(DeliveryExceptionReportViewModel model)
+        public ActionResult DeliveryExceptionReport(PrefixReportViewModel model)
         {
             var reportViewer = new ReportViewer()
             {
@@ -53,6 +53,43 @@ namespace Entt.Ers.Controllers
                     new ReportParameter("reportDate", model.ReportDate.ToString("dd/MM/yyyy")),
                     new ReportParameter("day", model.ReportDay)
                 };
+                reportViewer.LocalReport.SetParameters(parameters);
+                reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", dataset.Tables[0]));
+            }
+
+            ViewBag.ReportViewer = reportViewer;
+            ViewBag.ReportDays = ApplicationHelper.GetReportDays().Select(w => new SelectListItem { Text = w.Value, Value = w.Key.ToString() });
+            return View(model);
+        }
+
+        public ActionResult PupVsPod()
+        {
+            var reportViewer = ReportEngine.Create();
+
+            ViewBag.ReportViewer = reportViewer;
+            ViewBag.ReportDays = ApplicationHelper.GetReportDays().Select(w => new SelectListItem { Text = w.Value, Value = w.Key.ToString() });
+            var model = new PrefixReportViewModel { ReportDate = DateTime.Today, ReportDay = 7.ToString() };
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult PupVsPod(PrefixReportViewModel model)
+        {
+            var reportViewer = ReportEngine.Create();
+
+            if (ModelState.IsValid)
+            {
+                var day = int.Parse(model.ReportDay);
+                var dataset = m_context.GetPupVsPodReportDataSet(model.ReportDate, day);
+                reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\Versus\PupVsPod.rdlc";
+
+                var parameters = new List<ReportParameter>
+                {
+                    new ReportParameter("reportDate", model.ReportDate.ToString("dd/MM/yyyy")),
+                    new ReportParameter("day", model.ReportDay)
+                };
+                reportViewer.LocalReport.EnableHyperlinks = true;
                 reportViewer.LocalReport.SetParameters(parameters);
                 reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", dataset.Tables[0]));
             }
