@@ -12,8 +12,8 @@ RETURNS TABLE
 AS  
 RETURN 
     SELECT 
-			b.[StateName], a.[LocationId], b.[BranchName], a.[ConsignmentNo], a.[DateTime],
-			p.[OfficeNo] AS [PODOfficeNo], p.[DateTime] AS [PODDateTime], p.[StateName] AS [PODStateName], p.[BranchName] AS [PODBranchName]
+			b.[StateName], a.[LocationId], b.[BranchName], a.[ConsignmentNo], a.[DateTime], a.[Comment],
+			p.[OfficeNo] AS [PODOfficeNo], p.[DateTime] AS [PODDateTime], p.[StateName] AS [PODStateName], p.[BranchName] AS [PODBranchName], p.[Comment] AS [PODComment]
 		FROM vw_ALL_ACCEPTANCE a
 		LEFT JOIN [Entt].[fn_GetPodByDatePrefix](@date,@day) p ON p.ConsignmentNo = a.ConsignmentNo
 		LEFT JOIN [Entt].[BranchStates] b ON b.BranchCode = a.LocationId

@@ -12,5 +12,6 @@ namespace Entt.Ers.Models
     {
         public DateTime ReportDate { get; set; }
         public string ReportDay { get; set; }
+        public string SelectedBranch { get; set; }
     }
 }

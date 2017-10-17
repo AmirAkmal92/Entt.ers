@@ -217,6 +217,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\VersusController.cs" />
+    <Compile Include="DateTimeBinder.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -390,6 +391,7 @@
     <Content Include="Views\Versus\ExpectedArrivalReport.cshtml" />
     <Content Include="Views\Versus\NoAcceptanceReport.cshtml" />
     <Content Include="Views\Versus\PupVsPod.cshtml" />
+    <Content Include="Views\Versus\PupVsPodDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -421,7 +423,8 @@
     <Content Include="Reports\Versus\DeliveryExceptionVsPod.rdlc" />
     <Content Include="Reports\Versus\ExpectedArrivalDestinationOffice.rdlc" />
     <Content Include="Reports\Versus\NoAcceptance.rdlc" />
-    <EmbeddedResource Include="Reports\Versus\PupVsPod.rdlc" />
+    <Content Include="Reports\Versus\PupVsPod.rdlc" />
+    <Content Include="Reports\Versus\PupVsPodDetails.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
