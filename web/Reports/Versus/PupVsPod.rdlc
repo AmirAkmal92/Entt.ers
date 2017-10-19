@@ -350,7 +350,7 @@
                                   <ActionInfo>
                                     <Actions>
                                       <Action>
-                                        <Hyperlink>="http://10.1.1.123:8036/Versus/PupVsPodDetails?branchCode=" + Fields!PupOfficeNo.Value + "&amp;date=" + Parameters!reportDate.Value.ToOADate().ToString() + "&amp;day=" + Parameters!day.Value</Hyperlink>
+                                        <Hyperlink>="http://10.1.1.123:8036/Versus/PupVsPodDetails?branchCode=" + Fields!PupOfficeNo.Value + "&amp;date=" + Parameters!reportDate.Value.ToOADate().ToString() + "&amp;day=" + Parameters!day.Value.ToString()</Hyperlink>
                                       </Action>
                                     </Actions>
                                   </ActionInfo>
