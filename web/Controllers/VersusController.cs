@@ -166,8 +166,8 @@ namespace Entt.Ers.Controllers
             ViewBag.ReportDays = ApplicationHelper.GetReportDays().Select(w => new SelectListItem { Text = w.Value, Value = w.Key.ToString() });
             var reportViewer = ReportEngine.Create();
 
-            var dataset = m_context.GetPupVsPodDetailsReportDataSet(reportDate.Date, int.Parse(day), branchCode);
-            reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\Versus\PupVsPodDetails.rdlc";
+            var dataset = m_context.GetPodVsPupDetailsReportDataSet(reportDate.Date, int.Parse(day), branchCode);
+            reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\Versus\PodVsPupDetails.rdlc";
             var parameters = new List<ReportParameter>
                 {
                     new ReportParameter("reportDate", reportDate.ToShortDateString()),

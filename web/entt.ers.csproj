@@ -393,6 +393,7 @@
     <Content Include="Views\Versus\PupVsPod.cshtml" />
     <Content Include="Views\Versus\PupVsPodDetails.cshtml" />
     <Content Include="Views\Versus\PodVsPup.cshtml" />
+    <Content Include="Views\Versus\PodVsPupDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -427,6 +428,7 @@
     <Content Include="Reports\Versus\PupVsPod.rdlc" />
     <Content Include="Reports\Versus\PupVsPodDetails.rdlc" />
     <Content Include="Reports\Versus\PodVsPup.rdlc" />
+    <Content Include="Reports\Versus\PodVsPupDetails.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
