@@ -3,11 +3,37 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Threading.Tasks;
 
 namespace Entt.Ers.Models
 {
     public class EnttReportDataContext
     {
+        public async Task<DailyStatistics> GetDashboardData(DateTime date)
+        {
+            var stats = new DailyStatistics();
+
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["EnttConnectionString"].ConnectionString))
+            using (var cmd = new SqlCommand("[Entt].[usp_home_dashboard]", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@date", SqlDbType.Date).Value = date;
+
+                await conn.OpenAsync();
+                using (var reader = await cmd.ExecuteReaderAsync())
+                {
+                    while (await reader.ReadAsync())
+                    {
+                        stats.Acceptances = reader.GetInt32(0);
+                        stats.Deliveries = reader.GetInt32(1);
+                        stats.Unknowns = reader.GetInt32(2);
+                    }
+                }
+            }
+            return stats;
+        }
+
+
         public DataSet GetDeliveryExceptionReportDataSet(DateTime reportDate, int day)
         {
             var dataset = new DataSet();

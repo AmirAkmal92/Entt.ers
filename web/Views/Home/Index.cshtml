@@ -1,4 +1,7 @@
-﻿@{
+﻿@using Entt.Ers.Models
+@model HomeIndexViewModel
+
+@{
     ViewBag.Title = "Dashboard";
 }
 
@@ -9,17 +12,51 @@
     </ul>
 }
 
-<div class="panel">
-    <div class="panel-body">
-        <h4 class="text-center content-group-xs">
-            Welcome to EnTT Reporting System
-            <small class="display-block">Enterprise Track and Trace</small>
-        </h4>
-    </div>
-</div>
-
 <div class="row">    
-    
+    <div class="col-lg-8">
+        <div class="panel panel-flat">
+            <div class="panel-heading">
+                <h6 class="panel-title text-semibold">Welcome to EnTT Reporting System</h6>
+                <small class="display-block">Enterprise Track and Trace</small>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-4">
+        <div class="panel panel-flat">
+            <div class="panel-heading">
+                <h6 class="panel-title text-semibold">Daily Statistics</h6>
+                <div class="heading-elements">
+                    <span class="heading-text">@Model.Date.ToString("dd MMM yyyy")</span>
+                </div>
+            </div>
+
+            <div class="container-fluid">
+                <div class="row text-center">
+                    <div class="col-md-4">
+                        <div class="content-group">
+                            <h6 class="text-semibold no-margin"><i class="icon-mail5 position-left text-slate"></i> @string.Format("{0:#,##0}", Model.Statistic.Acceptances)</h6>
+                            <span class="text-muted text-size-small">Acceptance</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="content-group">
+                            <h6 class="text-semibold no-margin"><i class="icon-truck position-left text-slate"></i> @string.Format("{0:#,##0}", Model.Statistic.Deliveries)</h6>
+                            <span class="text-muted text-size-small">Delivery</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="content-group">
+                            <h6 class="text-semibold no-margin"><i class="icon-folder-remove position-left text-slate"></i> @string.Format("{0:#,##0}", Model.Statistic.Unknowns)</h6>
+                            <span class="text-muted text-size-small">No Acceptance</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
 </div>
 
 

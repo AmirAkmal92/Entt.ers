@@ -236,6 +236,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\NonCoreDataModels.cs" />
     <Compile Include="Models\ReportEngine.cs" />
+    <Compile Include="Models\HomeViewModels.cs" />
     <Compile Include="Models\VersusReportViewModels.cs" />
     <Compile Include="PittisNonCoreProdDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
