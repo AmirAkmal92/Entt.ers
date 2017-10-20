@@ -121,6 +121,21 @@ namespace Entt.Ers.Models
             return dataset;
         }
 
+        public DataSet NoAcceptanceDetailsReportDataSet(DateTime reportDate, string branchCode)
+        {
+            var dataset = new DataSet();
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["EnttConnectionString"].ConnectionString))
+            using (var cmd = new SqlCommand("Entt.usp_no_acceptance_details", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@reportDate", SqlDbType.NVarChar,8).Value = reportDate.ToString("ddMMyyyy");
+                cmd.Parameters.Add("@branchCode", SqlDbType.NVarChar,10).Value = branchCode;
+                var sqlDataAapter = new SqlDataAdapter(cmd);
+                sqlDataAapter.Fill(dataset);
+            }
+            return dataset;
+        }
+
         public IList<Branch> GetBranchInfo(string branchCode)
         {
             var list = new List<Branch>();
