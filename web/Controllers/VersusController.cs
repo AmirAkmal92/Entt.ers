@@ -263,5 +263,41 @@ namespace Entt.Ers.Controllers
             var model = new PrefixReportViewModel { ReportDate = reportDate, SelectedBranch = branchCode };
             return View(model);
         }
+                
+        public ActionResult HandoverPodReport()
+        {
+            var reportViewer = ReportEngine.Create();
+            ViewBag.ReportViewer = reportViewer;
+            ViewBag.ReportDays = ApplicationHelper.GetReportDays().Select(w => new SelectListItem { Text = w.Value, Value = w.Key.ToString() });
+            var model = new PrefixReportViewModel { ReportDate = DateTime.Today, ReportDay = 7.ToString() };
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult HandoverPodReport(PrefixReportViewModel model)
+        {
+            var reportViewer = ReportEngine.Create();
+            if (ModelState.IsValid)
+            {
+                var prefix = ApplicationHelper.GetPrefix(int.Parse(model.ReportDay));
+                var dataset = m_context.HandoverPodReportDataSet(model.ReportDate, int.Parse(model.ReportDay));
+                reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\Versus\HandoverVsPod.rdlc";
+
+                var parameters = new List<ReportParameter>
+                {
+                    new ReportParameter("reportDate", model.ReportDate.ToShortDateString()),
+                    new ReportParameter("prefixStart", prefix.Start.ToString()),
+                    new ReportParameter("prefixEnd", prefix.End.ToString())
+                };
+                reportViewer.LocalReport.EnableHyperlinks = true;
+                reportViewer.LocalReport.SetParameters(parameters);
+                reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", dataset.Tables[0]));
+            }
+
+            ViewBag.ReportViewer = reportViewer;
+            ViewBag.ReportDays = ApplicationHelper.GetReportDays().Select(w => new SelectListItem { Text = w.Value, Value = w.Key.ToString() });
+            return View(model);
+        }
     }
 }

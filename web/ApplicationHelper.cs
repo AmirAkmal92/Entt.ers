@@ -4,6 +4,23 @@ namespace Entt.Ers
 {
     public class ApplicationHelper
     {
+        public static Models.ReportPrefix GetPrefix(int day)
+        {
+            var prefix = new Models.ReportPrefix { Start = 0, End = 7 }; //default is 7
+            switch (day)
+            {
+                case 14:
+                    prefix.Start = 7;
+                    prefix.End = 14;
+                    break;
+                case 30:
+                    prefix.Start = 14;
+                    prefix.End = 30;
+                    break;
+            }
+            return prefix;
+        }
+
         public static Dictionary<int, string> GetReportDays()
         {
             var list = new Dictionary<int, string>

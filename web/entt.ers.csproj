@@ -237,6 +237,7 @@
     <Compile Include="Models\NonCoreDataModels.cs" />
     <Compile Include="Models\ReportEngine.cs" />
     <Compile Include="Models\HomeViewModels.cs" />
+    <Compile Include="Models\ReportPrefix.cs" />
     <Compile Include="Models\VersusReportViewModels.cs" />
     <Compile Include="PittisNonCoreProdDataSet.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -396,6 +397,7 @@
     <Content Include="Views\Versus\PodVsPup.cshtml" />
     <Content Include="Views\Versus\PodVsPupDetails.cshtml" />
     <Content Include="Views\Versus\NoAcceptanceDetailsReport.cshtml" />
+    <Content Include="Views\Versus\HandoverPodReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -432,6 +434,7 @@
     <Content Include="Reports\Versus\PodVsPup.rdlc" />
     <Content Include="Reports\Versus\PodVsPupDetails.rdlc" />
     <Content Include="Reports\Versus\NoAcceptanceDetails.rdlc" />
+    <Content Include="Reports\Versus\HandoverVsPod.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
