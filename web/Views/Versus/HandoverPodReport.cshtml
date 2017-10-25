@@ -41,6 +41,12 @@
             {
                 @Html.AntiForgeryToken()
                     <div class="row">
+                        <label class="col-md-1 control-label">Branch:</label>
+                        <div class="col-md-2">
+                            <div class="multi-select-full">
+                                @Html.DropDownListFor(m => m.SelectedBranch, ViewBag.Branches as IEnumerable<System.Web.Mvc.SelectListItem>, new { @class = "form-control bootstrap-select", required = true, data_width = "100%", @placeholder = "Select Branch" })
+                            </div>
+                        </div>
                         <label class="col-md-1 control-label">Report Date:</label>
                         <div class="col-md-2">
                             <div>
@@ -53,7 +59,7 @@
                                 @Html.DropDownListFor(m => m.ReportDay, ViewBag.ReportDays as IEnumerable<System.Web.Mvc.SelectListItem>, new { @class = "form-control bootstrap-select", required = true, data_width = "100%", @placeholder = "Select Date" })
                             </div>
                         </div>
-                        <div class="col-md-6">
+                        <div class="col-md-3">
                             <button type="submit" class="btn btn-primary btn-sm legitRipple">View</button>
                         </div>
                 </div>

@@ -85,6 +85,24 @@ namespace Entt.Ers.Models
             return dataset;
         }
 
+        public DataSet HandoverPodBranchReportDataSet(DateTime reportDate, int prefixDay, string branchCode)
+        {
+            var dataset = new DataSet();
+            var prefix = ApplicationHelper.GetPrefix(prefixDay);
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["EnttConnectionString"].ConnectionString))
+            using (var cmd = new SqlCommand("Entt.usp_handover3rdparty_vs_pod_branch", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@reportDate", SqlDbType.DateTime).Value = reportDate;
+                cmd.Parameters.Add("@prefixStart", SqlDbType.Int).Value = prefix.Start;
+                cmd.Parameters.Add("@prefixEnd", SqlDbType.Int).Value = prefix.End;
+                cmd.Parameters.Add("@branchCode", SqlDbType.NVarChar, 50).Value = branchCode;
+                var sqlDataAapter = new SqlDataAdapter(cmd);
+                sqlDataAapter.Fill(dataset);
+            }
+            return dataset;
+        }
+
         public DataSet GetPupVsPodReportDataSet(DateTime reportDate, int day)
         {
             var dataset = new DataSet();

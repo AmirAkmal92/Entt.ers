@@ -1151,6 +1151,14 @@ Handover</Value>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
                                 </TextRun>
+                                <TextRun>
+                                  <Value xml:space="preserve"> </Value>
+                                  <Style>
+                                    <FontStyle>Italic</FontStyle>
+                                    <FontSize>9pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
                               </TextRuns>
                               <Style>
                                 <TextAlign>Right</TextAlign>
@@ -1185,7 +1193,7 @@ Handover</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=FormatNumber(Sum(Fields!WithPod.Value)/Sum(Fields!TotalHandover.Value),2)</Value>
+                                  <Value>=Replace(FormatNumber(Sum(Fields!WithPod.Value)/Sum(Fields!TotalHandover.Value)*100,1),"NaN",Nothing)</Value>
                                   <Style>
                                     <FontStyle>Italic</FontStyle>
                                     <FontSize>9pt</FontSize>
@@ -1227,6 +1235,14 @@ Handover</Value>
                               <TextRuns>
                                 <TextRun>
                                   <Value>=Format(Sum(Fields!WithoutPod.Value),"#,#")</Value>
+                                  <Style>
+                                    <FontStyle>Italic</FontStyle>
+                                    <FontSize>9pt</FontSize>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Value xml:space="preserve"> </Value>
                                   <Style>
                                     <FontStyle>Italic</FontStyle>
                                     <FontSize>9pt</FontSize>
@@ -1312,7 +1328,7 @@ Handover</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=FormatNumber(Sum(Fields!WithHandover.Value)/Sum(Fields!TotalPod.Value),2)</Value>
+                                  <Value>=Replace(FormatNumber(Sum(Fields!WithHandover.Value)/Sum(Fields!TotalPod.Value),2),"NaN",Nothing)</Value>
                                   <Style>
                                     <FontStyle>Italic</FontStyle>
                                     <FontSize>9pt</FontSize>

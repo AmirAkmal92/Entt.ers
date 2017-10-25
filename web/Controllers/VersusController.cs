@@ -289,6 +289,7 @@ namespace Entt.Ers.Controllers
             var reportViewer = ReportEngine.Create();
             ViewBag.ReportViewer = reportViewer;
             ViewBag.ReportDays = ApplicationHelper.GetReportDays().Select(w => new SelectListItem { Text = w.Value, Value = w.Key.ToString() });
+            ViewBag.Branches = GetUserViewBranches().Select(w => new SelectListItem { Text = w.Name, Value = w.Code });
             var model = new PrefixReportViewModel { ReportDate = DateTime.Today, ReportDay = 7.ToString() };
             return View(model);
         }
@@ -301,7 +302,10 @@ namespace Entt.Ers.Controllers
             if (ModelState.IsValid)
             {
                 var prefix = ApplicationHelper.GetPrefix(int.Parse(model.ReportDay));
-                var dataset = m_enttContext.HandoverPodReportDataSet(model.ReportDate, int.Parse(model.ReportDay));
+                DataSet dataset;
+                dataset = model.SelectedBranch == "All" ?
+                            m_enttContext.HandoverPodReportDataSet(model.ReportDate, int.Parse(model.ReportDay)) : 
+                            m_enttContext.HandoverPodBranchReportDataSet(model.ReportDate, int.Parse(model.ReportDay), model.SelectedBranch);
                 reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\Versus\HandoverVsPod.rdlc";
 
                 var parameters = new List<ReportParameter>
@@ -317,6 +321,7 @@ namespace Entt.Ers.Controllers
 
             ViewBag.ReportViewer = reportViewer;
             ViewBag.ReportDays = ApplicationHelper.GetReportDays().Select(w => new SelectListItem { Text = w.Value, Value = w.Key.ToString() });
+            ViewBag.Branches = GetUserViewBranches().Select(w => new SelectListItem { Text = w.Name, Value = w.Code });
             return View(model);
         }
     }
