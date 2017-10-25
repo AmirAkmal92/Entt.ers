@@ -23,13 +23,14 @@
     </div>
     <div class="col-lg-4">
         <div class="panel panel-flat">
+            @if (!Model.ShowBranchInfo)
+            {
             <div class="panel-heading">
-                <h6 class="panel-title text-semibold">Daily Statistics</h6>
+                <h6 class="panel-title text-semibold">EnTT Daily Statistics</h6>
                 <div class="heading-elements">
                     <span class="heading-text">@Model.Date.ToString("dd MMM yyyy")</span>
                 </div>
             </div>
-
             <div class="container-fluid">
                 <div class="row text-center">
                     <div class="col-md-4">
@@ -54,7 +55,40 @@
                     </div>
                 </div>
             </div>
+            }
+            else
+            {
+            <div class="panel-heading">
+                <h6 class="panel-title text-semibold">@Model.BranchStatistic.BranchName</h6>
+                <div class="heading-elements">
+                    <span class="heading-text">@Model.Date.ToString("dd MMM yyyy")</span>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row text-center">
+                    <div class="col-md-4">
+                        <div class="content-group">
+                            <h6 class="text-semibold no-margin"><i class="icon-mail5 position-left text-slate"></i> @string.Format("{0:#,##0}", Model.BranchStatistic.Acceptances)</h6>
+                            <span class="text-muted text-size-small">Acceptance</span>
+                        </div>
+                    </div>
 
+                    <div class="col-md-4">
+                        <div class="content-group">
+                            <h6 class="text-semibold no-margin"><i class="icon-truck position-left text-slate"></i> @string.Format("{0:#,##0}", Model.BranchStatistic.Deliveries)</h6>
+                            <span class="text-muted text-size-small">Delivery</span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <div class="content-group">
+                            <h6 class="text-semibold no-margin"><i class="icon-folder-remove position-left text-slate"></i> @string.Format("{0:#,##0}", Model.BranchStatistic.Unknowns)</h6>
+                            <span class="text-muted text-size-small">No Acceptance</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
         </div>
     </div>
 </div>

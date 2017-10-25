@@ -33,6 +33,33 @@ namespace Entt.Ers.Models
             return stats;
         }
 
+        public async Task<DailyStatistics> GetBranchDashboardData(DateTime date, string branchCode)
+        {
+            var stats = new DailyStatistics();
+
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["EnttConnectionString"].ConnectionString))
+            using (var cmd = new SqlCommand("[Entt].[usp_home_dashboard_branch]", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@date", SqlDbType.Date).Value = date;
+                cmd.Parameters.Add("@branchCode", SqlDbType.NVarChar, 50).Value = branchCode;
+
+                await conn.OpenAsync();
+                using (var reader = await cmd.ExecuteReaderAsync())
+                {
+                    while (await reader.ReadAsync())
+                    {
+                        stats.Acceptances = reader.GetInt32(0);
+                        stats.Deliveries = reader.GetInt32(1);
+                        stats.Unknowns = reader.GetInt32(2);
+                        stats.BranchName = reader.GetString(3);
+                        stats.BranchCode = branchCode;
+                    }
+                }
+            }
+            return stats;
+        }
+
 
         public DataSet GetDeliveryExceptionReportDataSet(DateTime reportDate, int day)
         {

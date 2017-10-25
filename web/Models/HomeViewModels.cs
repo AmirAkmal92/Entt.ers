@@ -6,6 +6,8 @@ namespace Entt.Ers.Models
     {
         public DateTime Date { get; set; }
         public DailyStatistics Statistic { get; set; }
+        public DailyStatistics BranchStatistic { get; set; }
+        public bool ShowBranchInfo { get; set; }
     }
 
     public class DailyStatistics
@@ -13,5 +15,7 @@ namespace Entt.Ers.Models
         public int Acceptances { get; set; }
         public int Deliveries { get; set; }
         public int Unknowns { get; set; }
+        public string BranchCode { get; set; }
+        public string BranchName { get; set; }
     }
 }
