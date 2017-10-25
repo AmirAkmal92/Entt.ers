@@ -42,7 +42,7 @@
             <TablixBody>
               <TablixColumns>
                 <TablixColumn>
-                  <Width>0.5in</Width>
+                  <Width>0.4in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>1.4in</Width>
@@ -51,7 +51,7 @@
                   <Width>1.4in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1in</Width>
+                  <Width>1.7in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>1in</Width>
@@ -441,7 +441,7 @@
                                   </Style>
                                 </TextRun>
                                 <TextRun>
-                                  <Value>=Fields!EventType.Value</Value>
+                                  <Value>=Code.GetDescription(Fields!EventType.Value)</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                   </Style>
@@ -1100,6 +1100,24 @@
       <Hidden>true</Hidden>
     </ReportParameter>
   </ReportParameters>
+  <Code>Public Function GetDescription(ByVal code As String) As String
+    Dim val As String = code
+    Select Case code
+      Case "norm"
+          val = "Konsol Normal"
+      Case "sop"
+          val = "Keluar Stesen"
+      Case "sip"
+          val = "Masuk Stesen"
+      Case "stat20"
+          val = "Received After Cut-off Time"
+      Case "stat34"
+          val = "Hold At Location"
+      Case "stat48"
+          val = "Serahan Tempatan"
+    End Select
+    Return val
+End Function</Code>
   <rd:ReportUnitType>Inch</rd:ReportUnitType>
   <rd:ReportID>0525fbf5-51f4-4376-a010-df97001d7927</rd:ReportID>
 </Report>
