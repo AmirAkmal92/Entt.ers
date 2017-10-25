@@ -225,6 +225,7 @@ namespace Entt.Ers.Controllers
         {
             var reportViewer = ReportEngine.Create();
             ViewBag.ReportViewer = reportViewer;
+            ViewBag.Branches = GetUserViewBranches().Select(w => new SelectListItem { Text = w.Name, Value = w.Code });
             var model = new StandardReportViewModel { ReportDate = DateTime.Today };
             return View(model);
         }
@@ -236,7 +237,10 @@ namespace Entt.Ers.Controllers
             var reportViewer = ReportEngine.Create();
             if (ModelState.IsValid)
             {
-                var dataset = m_enttContext.NoAcceptanceReportDataSet(model.ReportDate);
+                DataSet dataset;
+                dataset = model.SelectedBranch == "All" ? 
+                            m_enttContext.NoAcceptanceReportDataSet(model.ReportDate) :
+                            m_enttContext.NoAcceptanceBranchReportDataSet(model.ReportDate, model.SelectedBranch);
                 reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\Versus\NoAcceptance.rdlc";
 
                 var parameters = new List<ReportParameter>
@@ -249,6 +253,7 @@ namespace Entt.Ers.Controllers
             }
 
             ViewBag.ReportViewer = reportViewer;
+            ViewBag.Branches = GetUserViewBranches().Select(w => new SelectListItem { Text = w.Name, Value = w.Code });
             return View(model);
         }
 
