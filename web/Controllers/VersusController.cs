@@ -10,8 +10,6 @@ namespace Entt.Ers.Controllers
 {
     public class VersusController : ApplicationBaseController
     {
-        private EnttReportDataContext m_context = new EnttReportDataContext();
-
         public ActionResult DeliveryExceptionReport()
         {
             var reportViewer = new ReportViewer()
@@ -45,7 +43,7 @@ namespace Entt.Ers.Controllers
             if (ModelState.IsValid)
             {
                 var day = int.Parse(model.ReportDay);
-                var dataset = m_context.GetDeliveryExceptionReportDataSet(model.ReportDate, day);
+                var dataset = m_enttContext.GetDeliveryExceptionReportDataSet(model.ReportDate, day);
                 reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\Versus\DeliveryExceptionVsPod.rdlc";
 
                 var parameters = new List<ReportParameter>
@@ -67,6 +65,7 @@ namespace Entt.Ers.Controllers
             var reportViewer = ReportEngine.Create();
 
             ViewBag.ReportViewer = reportViewer;
+            ViewBag.Branches = GetUserViewBranches().Select(w => new SelectListItem { Text = w.Name, Value = w.Code });
             ViewBag.ReportDays = ApplicationHelper.GetReportDays().Select(w => new SelectListItem { Text = w.Value, Value = w.Key.ToString() });
             var model = new PrefixReportViewModel { ReportDate = DateTime.Today, ReportDay = 7.ToString() };
             return View(model);
@@ -81,7 +80,10 @@ namespace Entt.Ers.Controllers
             if (ModelState.IsValid)
             {
                 var day = int.Parse(model.ReportDay);
-                var dataset = m_context.GetPupVsPodReportDataSet(model.ReportDate, day);
+                System.Data.DataSet dataset;
+                dataset = model.SelectedBranch == "All" ? 
+                    m_enttContext.GetPupVsPodReportDataSet(model.ReportDate, day) :
+                    m_enttContext.GetPupVsPodBranchReportDataSet(model.ReportDate, day, model.SelectedBranch);
                 reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\Versus\PupVsPod.rdlc";
 
                 var parameters = new List<ReportParameter>
@@ -95,6 +97,7 @@ namespace Entt.Ers.Controllers
             }
 
             ViewBag.ReportViewer = reportViewer;
+            ViewBag.Branches = GetUserViewBranches().Select(w => new SelectListItem { Text = w.Name, Value = w.Code });
             ViewBag.ReportDays = ApplicationHelper.GetReportDays().Select(w => new SelectListItem { Text = w.Value, Value = w.Key.ToString() });
             return View(model);
         }
@@ -102,11 +105,11 @@ namespace Entt.Ers.Controllers
         public ActionResult PupVsPodDetails(string branchCode, double date, string day = "7")
         {
             var reportDate = DateTime.FromOADate(date);
-            ViewBag.Branches = m_context.GetBranchInfo(branchCode).Select(w => new SelectListItem { Text = w.Name, Value = w.Code });
+            ViewBag.Branches = m_enttContext.GetBranchInfo(branchCode).Select(w => new SelectListItem { Text = w.Name, Value = w.Code });
             ViewBag.ReportDays = ApplicationHelper.GetReportDays().Select(w => new SelectListItem { Text = w.Value, Value = w.Key.ToString() });
             var reportViewer = ReportEngine.Create();
             
-            var dataset = m_context.GetPupVsPodDetailsReportDataSet(reportDate.Date, int.Parse(day), branchCode);
+            var dataset = m_enttContext.GetPupVsPodDetailsReportDataSet(reportDate.Date, int.Parse(day), branchCode);
             reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\Versus\PupVsPodDetails.rdlc";
             var parameters = new List<ReportParameter>
                 {
@@ -141,7 +144,7 @@ namespace Entt.Ers.Controllers
             if (ModelState.IsValid)
             {
                 var day = int.Parse(model.ReportDay);
-                var dataset = m_context.GetPodVsPupReportDataSet(model.ReportDate, day);
+                var dataset = m_enttContext.GetPodVsPupReportDataSet(model.ReportDate, day);
                 reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\Versus\PodVsPup.rdlc";
 
                 var parameters = new List<ReportParameter>
@@ -162,11 +165,11 @@ namespace Entt.Ers.Controllers
         public ActionResult PodVsPupDetails(string branchCode, double date, string day = "7")
         {
             var reportDate = DateTime.FromOADate(date);
-            ViewBag.Branches = m_context.GetBranchInfo(branchCode).Select(w => new SelectListItem { Text = w.Name, Value = w.Code });
+            ViewBag.Branches = m_enttContext.GetBranchInfo(branchCode).Select(w => new SelectListItem { Text = w.Name, Value = w.Code });
             ViewBag.ReportDays = ApplicationHelper.GetReportDays().Select(w => new SelectListItem { Text = w.Value, Value = w.Key.ToString() });
             var reportViewer = ReportEngine.Create();
 
-            var dataset = m_context.GetPodVsPupDetailsReportDataSet(reportDate.Date, int.Parse(day), branchCode);
+            var dataset = m_enttContext.GetPodVsPupDetailsReportDataSet(reportDate.Date, int.Parse(day), branchCode);
             reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\Versus\PodVsPupDetails.rdlc";
             var parameters = new List<ReportParameter>
                 {
@@ -197,7 +200,7 @@ namespace Entt.Ers.Controllers
             var reportViewer = ReportEngine.Create();
             if (ModelState.IsValid)
             {
-                var dataset = m_context.ExpectedArrivalReportDataSet(model.ReportDate);
+                var dataset = m_enttContext.ExpectedArrivalReportDataSet(model.ReportDate);
                 reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\Versus\ExpectedArrivalDestinationOffice.rdlc";
 
                 var parameters = new List<ReportParameter>
@@ -227,7 +230,7 @@ namespace Entt.Ers.Controllers
             var reportViewer = ReportEngine.Create();
             if (ModelState.IsValid)
             {
-                var dataset = m_context.NoAcceptanceReportDataSet(model.ReportDate);
+                var dataset = m_enttContext.NoAcceptanceReportDataSet(model.ReportDate);
                 reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\Versus\NoAcceptance.rdlc";
 
                 var parameters = new List<ReportParameter>
@@ -246,10 +249,10 @@ namespace Entt.Ers.Controllers
         public ActionResult NoAcceptanceDetailsReport(string branchCode, double date)
         {
             var reportDate = DateTime.FromOADate(date);
-            ViewBag.Branches = m_context.GetBranchInfo(branchCode).Select(w => new SelectListItem { Text = w.Name, Value = w.Code });
+            ViewBag.Branches = m_enttContext.GetBranchInfo(branchCode).Select(w => new SelectListItem { Text = w.Name, Value = w.Code });
             var reportViewer = ReportEngine.Create();
 
-            var dataset = m_context.NoAcceptanceDetailsReportDataSet(reportDate.Date, branchCode);
+            var dataset = m_enttContext.NoAcceptanceDetailsReportDataSet(reportDate.Date, branchCode);
             reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\Versus\NoAcceptanceDetails.rdlc";
             var parameters = new List<ReportParameter>
                 {
@@ -281,7 +284,7 @@ namespace Entt.Ers.Controllers
             if (ModelState.IsValid)
             {
                 var prefix = ApplicationHelper.GetPrefix(int.Parse(model.ReportDay));
-                var dataset = m_context.HandoverPodReportDataSet(model.ReportDate, int.Parse(model.ReportDay));
+                var dataset = m_enttContext.HandoverPodReportDataSet(model.ReportDate, int.Parse(model.ReportDay));
                 reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\Versus\HandoverVsPod.rdlc";
 
                 var parameters = new List<ReportParameter>

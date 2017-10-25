@@ -83,6 +83,22 @@ namespace Entt.Ers.Models
             return dataset;
         }
 
+        public DataSet GetPupVsPodBranchReportDataSet(DateTime reportDate, int day, string branchCode)
+        {
+            var dataset = new DataSet();
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["EnttConnectionString"].ConnectionString))
+            using (var cmd = new SqlCommand("[Entt].[usp_pup_vs_pod_branch]", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@reportDate", SqlDbType.Date).Value = reportDate;
+                cmd.Parameters.Add("@day", SqlDbType.Int).Value = day;
+                cmd.Parameters.Add("@branchCode", SqlDbType.NVarChar,50).Value = branchCode;
+                var sqlDataAapter = new SqlDataAdapter(cmd);
+                sqlDataAapter.Fill(dataset);
+            }
+            return dataset;
+        }
+
         public DataSet GetPupVsPodDetailsReportDataSet(DateTime reportDate, int day, string branchCode)
         {
             var dataset = new DataSet();
@@ -177,6 +193,30 @@ namespace Entt.Ers.Models
                 sqlDataAapter.Fill(dataset);
             }
             return dataset;
+        }
+
+        public IList<Branch> GetPplBranches()
+        {
+            var list = new List<Branch>();
+
+            var connString = ConfigurationManager.ConnectionStrings["EnttConnectionString"].ConnectionString;
+            var conn = new SqlConnection(connString);
+            var sql = $"[Entt].[usp_get_ppl_list]";
+
+            using (var cmd = new SqlCommand(sql, conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                if (conn.State != ConnectionState.Open)
+                    conn.Open();
+                using (var reader = cmd.ExecuteReader(CommandBehavior.CloseConnection))
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(new Branch { Code = reader.GetString(0), Name = reader.GetString(1) });
+                    }
+                }
+            }
+            return list;
         }
 
         public IList<Branch> GetBranchInfo(string branchCode)
