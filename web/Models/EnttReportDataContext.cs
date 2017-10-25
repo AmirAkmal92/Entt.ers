@@ -41,9 +41,27 @@ namespace Entt.Ers.Models
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["EnttConnectionString"].ConnectionString))
             using (var cmd = new SqlCommand("usp_dex_vs_pod", conn))
             {
+                cmd.CommandTimeout = 80;
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("@reportDate", SqlDbType.Date).Value = reportDate;
                 cmd.Parameters.Add("@day", SqlDbType.Int).Value = day;
+                var sqlDataAapter = new SqlDataAdapter(cmd);
+                sqlDataAapter.Fill(dataset);
+            }
+            return dataset;
+        }
+
+        public DataSet GetDeliveryExceptionBranchReportDataSet(DateTime reportDate, int day, string branchCode)
+        {
+            var dataset = new DataSet();
+
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["EnttConnectionString"].ConnectionString))
+            using (var cmd = new SqlCommand("usp_dex_vs_pod_branch", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@reportDate", SqlDbType.Date).Value = reportDate;
+                cmd.Parameters.Add("@day", SqlDbType.Int).Value = day;
+                cmd.Parameters.Add("@branchCode", SqlDbType.NVarChar, 50).Value = branchCode;
                 var sqlDataAapter = new SqlDataAdapter(cmd);
                 sqlDataAapter.Fill(dataset);
             }
