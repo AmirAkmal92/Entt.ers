@@ -8,8 +8,6 @@ namespace Entt.Ers.Controllers
     [Authorize]
     public class HomeController : ApplicationBaseController
     {
-        private EnttReportDataContext m_enttContext = new EnttReportDataContext();
-
         public async Task<ActionResult> Index()
         {
             var stats = await m_enttContext.GetDashboardData(DateTime.Today);
