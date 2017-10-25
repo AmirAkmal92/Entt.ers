@@ -2,6 +2,7 @@
 using Microsoft.Reporting.WebForms;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Web.Mvc;
 using System.Web.UI.WebControls;
@@ -80,7 +81,7 @@ namespace Entt.Ers.Controllers
             if (ModelState.IsValid)
             {
                 var day = int.Parse(model.ReportDay);
-                System.Data.DataSet dataset;
+                DataSet dataset;
                 dataset = model.SelectedBranch == "All" ? 
                     m_enttContext.GetPupVsPodReportDataSet(model.ReportDate, day) :
                     m_enttContext.GetPupVsPodBranchReportDataSet(model.ReportDate, day, model.SelectedBranch);
@@ -189,6 +190,7 @@ namespace Entt.Ers.Controllers
         {
             var reportViewer = ReportEngine.Create();
             ViewBag.ReportViewer = reportViewer;
+            ViewBag.Branches = GetUserViewBranches().Select(w => new SelectListItem { Text = w.Name, Value = w.Code });
             var model = new StandardReportViewModel { ReportDate = DateTime.Today };
             return View(model);
         }
@@ -200,7 +202,10 @@ namespace Entt.Ers.Controllers
             var reportViewer = ReportEngine.Create();
             if (ModelState.IsValid)
             {
-                var dataset = m_enttContext.ExpectedArrivalReportDataSet(model.ReportDate);
+                DataSet dataset;
+                dataset = model.SelectedBranch == "All" ?
+                            m_enttContext.ExpectedArrivalReportDataSet(model.ReportDate) :
+                            m_enttContext.ExpectedArrivalBranchReportDataSet(model.ReportDate, model.SelectedBranch);
                 reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\Versus\ExpectedArrivalDestinationOffice.rdlc";
 
                 var parameters = new List<ReportParameter>
@@ -212,6 +217,7 @@ namespace Entt.Ers.Controllers
             }
 
             ViewBag.ReportViewer = reportViewer;
+            ViewBag.Branches = GetUserViewBranches().Select(w => new SelectListItem { Text = w.Name, Value = w.Code });
             return View(model);
         }
 
