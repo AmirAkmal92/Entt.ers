@@ -333,5 +333,36 @@ namespace Entt.Ers.Models
             }
             return list;
         }
+
+        public Acceptance SearchAcceptance(string consignmentNo)
+        {
+            Acceptance acceptance = null;
+
+            var connString = ConfigurationManager.ConnectionStrings["EnttConnectionString"].ConnectionString;
+            var conn = new SqlConnection(connString);
+            var sql = $"SELECT [ConsignmentNo],[DateTime],[CourierId],[LocationId],[Comment],[ScannerId],[CreatedDate] FROM [Entt].[Acceptance] WHERE [ConsignmentNo] = '{consignmentNo}'";
+
+            using (var cmd = new SqlCommand(sql, conn))
+            {
+                if (conn.State != ConnectionState.Open)
+                    conn.Open();
+                using (var reader = cmd.ExecuteReader(CommandBehavior.CloseConnection))
+                {
+                    while (reader.Read())
+                    {
+                        acceptance = new Acceptance {
+                            ConsignmentNo = reader.GetValue(0).ToString(),
+                            DateTime = reader.GetDateTime(1),
+                            CourierId = reader.GetValue(2).ToString(),
+                            LocationId = reader.GetValue(3).ToString(),
+                            Comment = reader.GetValue(4).ToString(),
+                            ScannerId = reader.GetValue(5).ToString(),
+                            CreatedDate = reader.GetDateTime(6)
+                        };
+                    }
+                }
+            }
+            return acceptance;
+        }
     }
 }

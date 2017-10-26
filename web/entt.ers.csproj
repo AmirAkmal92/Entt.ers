@@ -227,6 +227,7 @@
       <DependentUpon>201709260921536_base.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\Acceptance.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\AimsReportDataContext.cs" />
     <Compile Include="Models\AimsStockStatusViewModel.cs" />
@@ -399,6 +400,7 @@
     <Content Include="Views\Versus\PodVsPupDetails.cshtml" />
     <Content Include="Views\Versus\NoAcceptanceDetailsReport.cshtml" />
     <Content Include="Views\Versus\HandoverPodReport.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

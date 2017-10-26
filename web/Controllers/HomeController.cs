@@ -25,6 +25,15 @@ namespace Entt.Ers.Controllers
             return View(model);
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Search(HomeIndexViewModel model)
+        {
+            var acceptance = m_enttContext.SearchAcceptance(model.SearchKey);
+            var vm = new HomeSearchViewModel { Acceptance = acceptance, SearchKey = model.SearchKey };
+            return View(vm);
+        }
+
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

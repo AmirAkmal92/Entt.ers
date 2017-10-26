@@ -8,6 +8,7 @@ namespace Entt.Ers.Models
         public DailyStatistics Statistic { get; set; }
         public DailyStatistics BranchStatistic { get; set; }
         public bool ShowBranchInfo { get; set; }
+        public string SearchKey { get; set; }
     }
 
     public class DailyStatistics
@@ -17,5 +18,11 @@ namespace Entt.Ers.Models
         public int Unknowns { get; set; }
         public string BranchCode { get; set; }
         public string BranchName { get; set; }
+    }
+
+    public class HomeSearchViewModel
+    {
+        public Acceptance Acceptance { get; set; }
+        public string SearchKey { get; set; }
     }
 }
