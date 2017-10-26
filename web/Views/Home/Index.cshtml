@@ -13,7 +13,7 @@
 }
 
 <div class="row">    
-    <div class="col-lg-8">
+    <div class="col-lg-9">
         <div class="panel panel-flat">
             <div class="panel-heading">
                 <h6 class="panel-title text-semibold">Welcome to EnTT Reporting System</h6>
@@ -21,7 +21,24 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-4">
+    <div class="col-lg-3">
+        <div class="panel panel-flat">
+            <div class="panel-heading">
+                <h6 class="panel-title">Search Acceptance<a class="heading-elements-toggle"><i class="icon-more"></i></a></h6>
+            </div>
+            <div class="panel-body">
+                @using (Html.BeginForm("Search", "Home", FormMethod.Post, new { @class = "form-horizontal form-validate", role = "form" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="input-group content-group">
+                        @Html.TextBoxFor(m => m.SearchKey, new { @class = "form-control input-lg", @placeholder = "Enter Consignment No." })
+                        <div class="input-group-btn">
+                            <button type="submit" class="btn btn-primary btn-lg btn-icon legitRipple"><i class="icon-search4"></i></button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
         <div class="panel panel-flat">
             @if (!Model.ShowBranchInfo)
             {

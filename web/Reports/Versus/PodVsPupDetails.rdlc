@@ -740,7 +740,7 @@ No</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!DateTime.Value,"yyyy-MM-dd HH:mm tt")</Value>
+                                  <Value>=Format(Fields!DateTime.Value,"yyyy-MM-dd HH:mm:ss")</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                   </Style>
@@ -882,7 +882,7 @@ No</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!PupDateTime.Value,"yyyy-MM-dd HH:mm tt")</Value>
+                                  <Value>=Format(Fields!PupDateTime.Value,"yyyy-MM-dd HH:mm:ss")</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                   </Style>
