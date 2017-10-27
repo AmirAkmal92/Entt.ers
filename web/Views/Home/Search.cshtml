@@ -14,49 +14,73 @@
 }
 
 <div class="row">
-    <div class="panel invoice-grid">
+    <div class="panel panel-default border-grey">
         <div class="panel-heading">
-            <h5 class="panel-title"><i class="icon-search4 text-size-base position-left"></i>Search Result<a class="heading-elements-toggle"><i class="icon-more"></i></a></h5>
+            <h5 class="panel-title"><i class="icon-search4 text-size-base position-left"></i>Filter<a class="heading-elements-toggle"><i class="icon-more"></i></a></h5>
         </div>
         <div class="panel-body">
-            <div class="row">
-                <div class="col-sm-12">
-                    <div class="table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>Consignment No.</th>
-                                    <th>Date/Time</th>
-                                    <th>Courier Id</th>
-                                    <th>Location Id</th>
-                                    <th>Created Date</th>
-                                </tr>
-                            </thead>
-                            @if (null != Model.Acceptance)
-                            {
-                            <tbody>
-                                <tr>
-                                    <td>@Model.Acceptance.ConsignmentNo</td>
-                                    <td>@Model.Acceptance.DateTime.ToString("dd/MM/yyyy HH:mm:ss")</td>
-                                    <td>@Model.Acceptance.CourierId</td>
-                                    <td>@Model.Acceptance.LocationId</td>
-                                    <td>@Model.Acceptance.CreatedDate.ToString("dd/MM/yyyy HH:mm:ss")</td>
-                                </tr>
-                            </tbody>
-                            }
-                            else
-                            {
-                                <tfoot>
-                                    <tr><td class="text-danger" colspan="5">No result found for item <span class="text-semibold">@Model.SearchKey</span></td></tr>
-                                </tfoot>
-                            }
-                        </table>
+            @using (Html.BeginForm("Search", "Home", FormMethod.Post, new { @class = "form-horizontal form-validate", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="row">
+                    <label class="col-md-1 control-label">Consignment No :</label>
+                    <div class="col-md-2">
+                        <div class="multi-select-full">
+                            @Html.TextBoxFor(m => m.SearchKey, new { @class = "form-control input-lg", @placeholder = "Enter Consignment No." })
+                        </div>
+                    </div>
+                    <div class="col-md-9">
+                        <button type="submit" class="btn btn-primary btn-lg btn-icon legitRipple"><i class="icon-search4"></i></button>
                     </div>
                 </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="panel panel-default border-grey">
+        <div class="panel-heading">
+            <h5 class="panel-title">Search Result :<a class="heading-elements-toggle"><i class="icon-more"></i></a></h5>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Consignment No.</th>
+                            <th>Date/Time</th>
+                            <th>Courier Id</th>
+                            <th>Location Id</th>
+                            <th>Created Date</th>
+                        </tr>
+                    </thead>
+                    @if (null != Model.Acceptance)
+                    {
+                        <tbody>
+                            <tr>
+                                <td>@Model.Acceptance.ConsignmentNo</td>
+                                <td>@Model.Acceptance.DateTime.ToString("dd/MM/yyyy HH:mm:ss")</td>
+                                <td>@Model.Acceptance.CourierId</td>
+                                <td>@Model.Acceptance.LocationId</td>
+                                <td>@Model.Acceptance.CreatedDate.ToString("dd/MM/yyyy HH:mm:ss")</td>
+                            </tr>
+                        </tbody>
+                    }
+                    else
+                    {
+                        <tfoot>
+                            <tr><td class="text-danger" colspan="5">No result found for item <span class="text-semibold">@Model.SearchKey</span></td></tr>
+                        </tfoot>
+                    }
+                </table>
             </div>
         </div>
     </div>
 </div>
+
+
+
 
 
 

@@ -25,6 +25,12 @@ namespace Entt.Ers.Controllers
             return View(model);
         }
 
+        public ActionResult Search()
+        {
+            var vm = new HomeSearchViewModel();
+            return View(vm);
+        }
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Search(HomeIndexViewModel model)
