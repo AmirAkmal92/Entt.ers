@@ -35,8 +35,8 @@ namespace Entt.Ers.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Search(HomeIndexViewModel model)
         {
-            var acceptance = m_enttContext.SearchAcceptance(model.SearchKey);
-            var vm = new HomeSearchViewModel { Acceptance = acceptance, SearchKey = model.SearchKey };
+            var acceptance = m_enttContext.SearchAcceptance(model.SearchKey.Trim());
+            var vm = new HomeSearchViewModel { Acceptance = acceptance, SearchKey = model.SearchKey.Trim() };
             return View(vm);
         }
 
