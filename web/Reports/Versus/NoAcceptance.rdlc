@@ -193,7 +193,7 @@
                                   <ActionInfo>
                                     <Actions>
                                       <Action>
-                                        <Hyperlink>="http://10.1.1.123:8036/Versus/NoAcceptanceDetailsReport?branchCode=" + Fields!LocationId.Value + "&amp;date=" + Parameters!reportDate.Value.ToOADate().ToString()</Hyperlink>
+                                        <Hyperlink>="javascript:void(window.open('http://10.1.1.123:8036/Versus/NoAcceptanceDetailsReport?branchCode="+ Fields!LocationId.Value + "&amp;date=" + Parameters!reportDate.Value.ToOADate().ToString() + "','_blank'))"</Hyperlink>
                                       </Action>
                                     </Actions>
                                   </ActionInfo>

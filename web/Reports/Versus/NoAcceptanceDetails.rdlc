@@ -48,30 +48,33 @@
                   <Width>1.3in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.4in</Width>
+                  <Width>1.3in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.3in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>1.4in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.6in</Width>
-                </TablixColumn>
-                <TablixColumn>
-                  <Width>0.85in</Width>
+                  <Width>0.65in</Width>
                 </TablixColumn>
                 <TablixColumn>
                   <Width>0.6in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.4in</Width>
+                  <Width>0.75in</Width>
                 </TablixColumn>
                 <TablixColumn>
-                  <Width>1.4in</Width>
+                  <Width>1.3in</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>1.3in</Width>
                 </TablixColumn>
               </TablixColumns>
               <TablixRows>
                 <TablixRow>
-                  <Height>0.46334in</Height>
+                  <Height>0.38001in</Height>
                   <TablixCells>
                     <TablixCell>
                       <CellContents>
@@ -130,7 +133,6 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -163,7 +165,6 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -196,7 +197,6 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -229,7 +229,6 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -247,7 +246,8 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value> Courier Id</Value>
+                                  <Value> Courier 
+ Id</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -264,7 +264,6 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -299,7 +298,41 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox11">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value> Location 
+ Id</Value>
+                                  <Style>
+                                    <FontWeight>Bold</FontWeight>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox11</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -347,7 +380,6 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -395,7 +427,6 @@
                               <Color>LightGrey</Color>
                               <Style>Solid</Style>
                             </Border>
-                            <VerticalAlign>Middle</VerticalAlign>
                             <PaddingLeft>2pt</PaddingLeft>
                             <PaddingRight>2pt</PaddingRight>
                             <PaddingTop>2pt</PaddingTop>
@@ -502,7 +533,7 @@
                                   </Style>
                                 </TextRun>
                                 <TextRun>
-                                  <Value>=Format(Fields!DateTime.Value,"dd/MM/yyyy HH:mm tt")</Value>
+                                  <Value>=Format(Fields!DateTime.Value,"dd/MM/yyyy HH:mm:ss")</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                   </Style>
@@ -541,7 +572,7 @@
                                   </Style>
                                 </TextRun>
                                 <TextRun>
-                                  <Value>=Format(Fields!CreatedDate.Value, "dd/MM/yyyy HH:mm tt")</Value>
+                                  <Value>=Format(Fields!CreatedDate.Value, "dd/MM/yyyy HH:mm:ss")</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                   </Style>
@@ -626,7 +657,7 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Left</TextAlign>
+                                <TextAlign>Center</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
@@ -667,11 +698,52 @@
                                 </TextRun>
                               </TextRuns>
                               <Style>
-                                <TextAlign>Left</TextAlign>
+                                <TextAlign>Center</TextAlign>
                               </Style>
                             </Paragraph>
                           </Paragraphs>
                           <rd:DefaultName>Status</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <VerticalAlign>Middle</VerticalAlign>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="LocationId">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value xml:space="preserve"> </Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                                <TextRun>
+                                  <Value>=Fields!AcceptanceLocation.Value</Value>
+                                  <Style>
+                                    <FontSize>9pt</FontSize>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style>
+                                <TextAlign>Left</TextAlign>
+                              </Style>
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>LocationId</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -701,7 +773,7 @@
                                   </Style>
                                 </TextRun>
                                 <TextRun>
-                                  <Value>=Format(Fields!AcceptanceDateTime.Value, "dd/MM/yyyy HH:mm tt")</Value>
+                                  <Value>=Format(Fields!AcceptanceDateTime.Value, "dd/MM/yyyy HH:mm:ss")</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                   </Style>
@@ -742,7 +814,7 @@
                                   </Style>
                                 </TextRun>
                                 <TextRun>
-                                  <Value>=Format(Fields!AcceptanceCreatedDate.Value, "dd/MM/yyyy HH:mm tt")</Value>
+                                  <Value>=Format(Fields!AcceptanceCreatedDate.Value, "dd/MM/yyyy HH:mm:ss")</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                   </Style>
@@ -783,6 +855,7 @@
                 <TablixMember />
                 <TablixMember />
                 <TablixMember />
+                <TablixMember />
               </TablixMembers>
             </TablixColumnHierarchy>
             <TablixRowHierarchy>
@@ -796,8 +869,8 @@
             <DataSetName>DataSet1</DataSetName>
             <Top>2.65in</Top>
             <Left>0.19833in</Left>
-            <Height>0.71334in</Height>
-            <Width>10.9in</Width>
+            <Height>0.63001in</Height>
+            <Width>10.3in</Width>
             <ZIndex>1</ZIndex>
             <Style>
               <Border>
@@ -1056,7 +1129,7 @@
                                   </Style>
                                 </TextRun>
                                 <TextRun>
-                                  <Value>=Format(CountRows(),"#,#")</Value>
+                                  <Value>=Format(CountRows(),"#,0")</Value>
                                   <Style>
                                     <FontWeight>Normal</FontWeight>
                                   </Style>
@@ -1275,7 +1348,7 @@
         <Height>3.36334in</Height>
         <Style />
       </Body>
-      <Width>11.1in</Width>
+      <Width>10.68583in</Width>
       <Page>
         <PageFooter>
           <Height>0.4139in</Height>
@@ -1335,7 +1408,7 @@
               </Paragraphs>
               <rd:DefaultName>Textbox24</rd:DefaultName>
               <Top>0.18056in</Top>
-              <Left>9.68583in</Left>
+              <Left>9.51083in</Left>
               <Height>0.19167in</Height>
               <Width>1in</Width>
               <ZIndex>1</ZIndex>
@@ -1430,6 +1503,10 @@
         <Field Name="PupDateTime">
           <DataField>PupDateTime</DataField>
           <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="AcceptanceLocation">
+          <DataField>AcceptanceLocation</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="AcceptanceDateTime">
           <DataField>AcceptanceDateTime</DataField>
