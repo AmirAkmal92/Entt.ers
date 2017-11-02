@@ -6,21 +6,67 @@ using System.Web.UI.WebControls;
 using System.Data.SqlClient;
 using System.Configuration;
 using System.Data;
+using System.Linq;
+using System;
+using System.Collections.Generic;
 
 namespace Entt.Ers.Controllers
 {
     public class ReportController : ApplicationBaseController
     {
-        private ApplicationDbContext m_context = new ApplicationDbContext();
-
-        public ActionResult Export(string unit)
+        public ActionResult Acceptance()
         {
-            using (var xlPackage = new ExcelPackage())
+            var reportViewer = ReportEngine.Create();
+            ViewBag.ReportViewer = reportViewer;
+            ViewBag.Branches = GetUserViewBranches().Select(w => new SelectListItem { Text = w.Name, Value = w.Code });
+            var model = new StandardReportViewModel { ReportDate = DateTime.Today };
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Acceptance(StandardReportViewModel model)
+        {
+            var reportViewer = ReportEngine.Create();
+            if (ModelState.IsValid)
             {
-                var ws = xlPackage.Workbook.Worksheets.Add("Sheet1");
-                ws.SetValue(1, 1, "Updated this cell");
-                return File(xlPackage.GetAsByteArray(), "application/excel", "test.xlsx");
+                DataSet dataset;
+                dataset = m_enttContext.AcceptanceBranchReportDataSet(model.ReportDate, model.SelectedBranch);
+                reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\Entt\Acceptance.rdlc";
+
+                var parameters = new List<ReportParameter>
+                {
+                    new ReportParameter("reportDate", model.ReportDate.ToShortDateString()),
+                    new ReportParameter("branchCode", model.SelectedBranch)
+                };
+                reportViewer.LocalReport.EnableHyperlinks = true;
+                reportViewer.LocalReport.SetParameters(parameters);
+                reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", dataset.Tables[0]));
             }
+
+            ViewBag.ReportViewer = reportViewer;
+            ViewBag.Branches = GetUserViewBranches().Select(w => new SelectListItem { Text = w.Name, Value = w.Code });
+            return View(model);
+        }
+
+        public ActionResult AcceptanceDetails(string branchCode, double date)
+        {
+            var reportDate = DateTime.FromOADate(date);
+            ViewBag.Branches = m_enttContext.GetBranchInfo(branchCode).Select(w => new SelectListItem { Text = w.Name, Value = w.Code });
+            var reportViewer = ReportEngine.Create();
+
+            var dataset = m_enttContext.AcceptanceBranchDetailsReportDataSet(reportDate.Date, branchCode);
+            reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\Entt\AcceptanceDetails.rdlc";
+            var parameters = new List<ReportParameter>
+                {
+                    new ReportParameter("reportDate", reportDate.ToShortDateString()),
+                    new ReportParameter("branchCode", branchCode)
+                };
+            reportViewer.LocalReport.SetParameters(parameters);
+            reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", dataset.Tables[0]));
+            ViewBag.ReportViewer = reportViewer;
+            var model = new StandardReportViewModel { ReportDate = reportDate, SelectedBranch = branchCode };
+            return View(model);
         }
 
         public ActionResult Viewer()

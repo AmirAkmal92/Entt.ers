@@ -401,9 +401,12 @@
     <Content Include="Views\Versus\NoAcceptanceDetailsReport.cshtml" />
     <Content Include="Views\Versus\HandoverPodReport.cshtml" />
     <Content Include="Views\Home\Search.cshtml" />
+    <Content Include="Views\Report\Acceptance.cshtml" />
+    <Content Include="Views\Report\AcceptanceDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Reports\Snb\" />
     <Folder Include="Views\Helper\" />
   </ItemGroup>
   <ItemGroup>
@@ -428,6 +431,8 @@
     <Content Include="Reports\Aims\AimsBranchDeviceDetailsReport.rdlc" />
     <Content Include="Reports\Aims\AimsBranchDeviceSummaryReport.rdlc" />
     <Content Include="Reports\Aims\AimsStockStatusReport.rdlc" />
+    <Content Include="Reports\Entt\Acceptance.rdlc" />
+    <Content Include="Reports\Entt\AcceptanceDetails.rdlc" />
     <EmbeddedResource Include="Reports\Report1.rdlc" />
     <Content Include="Reports\Versus\DeliveryExceptionVsPod.rdlc" />
     <Content Include="Reports\Versus\ExpectedArrivalDestinationOffice.rdlc" />

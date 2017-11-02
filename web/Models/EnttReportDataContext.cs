@@ -243,6 +243,36 @@ namespace Entt.Ers.Models
             return dataset;
         }
 
+        public DataSet AcceptanceBranchReportDataSet(DateTime reportDate, string branchCode)
+        {
+            var dataset = new DataSet();
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["EnttConnectionString"].ConnectionString))
+            using (var cmd = new SqlCommand("Entt.usp_acceptance", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@reportDate", SqlDbType.DateTime).Value = reportDate;
+                cmd.Parameters.Add("@branchCode", SqlDbType.NVarChar, 50).Value = branchCode;
+                var sqlDataAapter = new SqlDataAdapter(cmd);
+                sqlDataAapter.Fill(dataset);
+            }
+            return dataset;
+        }
+
+        public DataSet AcceptanceBranchDetailsReportDataSet(DateTime reportDate, string branchCode)
+        {
+            var dataset = new DataSet();
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["EnttConnectionString"].ConnectionString))
+            using (var cmd = new SqlCommand("Entt.usp_acceptance_details", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@reportDate", SqlDbType.DateTime).Value = reportDate;
+                cmd.Parameters.Add("@branchCode", SqlDbType.NVarChar, 50).Value = branchCode;
+                var sqlDataAapter = new SqlDataAdapter(cmd);
+                sqlDataAapter.Fill(dataset);
+            }
+            return dataset;
+        }
+
         public DataSet NoAcceptanceReportDataSet(DateTime reportDate)
         {
             var dataset = new DataSet();
