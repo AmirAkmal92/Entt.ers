@@ -213,6 +213,7 @@
     <Compile Include="Controllers\ActionController.cs" />
     <Compile Include="Controllers\AimsController.cs" />
     <Compile Include="Controllers\ApplicationBaseController.cs" />
+    <Compile Include="Controllers\DemoController.cs" />
     <Compile Include="Controllers\HelperController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -403,6 +404,7 @@
     <Content Include="Views\Home\Search.cshtml" />
     <Content Include="Views\Report\Acceptance.cshtml" />
     <Content Include="Views\Report\AcceptanceDetails.cshtml" />
+    <Content Include="Views\Demo\NearMe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

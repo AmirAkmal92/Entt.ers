@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace Entt.Ers.Models
@@ -323,6 +324,29 @@ namespace Entt.Ers.Models
             return dataset;
         }
 
+        public async Task<IList<Branch>> SearchNearbyBranch(decimal lattitude, decimal longitude, int limit)
+        {
+            var branches = new List<Branch>();
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["EnttConnectionString"].ConnectionString))
+            using (var cmd = new SqlCommand("[Entt].[usp_search_nearest_branch]", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@lat", SqlDbType.Decimal).Value = lattitude;
+                cmd.Parameters.Add("@lng", SqlDbType.Decimal).Value = longitude;
+
+                await conn.OpenAsync();
+                using (var reader = await cmd.ExecuteReaderAsync())
+                {
+                    while (await reader.ReadAsync())
+                    {
+                        var branch = new Branch { Code = reader["BranchCode"].ToString(), Name = reader["BranchName"].ToString(), Distance = decimal.Parse(reader["Distance"].ToString()) };
+                        branches.Add(branch);
+                    }
+                }
+            }
+            return branches.Take(limit).ToList();
+        }
+
         public IList<Branch> GetPplBranches()
         {
             var list = new List<Branch>();
@@ -364,6 +388,29 @@ namespace Entt.Ers.Models
                     while (reader.Read())
                     {
                         list.Add(new Branch { Code = reader.GetString(0), Name = reader.GetString(1) });
+                    }
+                }
+            }
+            return list;
+        }
+
+        public IList<Branch> GetBranchGeoLocations()
+        {
+            var list = new List<Branch>();
+
+            var connString = ConfigurationManager.ConnectionStrings["EnttConnectionString"].ConnectionString;
+            var conn = new SqlConnection(connString);
+            var sql = $"SELECT [BranchCode],[BranchName],[StateName],[Lattitude],[Longitude] FROM [Entt].[BranchProfiles]";
+
+            using (var cmd = new SqlCommand(sql, conn))
+            {
+                if (conn.State != ConnectionState.Open)
+                    conn.Open();
+                using (var reader = cmd.ExecuteReader(CommandBehavior.CloseConnection))
+                {
+                    while (reader.Read())
+                    {
+                        list.Add(new Branch { Code = reader.GetString(0), Name = reader.GetString(1), Lattitude = reader.GetDecimal(3), Longitude = reader.GetDecimal(4) });
                     }
                 }
             }

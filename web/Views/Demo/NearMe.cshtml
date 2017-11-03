@@ -1,0 +1,161 @@
+﻿@using ReportViewerForMvc;
+@using Entt.Ers.Models
+@model StandardReportViewModel
+@{
+    ViewBag.Title = "Demo - Find Near PPL";
+}
+
+@section header {
+    <style>
+
+    </style>
+}
+
+@section PageHeader {
+    <ul class="breadcrumb breadcrumb-caret position-left">
+        <li><a href="/">Home</a></li>
+        <li><a href="#">Demo</a></li>
+        <li class="active">Nearby PPL</li>
+    </ul>
+}
+
+<div class="row">
+    <div class="panel panel-default border-grey">
+        <div class="panel-heading">
+            <h5 class="panel-title"><i class="icon-search4 text-size-base position-left"></i>Search Nearby Pusat POSLaju<a class="heading-elements-toggle"><i class="icon-more"></i></a></h5>
+            <div class="heading-elements">
+                <ul class="icons-list">
+                    <li><a data-action="collapse" class=""></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="panel-body">
+            @using (Html.BeginForm("NearMe", "Demo", FormMethod.Post, new { @class = "form-horizontal form-validate", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                <div class="row">
+                    <label class="col-md-1 control-label">Street :</label>
+                    <div class="col-md-6">
+                        <div>
+                            @Html.TextBoxFor(m => m.SelectedBranch, new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="col-md-5">
+                        <button id="submit" type="button" class="btn btn-primary btn-sm legitRipple">Search</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-8">
+        <div class="panel panel-default border-grey">
+            <div class="panel-body">
+                <div class="content-group">
+                    <div id="map" class="map-container map-geolocation"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="panel panel-default border-grey">
+            <div class="panel-body">
+                <div class="content-group">
+                    <p>Nearby Branches</p>
+                    <table id="branches" class="table">
+                        <thead>
+                            <tr>
+                                <th width="60%">Name</th>
+                                <th>Distance (km)</th>
+                            </tr>
+                        </thead>
+                        <tbody></tbody>
+                        <tfoot><tr><td class="text-size-small" colspan="2">Click search to find nearest PPL</td></tr></tfoot>
+                    </table>  
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+@section scripts {
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCgq9WVBLF7bftuxu_07Cyyi9RbC4Cp2nY&callback=initialize">
+</script>
+    <script>
+        var markers = [];
+        var results = [];
+        function initialize() {
+            var map = new google.maps.Map(document.getElementById('map'), {
+                zoom: 16,
+                center: { lat: 3.143955, lng: 101.69384 }
+            });
+            var geocoder = new google.maps.Geocoder();
+            document.getElementById('submit').addEventListener('click', function () {
+                //$('#branches tr').remove();
+                $("#branches > tbody").empty();
+                $("#branches > tfoot").empty();
+                geocodeAddress(geocoder, map);
+            });
+        }
+
+        function geocodeAddress(geocoder, resultsMap) {
+            var address = document.getElementById('SelectedBranch').value;
+            geocoder.geocode({ 'address': address }, function (results, status) {
+                if (status === 'OK') {
+                    ClearMarkers();
+                    resultsMap.setCenter(results[0].geometry.location);
+                    var marker = new google.maps.Marker({
+                        map: resultsMap,
+                        position: results[0].geometry.location
+                    });
+                    markers.push(marker);
+                    $.ajax({
+                        dataType: "json",
+                        contentType: "application/json",
+                        type: 'GET',
+                        url: '/Demo/NearbyBranch',
+                        data: { 'lattitude': results[0].geometry.location.lat(), 'longitude': results[0].geometry.location.lng() },
+                        success: function (data) {
+                            results.push(data.result);
+                            if (data.result.length > 0) {
+                                $.each(data.result, function (i, item) {
+                                    var rows = "<tr><td>" + item.name + "</td><td>" + item.distance.toFixed(2) + "</td></tr>";
+                                    $('#branches tbody').append(rows);
+                                });
+                            }
+                            else
+                            {
+                                var rows = "<tr><td colspan='2'>No result found</td></tr>";
+                                $('#branches tfoot').append(rows);
+                            }
+                            //alert(data.status);
+                        },
+                        failure: function (errMsg) {
+                            alert(errMsg);
+                        }
+                    });
+                } else {
+                    alert('Geocode was not successful for the following reason: ' + status);
+                }
+            });
+        }
+
+        function ClearMarkers(map) {
+            for (var i = 0; i < markers.length; i++) {
+                markers[i].setMap(null);
+            }
+            markers = [];
+        }
+    </script>
+
+}
+
+
+
+
+
+
