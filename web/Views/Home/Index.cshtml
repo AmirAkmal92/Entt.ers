@@ -12,8 +12,8 @@
     </ul>
 }
 
-<div class="row">    
-    <div class="col-lg-9">
+<div class="row">
+    <div class="col-lg-8">
         <div class="panel panel-flat">
             <div class="panel-heading">
                 <h6 class="panel-title text-semibold">Welcome to EnTT Reporting System</h6>
@@ -21,7 +21,8 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-3">
+    <div class="col-lg-4">
+        
         <div class="panel panel-flat">
             <div class="panel-heading">
                 <h6 class="panel-title">Search Acceptance<a class="heading-elements-toggle"><i class="icon-more"></i></a></h6>
@@ -31,7 +32,7 @@
                 {
                     @Html.AntiForgeryToken()
                     <div class="input-group content-group">
-                        @Html.TextBoxFor(m => m.SearchKey, new { @class = "form-control input-lg", @placeholder = "Enter Consignment No." })
+                        @Html.TextBoxFor(m => m.SearchKey, new { @class = "form-control input-md", @placeholder = "Enter Consignment No." })
                         <div class="input-group-btn">
                             <button type="submit" class="btn btn-primary btn-lg btn-icon legitRipple"><i class="icon-search4"></i></button>
                         </div>
@@ -39,75 +40,108 @@
                 }
             </div>
         </div>
-        <div class="panel panel-flat">
-            @if (!Model.ShowBranchInfo)
-            {
-            <div class="panel-heading">
-                <h6 class="panel-title text-semibold">EnTT Daily Statistics</h6>
-                <div class="heading-elements">
-                    <span class="heading-text">@Model.Date.ToString("dd MMM yyyy")</span>
-                </div>
-            </div>
-            <div class="container-fluid">
-                <div class="row text-center">
-                    <div class="col-md-4">
-                        <div class="content-group">
-                            <h6 class="text-semibold no-margin"><i class="icon-mail5 position-left text-slate"></i> @string.Format("{0:#,##0}", Model.Statistic.Acceptances)</h6>
-                            <span class="text-muted text-size-small">Acceptance</span>
-                        </div>
-                    </div>
 
-                    <div class="col-md-4">
-                        <div class="content-group">
-                            <h6 class="text-semibold no-margin"><i class="icon-truck position-left text-slate"></i> @string.Format("{0:#,##0}", Model.Statistic.Deliveries)</h6>
-                            <span class="text-muted text-size-small">Delivery</span>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="content-group">
-                            <h6 class="text-semibold no-margin"><i class="icon-folder-remove position-left text-slate"></i> @string.Format("{0:#,##0}", Model.Statistic.Unknowns)</h6>
-                            <span class="text-muted text-size-small">No Acceptance</span>
-                        </div>
+        @if (!Model.ShowBranchInfo)
+        {
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h6 class="panel-title text-semibold">EnTT Daily Statistics</h6>
+                    <div class="heading-elements">
+                        <span class="heading-text">@Model.Date.ToString("dd MMM yyyy")</span>
                     </div>
                 </div>
-            </div>
-            }
-            else
-            {
-            <div class="panel-heading">
-                <h6 class="panel-title text-semibold">@Model.BranchStatistic.BranchName</h6>
-                <div class="heading-elements">
-                    <span class="heading-text">@Model.Date.ToString("dd MMM yyyy")</span>
+                <div class="container-fluid">
+                    <div class="row text-center">
+                        <div class="col-md-4">
+                            <div class="content-group">
+                                <h6 class="text-semibold no-margin"><i class="icon-box-add position-left text-slate"></i> @string.Format("{0:#,##0}", Model.Statistic.Acceptances)</h6>
+                                <span class="text-muted text-size-small">Acceptance</span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="content-group">
+                                <h6 class="text-semibold no-margin"><i class="icon-truck position-left text-slate"></i> @string.Format("{0:#,##0}", Model.Statistic.Deliveries)</h6>
+                                <span class="text-muted text-size-small">Delivery</span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="content-group">
+                                <h6 class="text-semibold no-margin"><i class="icon-folder-remove position-left text-slate"></i> @string.Format("{0:#,##0}", Model.Statistic.Unknowns)</h6>
+                                <span class="text-muted text-size-small">No Acceptance</span>
+                            </div>
+                        </div>
+                    </div>                    
                 </div>
             </div>
-            <div class="container-fluid">
-                <div class="row text-center">
-                    <div class="col-md-4">
-                        <div class="content-group">
-                            <h6 class="text-semibold no-margin"><i class="icon-mail5 position-left text-slate"></i> @string.Format("{0:#,##0}", Model.BranchStatistic.Acceptances)</h6>
-                            <span class="text-muted text-size-small"><a href="/Report/Acceptance">Acceptance</a></span>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="content-group">
-                            <h6 class="text-semibold no-margin"><i class="icon-truck position-left text-slate"></i> @string.Format("{0:#,##0}", Model.BranchStatistic.Deliveries)</h6>
-                            <span class="text-muted text-size-small">Delivery</span>
-                        </div>
-                    </div>
-
-                    <div class="col-md-4">
-                        <div class="content-group">
-                            <h6 class="text-semibold no-margin"><i class="icon-folder-remove position-left text-slate"></i> @string.Format("{0:#,##0}", Model.BranchStatistic.Unknowns)</h6>
-                            <span class="text-muted text-size-small"><a href="/Versus/NoAcceptanceReport">No Acceptance</a></span>
-                        </div>
+        }
+        else
+        {
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h6 class="panel-title text-semibold">@Model.BranchStatistic.BranchName</h6>
+                    <div class="heading-elements">
+                        <span class="heading-text">@Model.Date.ToString("dd MMM yyyy")</span>
                     </div>
                 </div>
+                <div class="container-fluid">
+                    <div class="row text-center">
+                        <div class="col-md-4">
+                            <div class="content-group">
+                                <ul class="list-inline text-center">
+                                    <li>
+                                        <div id="acceptance-donut"></div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row text-center">
+                        <div class="col-md-4">
+                            <div class="content-group">
+
+                                <h6 class="text-semibold no-margin"><i class="icon-box-add position-left text-slate"></i> @string.Format("{0:#,##0}", Model.BranchStatistic.Acceptances)</h6>
+                                <span class="text-muted text-size-small"><a href="/Report/Acceptance">Acceptance</a></span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="content-group">
+                                <h6 class="text-semibold no-margin"><i class="icon-truck position-left text-slate"></i> @string.Format("{0:#,##0}", Model.BranchStatistic.Deliveries)</h6>
+                                <span class="text-muted text-size-small">Delivery</span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="content-group">
+                                <h6 class="text-semibold no-margin"><i class="icon-folder-remove position-left text-slate"></i> @string.Format("{0:#,##0}", Model.BranchStatistic.Unknowns)</h6>
+                                <span class="text-muted text-size-small"><a href="/Versus/NoAcceptanceReport">No Acceptance</a></span>
+                            </div>
+                        </div>
+                    </div>                    
+                </div>
             </div>
-            }
-        </div>
+            
+        }
+        
     </div>
 </div>
 
+@section scripts {
+    <script type="text/javascript" src="~/Scripts/d3.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/d3_tooltip.js"></script>
+    <script type="text/javascript" src="~/Scripts/_home_index.js"></script>
 
+    <script>
+        $(function () {
+            var acceptanceCategories = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.AcceptanceByCategories));
+
+            //acceptance category
+            if (null != acceptanceCategories) {
+                acceptanceDonut("#acceptance-donut", 62, acceptanceCategories);
+            }
+        });
+
+    </script>
+}

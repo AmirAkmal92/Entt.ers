@@ -20,6 +20,13 @@ namespace Entt.Ers.Models
         public string BranchName { get; set; }
     }
 
+    public class AcceptanceByCategory
+    {
+        public int Index { get; set; }
+        public int Count { get; set; }
+        public string CategoryName { get; set; }
+    }
+
     public class HomeSearchViewModel
     {
         public Acceptance Acceptance { get; set; }
