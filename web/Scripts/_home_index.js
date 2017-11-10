@@ -88,7 +88,7 @@
     // Animate chart on load
     arcPath
         .transition()
-        .delay(function (d, i) { return i * 75; })
+        .delay(function (d, i) { return i * 150; })
         .duration(100)
         .attrTween("d", function (d) {
             var interpolate = d3.interpolate(d.startAngle, d.endAngle);

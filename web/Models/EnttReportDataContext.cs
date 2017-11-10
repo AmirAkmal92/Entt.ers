@@ -75,12 +75,10 @@ namespace Entt.Ers.Models
                 await conn.OpenAsync();
                 using (var reader = await cmd.ExecuteReaderAsync())
                 {
-                    var index = 1;
                     while (await reader.ReadAsync())
                     {
-                        var acceptance = new AcceptanceByCategory { Index = index, CategoryName = reader.GetString(0), Count = reader.GetInt32(1)};
+                        var acceptance = new AcceptanceByCategory { CategoryName = reader.GetString(0), Count = reader.GetInt32(1)};
                         list.Add(acceptance);
-                        ++index;
                     }
                 }
             }

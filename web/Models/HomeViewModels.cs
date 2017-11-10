@@ -22,7 +22,6 @@ namespace Entt.Ers.Models
 
     public class AcceptanceByCategory
     {
-        public int Index { get; set; }
         public int Count { get; set; }
         public string CategoryName { get; set; }
     }
