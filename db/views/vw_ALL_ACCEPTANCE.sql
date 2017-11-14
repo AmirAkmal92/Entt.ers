@@ -12,7 +12,15 @@ CREATE VIEW [dbo].[vw_ALL_ACCEPTANCE]
 AS
 
 SELECT [ConsignmentNo],[DateTime],[CourierId],[LocationId],[Comment] 
-FROM [Entt].[Acceptance]
-
+FROM [Entt].[Acceptance] WHERE [ConsignmentNo] NOT LIKE 'CG%MY'
+UNION 
+SELECT 
+  [ConsignmentNo],
+  [DateTime],
+  [CourierId],
+  [OfficeNo],
+  NULL AS [Comment]
+  FROM [Entt].[StatusCode] 
+  WHERE [StatusCode] IN ('27','49') AND [ItemTypeCode] = '01'
 
 GO

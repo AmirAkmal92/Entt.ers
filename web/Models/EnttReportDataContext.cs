@@ -85,6 +85,32 @@ namespace Entt.Ers.Models
             return list;
         }
 
+        //public async Task<List<HourCount>> GetBranchAcceptanceDataByHours(DateTime date, string branchCode)
+        //{
+        //    var list = new List<HourCount>();
+
+        //    using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["EnttConnectionString"].ConnectionString))
+        //    using (var cmd = new SqlCommand("[Entt].[usp_home_acceptance_branch]", conn))
+        //    {
+        //        cmd.CommandType = CommandType.StoredProcedure;
+        //        cmd.Parameters.Add("@date", SqlDbType.Date).Value = date;
+        //        cmd.Parameters.Add("@branchCode", SqlDbType.NVarChar, 50).Value = branchCode;
+
+        //        await conn.OpenAsync();
+        //        using (var reader = await cmd.ExecuteReaderAsync())
+        //        {
+        //            var hour = 0;
+        //            while (await reader.ReadAsync())
+        //            {
+        //                var acceptance = new HourCount { Hour = string.Format("{0:00}",hour), Count = reader.GetInt32(1) };
+        //                list.Add(acceptance);
+        //                ++hour;
+        //            }
+        //        }
+        //    }
+        //    return list;
+        //}
+
         public DataSet GetDeliveryExceptionReportDataSet(DateTime reportDate, int day)
         {
             var dataset = new DataSet();
@@ -214,6 +240,22 @@ namespace Entt.Ers.Models
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("@reportDate", SqlDbType.Date).Value = reportDate;
                 cmd.Parameters.Add("@day", SqlDbType.Int).Value = day;
+                var sqlDataAapter = new SqlDataAdapter(cmd);
+                sqlDataAapter.Fill(dataset);
+            }
+            return dataset;
+        }
+
+        public DataSet GetPodVsPupBranchReportDataSet(DateTime reportDate, int day, string branchCode)
+        {
+            var dataset = new DataSet();
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["EnttConnectionString"].ConnectionString))
+            using (var cmd = new SqlCommand("[Entt].[usp_pod_vs_pup_branch]", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@reportDate", SqlDbType.Date).Value = reportDate;
+                cmd.Parameters.Add("@day", SqlDbType.Int).Value = day;
+                cmd.Parameters.Add("@branchCode", SqlDbType.NVarChar, 50).Value = branchCode;
                 var sqlDataAapter = new SqlDataAdapter(cmd);
                 sqlDataAapter.Fill(dataset);
             }

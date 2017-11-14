@@ -12,7 +12,7 @@ CREATE VIEW [dbo].[vw_ALL_POD]
 AS
 
 SELECT [DateTime],[ConsignmentNo],[OfficeNo],[OfficeName],[CourierId],[DeliveryCode],[Comment] FROM [Entt].[Delivery] 
-  WHERE [DeliveryCode] IN ('01','10','11')
+  WHERE [DeliveryCode] IN ('01','10','11') AND [ItemTypeCode] = '01'
 
 GO
 

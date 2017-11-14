@@ -356,7 +356,7 @@
                                   <ActionInfo>
                                     <Actions>
                                       <Action>
-                                        <Hyperlink>="http://10.1.1.123:8036/Versus/PodVsPupDetails?branchCode=" + Fields!OfficeNo.Value + "&amp;date=" + Parameters!reportDate.Value.ToOADate().ToString() + "&amp;day=" + Parameters!day.Value.ToString()</Hyperlink>
+                                        <Hyperlink>="javascript:void(window.open('http://10.1.1.123:8036/Versus/PodVsPupDetails?branchCode=" + Fields!OfficeNo.Value + "&amp;date=" + Parameters!reportDate.Value.ToOADate().ToString() + "&amp;day=" + Parameters!day.Value.ToString() + "','_blank'))"</Hyperlink>
                                       </Action>
                                     </Actions>
                                   </ActionInfo>
