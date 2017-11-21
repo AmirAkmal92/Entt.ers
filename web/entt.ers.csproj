@@ -221,6 +221,8 @@
     <Compile Include="Controllers\VersusController.cs" />
     <Compile Include="Controllers\VersusController.NoAcceptance.cs" />
     <Compile Include="Controllers\VersusController.SipVsVasn.cs" />
+    <Compile Include="Controllers\VersusController.PoAcceptanceVsReso.cs" />
+    <Compile Include="Controllers\VersusController.IoExceptionVsPackage.cs" />
     <Compile Include="Controllers\VersusController.VasnVsPod.cs" />
     <Compile Include="Controllers\VersusController.PupVsSop.cs" />
     <Compile Include="Controllers\VersusController.HipVsHop.cs" />
@@ -246,6 +248,8 @@
     <Compile Include="Models\EnttReportDataContext.cs" />
     <Compile Include="Models\EnttReportDataContext.Dashboard.cs" />
     <Compile Include="Models\EnttReportDataContext.SipVersusVasn.cs" />
+    <Compile Include="Models\EnttReportDataContext.IoExceptionVersusPackage.cs" />
+    <Compile Include="Models\EnttReportDataContext.PoAcceptanceVersusReso.cs" />
     <Compile Include="Models\EnttReportDataContext.VasnVersusPod.cs" />
     <Compile Include="Models\EnttReportDataContext.SopVersusHip.cs" />
     <Compile Include="Models\EnttReportDataContext.NoAcceptance.cs" />
