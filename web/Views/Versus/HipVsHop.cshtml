@@ -1,0 +1,104 @@
+﻿@using ReportViewerForMvc;
+@using Entt.Ers.Models
+@model PrefixReportViewModel
+
+@{
+    ViewBag.Title = "HIP vs HOP Report";
+}
+
+@section header {
+    <style>
+        .form-horizontal .checkbox .checker, .form-horizontal .checkbox-inline .checker {
+            top: 18px;
+        }
+
+        .content-group {
+            margin-bottom: 0px !important;
+        }
+    </style>
+}
+
+@section PageHeader {
+    <ul class="breadcrumb breadcrumb-caret position-left">
+        <li><a href="/">Home</a></li>
+        <li><a href="#">Versus</a></li>
+        <li class="active">HIP vs HOP Report</li>
+    </ul>
+}
+
+<div class="row">
+    <div class="panel panel-default border-grey">
+        <div class="panel-heading">
+            <h5 class="panel-title"><i class="icon-search4 text-size-base position-left"></i>Filter<a class="heading-elements-toggle"><i class="icon-more"></i></a></h5>
+            <div class="heading-elements">
+                <ul class="icons-list">
+                    <li><a data-action="collapse" class=""></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="panel-body">
+            @using (Html.BeginForm("HipVsHop", "Versus", FormMethod.Post, new { @class = "form-horizontal form-validate", role = "form" }))
+            {
+                @Html.AntiForgeryToken()
+                    <div class="row">
+                        <label class="col-md-1 control-label">Branch:</label>
+                        <div class="col-md-2">
+                            <div class="multi-select-full">
+                                @Html.DropDownListFor(m => m.SelectedBranch, ViewBag.Branches as IEnumerable<System.Web.Mvc.SelectListItem>, new { @class = "form-control bootstrap-select", required = true, data_width = "100%", @placeholder = "Select Branch" })
+                            </div>
+                        </div>
+                        <label class="col-md-1 control-label">Report Date:</label>
+                        <div class="col-md-2">
+                            <div>
+                                @Html.TextBoxFor(m => m.ReportDate, "{0:yyyy-MM-dd}", new { @class = "form-control datepicker-format" })
+                            </div>
+                        </div>
+                        <label class="col-md-1 control-label">Prefix:</label>
+                        <div class="col-md-2">
+                            <div class="multi-select-full">
+                                @Html.DropDownListFor(m => m.ReportDay, ViewBag.ReportDays as IEnumerable<System.Web.Mvc.SelectListItem>, new { @class = "form-control bootstrap-select", required = true, data_width = "100%", @placeholder = "Select Date" })
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-primary btn-sm legitRipple">View</button>
+                        </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="panel panel-default border-grey">
+        <div class="panel-body">
+            @Html.ReportViewer(ViewBag.ReportViewer as Microsoft.Reporting.WebForms.ReportViewer)
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script type="text/javascript" src="~/Scripts/moment.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/bootstrap_select.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery_ui/widgets.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/ripple.min.js"></script>
+    <script>
+        $("iframe[src*='Viewer']").width("95%");
+        $.fn.selectpicker.defaults = {
+            iconBase: '',
+            tickIcon: 'icon-checkmark3'
+        }
+        $('.bootstrap-select').selectpicker();
+        $(".datepicker-format").datepicker({
+            dateFormat: "yy-mm-dd",
+            changeMonth: true,
+            changeYear: true,
+            yearRange: "-50:+0",
+            maxDate: new Date()
+        });
+    </script>
+}
+
+
+
+
+

@@ -221,6 +221,8 @@
     <Compile Include="Controllers\VersusController.cs" />
     <Compile Include="Controllers\VersusController.NoAcceptance.cs" />
     <Compile Include="Controllers\VersusController.PupVsSop.cs" />
+    <Compile Include="Controllers\VersusController.HipVsHop.cs" />
+    <Compile Include="Controllers\VersusController.SopVsHip.cs" />
     <Compile Include="Controllers\VersusController.SopVsSip.cs" />
     <Compile Include="Controllers\VersusController.PodVsPup.cs" />
     <Compile Include="Controllers\VersusController.PupVsPod.cs" />
@@ -241,8 +243,10 @@
     <Compile Include="Models\DeviceAtBranchSummaryViewModel.cs" />
     <Compile Include="Models\EnttReportDataContext.cs" />
     <Compile Include="Models\EnttReportDataContext.Dashboard.cs" />
+    <Compile Include="Models\EnttReportDataContext.SopVersusHip.cs" />
     <Compile Include="Models\EnttReportDataContext.NoAcceptance.cs" />
     <Compile Include="Models\EnttReportDataContext.PupVersusSop.cs" />
+    <Compile Include="Models\EnttReportDataContext.HipVersusHop.cs" />
     <Compile Include="Models\EnttReportDataContext.SopVersusSip.cs" />
     <Compile Include="Models\EnttReportDataContext.PodVersusPup.cs" />
     <Compile Include="Models\EnttReportDataContext.PupVersusPod.cs" />
@@ -421,6 +425,7 @@
     <Content Include="Views\Report\AcceptanceDetails.cshtml" />
     <Content Include="Views\Demo\NearMe.cshtml" />
     <Content Include="Views\Versus\SopVsSip.cshtml" />
+    <Content Include="Views\Versus\PupVsSop.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
