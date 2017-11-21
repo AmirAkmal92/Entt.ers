@@ -11,18 +11,92 @@
         <li class="active">Dashboard</li>
     </ul>
 }
+@section header {
+    <style>
+        #statistics a {
+            color: white;
+            border-bottom: 1px dashed white;
+        }
+    </style>
+}
+
 
 <div class="row">
-    <div class="col-lg-8">
-        <div class="panel panel-flat">
-            <div class="panel-heading">
-                <h6 class="panel-title text-semibold">Welcome to EnTT Reporting System</h6>
-                <small class="display-block">Enterprise Track and Trace</small>
+    <div class="col-lg-8">        
+        <div class="row">
+            <div class="panel panel-flat">
+                <div class="panel-heading">
+                    <h6 class="panel-title text-semibold">Welcome to EnTT Reporting System</h6>
+                    <small class="display-block">Enterprise Track and Trace</small>
+                </div>
             </div>
+            @if (Model.ShowBranchInfo)
+            {
+            <div id="statistics" class="panel panel-flat">
+                <div class="panel-heading">
+                    <h6 class="panel-title text-semibold">@Model.BranchStatistic.BranchName</h6>
+                    <div class="heading-elements">
+                        <span class="heading-text">@Model.Date.ToString("dd MMM yyyy")</span>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="panel bg-teal-400">
+                                <div class="panel-body">
+                                    <h3 class="no-margin"><i class="icon-box-add position-left"></i> @string.Format("{0:#,##0}", Model.BranchStatistic.Acceptances)</h3>
+                                    <a href="/Report/Acceptance">Item received</a>
+                                </div>
+                                <div class="container-fluid">
+                                    <div id="acceptance-realtime"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="panel bg-primary-400">
+                                <div class="panel-body">
+                                    <h3 class="no-margin"><i class="icon-truck position-left"></i> @string.Format("{0:#,##0}", Model.BranchStatistic.Deliveries)</h3>
+                                    Item delivered
+                                </div>
+                                <div class="container-fluid">
+                                    <div id="delivery-realtime"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="panel bg-danger-600">
+                                <div class="panel-body">
+                                    <h3 class="no-margin" style="color: white"><i class="icon-folder-remove position-left"></i> @string.Format("{0:#,##0}", Model.BranchStatistic.Unknowns)</h3>
+                                    <a href="/Versus/NoAcceptanceReport">No Acceptance</a>
+                                </div>
+                                <div class="container-fluid">
+                                    <div id="no-acceptance-realtime"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <h6>Acceptance Statistics</h6>
+                    <div class="container-fluid">
+                        <div class="row text-center">
+                            <div class="col-md-4">
+                                <div class="content-group">
+                                    <ul class="list-inline text-center">
+                                        <li>
+                                            <div id="acceptance-donut"></div>
+                                        </li>
+                                    </ul>
+                                    <span class="text-size-mini">By Category</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
         </div>
-    </div>
-    <div class="col-lg-4">
         
+    </div>
+    <div class="col-lg-4">        
         <div class="panel panel-flat">
             <div class="panel-heading">
                 <h6 class="panel-title">Search Acceptance<a class="heading-elements-toggle"><i class="icon-more"></i></a></h6>
@@ -76,55 +150,6 @@
                 </div>
             </div>
         }
-        else
-        {
-            <div class="panel panel-flat">
-                <div class="panel-heading">
-                    <h6 class="panel-title text-semibold">@Model.BranchStatistic.BranchName</h6>
-                    <div class="heading-elements">
-                        <span class="heading-text">@Model.Date.ToString("dd MMM yyyy")</span>
-                    </div>
-                </div>
-                <div class="container-fluid">
-                    <div class="row text-center">
-                        <div class="col-md-4">
-                            <div class="content-group">
-                                <span class="text-size-mini">By Category</span>
-                                <ul class="list-inline text-center">
-                                    <li>
-                                        <div id="acceptance-donut"></div>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="row text-center">
-                        <div class="col-md-4">
-                            <div class="content-group">
-
-                                <h6 class="text-semibold no-margin"><i class="icon-box-add position-left text-slate"></i> @string.Format("{0:#,##0}", Model.BranchStatistic.Acceptances)</h6>
-                                <span class="text-muted text-size-small"><a href="/Report/Acceptance">Acceptance</a></span>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <div class="content-group">
-                                <h6 class="text-semibold no-margin"><i class="icon-truck position-left text-slate"></i> @string.Format("{0:#,##0}", Model.BranchStatistic.Deliveries)</h6>
-                                <span class="text-muted text-size-small">Delivery</span>
-                            </div>
-                        </div>
-
-                        <div class="col-md-4">
-                            <div class="content-group">
-                                <h6 class="text-semibold no-margin"><i class="icon-folder-remove position-left text-slate"></i> @string.Format("{0:#,##0}", Model.BranchStatistic.Unknowns)</h6>
-                                <span class="text-muted text-size-small"><a href="/Versus/NoAcceptanceReport">No Acceptance</a></span>
-                            </div>
-                        </div>
-                    </div>                    
-                </div>
-            </div>
-            
-        }
         
     </div>
 </div>
@@ -136,7 +161,7 @@
 
     <script>
         $(function () {
-            var colors = ['#66BB6A','#9575CD','#FF7043','#29B6F6','#EF5350','#81C784','#999','#DCEDC8','#C5E1A5','#9CCC65','#7CB342','#558B2F'];
+            var colors = ['#66BB6A', '#9575CD', '#FF7043', '#29B6F6', '#EF5350', '#81C784', '#999', '#DCEDC8', '#C5E1A5', '#9CCC65', '#7CB342', '#558B2F'];
             var acceptanceCat = [];
             var acceptanceCategories = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.AcceptanceByCategories));
             $.each(acceptanceCategories, function (i, a) {
@@ -149,6 +174,18 @@
             if (null != acceptanceCategories) {
                 acceptanceDonut("#acceptance-donut", 62, acceptanceCat);
             }
+
+            //
+            //var acceptanceData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            //var deliveryData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            var noAcceptanceData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+
+            var acceptanceData = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.AcceptanceDataHourly));
+            var deliveryData = @Html.Raw(Newtonsoft.Json.JsonConvert.SerializeObject(ViewBag.DeliveriesDataHourly));
+            
+            generateBarChart("#acceptance-realtime", acceptanceData, 40, true, "elastic", 1200, 50, "rgba(255,255,255,0.5)", "items");
+            generateBarChart("#delivery-realtime", deliveryData, 40, true, "elastic", 1200, 50, "rgba(255,255,255,0.5)", "items");
+            generateBarChart("#no-acceptance-realtime", noAcceptanceData, 40, true, "elastic", 1200, 50, "rgba(255,255,255,0.5)", "items");
         });
 
     </script>

@@ -18,8 +18,13 @@ namespace Entt.Ers.Controllers
                 var user = m_dbContext.Users.Single(u => u.UserName == User.Identity.Name);
                 if (null != user && !string.IsNullOrEmpty(user.BranchCode) && user.BranchCode != "HQ")
                 {
-                    model.BranchStatistic = await m_enttContext.GetBranchDashboardData(DateTime.Today, user.BranchCode);
+                    model.BranchStatistic = await m_enttContext.GetBranchDashboardSummaryData(DateTime.Today, user.BranchCode);
                     model.ShowBranchInfo = true;
+
+                    var branchAcceptanceByHour = await m_enttContext.GetBranchAcceptanceDataByHours(DateTime.Today, user.BranchCode);
+                    ViewBag.AcceptanceDataHourly = branchAcceptanceByHour.ToArray();
+                    var branchDeliveriesByHour = await m_enttContext.GetBranchDeliveryDataByHours(DateTime.Today, user.BranchCode);
+                    ViewBag.DeliveriesDataHourly = branchDeliveriesByHour.ToArray();
 
                     var acceptanceByCategories = await m_enttContext.GetBranchAcceptanceData(DateTime.Today, user.BranchCode);
                     ViewBag.AcceptanceByCategories = acceptanceByCategories.Select(a => new { browser = a.CategoryName, value = a.Count });

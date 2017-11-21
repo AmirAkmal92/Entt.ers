@@ -34,7 +34,7 @@ namespace Entt.Ers.Models
             return stats;
         }
 
-        public async Task<DailyStatistics> GetBranchDashboardData(DateTime date, string branchCode)
+        public async Task<DailyStatistics> GetBranchDashboardSummaryData(DateTime date, string branchCode)
         {
             var stats = new DailyStatistics();
 
@@ -85,31 +85,102 @@ namespace Entt.Ers.Models
             return list;
         }
 
-        //public async Task<List<HourCount>> GetBranchAcceptanceDataByHours(DateTime date, string branchCode)
-        //{
-        //    var list = new List<HourCount>();
+        public async Task<HourlyInfo> GetBranchAcceptanceDataByHours(DateTime date, string branchCode)
+        {
+            HourlyInfo hourlyInfo = null;
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["EnttConnectionString"].ConnectionString))
+            using (var cmd = new SqlCommand("[Entt].[usp_home_acceptance_branch]", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@reportDate", SqlDbType.Date).Value = date;
+                cmd.Parameters.Add("@branchCode", SqlDbType.NVarChar, 50).Value = branchCode;
 
-        //    using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["EnttConnectionString"].ConnectionString))
-        //    using (var cmd = new SqlCommand("[Entt].[usp_home_acceptance_branch]", conn))
-        //    {
-        //        cmd.CommandType = CommandType.StoredProcedure;
-        //        cmd.Parameters.Add("@date", SqlDbType.Date).Value = date;
-        //        cmd.Parameters.Add("@branchCode", SqlDbType.NVarChar, 50).Value = branchCode;
+                await conn.OpenAsync();
+                using (var reader = await cmd.ExecuteReaderAsync())
+                {
+                    while (await reader.ReadAsync())
+                    {
+                        hourlyInfo = new HourlyInfo {
+                            Hour00 = reader.GetInt32(0),
+                            Hour01 = reader.GetInt32(1),
+                            Hour02 = reader.GetInt32(2),
+                            Hour03 = reader.GetInt32(3),
+                            Hour04 = reader.GetInt32(4),
+                            Hour05 = reader.GetInt32(5),
+                            Hour06 = reader.GetInt32(6),
+                            Hour07 = reader.GetInt32(7),
+                            Hour08 = reader.GetInt32(8),
+                            Hour09 = reader.GetInt32(9),
+                            Hour10 = reader.GetInt32(10),
+                            Hour11 = reader.GetInt32(11),
+                            Hour12 = reader.GetInt32(12),
+                            Hour13 = reader.GetInt32(13),
+                            Hour14 = reader.GetInt32(14),
+                            Hour15 = reader.GetInt32(15),
+                            Hour16 = reader.GetInt32(16),
+                            Hour17 = reader.GetInt32(17),
+                            Hour18 = reader.GetInt32(18),
+                            Hour19 = reader.GetInt32(19),
+                            Hour20 = reader.GetInt32(20),
+                            Hour21 = reader.GetInt32(21),
+                            Hour22 = reader.GetInt32(22),
+                            Hour23 = reader.GetInt32(23),
+                            Total = reader.GetInt32(24)
+                        };
+                    }
+                }
+            }
+            return hourlyInfo;
+        }
 
-        //        await conn.OpenAsync();
-        //        using (var reader = await cmd.ExecuteReaderAsync())
-        //        {
-        //            var hour = 0;
-        //            while (await reader.ReadAsync())
-        //            {
-        //                var acceptance = new HourCount { Hour = string.Format("{0:00}",hour), Count = reader.GetInt32(1) };
-        //                list.Add(acceptance);
-        //                ++hour;
-        //            }
-        //        }
-        //    }
-        //    return list;
-        //}
+        public async Task<HourlyInfo> GetBranchDeliveryDataByHours(DateTime date, string branchCode)
+        {
+            HourlyInfo hourlyInfo = null;
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["EnttConnectionString"].ConnectionString))
+            using (var cmd = new SqlCommand("[Entt].[usp_home_delivery_branch]", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@reportDate", SqlDbType.Date).Value = date;
+                cmd.Parameters.Add("@branchCode", SqlDbType.NVarChar, 50).Value = branchCode;
+
+                await conn.OpenAsync();
+                using (var reader = await cmd.ExecuteReaderAsync())
+                {
+                    while (await reader.ReadAsync())
+                    {
+                        hourlyInfo = new HourlyInfo
+                        {
+                            Hour00 = reader.GetInt32(0),
+                            Hour01 = reader.GetInt32(1),
+                            Hour02 = reader.GetInt32(2),
+                            Hour03 = reader.GetInt32(3),
+                            Hour04 = reader.GetInt32(4),
+                            Hour05 = reader.GetInt32(5),
+                            Hour06 = reader.GetInt32(6),
+                            Hour07 = reader.GetInt32(7),
+                            Hour08 = reader.GetInt32(8),
+                            Hour09 = reader.GetInt32(9),
+                            Hour10 = reader.GetInt32(10),
+                            Hour11 = reader.GetInt32(11),
+                            Hour12 = reader.GetInt32(12),
+                            Hour13 = reader.GetInt32(13),
+                            Hour14 = reader.GetInt32(14),
+                            Hour15 = reader.GetInt32(15),
+                            Hour16 = reader.GetInt32(16),
+                            Hour17 = reader.GetInt32(17),
+                            Hour18 = reader.GetInt32(18),
+                            Hour19 = reader.GetInt32(19),
+                            Hour20 = reader.GetInt32(20),
+                            Hour21 = reader.GetInt32(21),
+                            Hour22 = reader.GetInt32(22),
+                            Hour23 = reader.GetInt32(23),
+                            Total = reader.GetInt32(24)
+                        };
+                    }
+                }
+            }
+            return hourlyInfo;
+        }
 
         public DataSet GetDeliveryExceptionReportDataSet(DateTime reportDate, int day)
         {

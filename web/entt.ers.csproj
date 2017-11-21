@@ -235,6 +235,7 @@
     <Compile Include="Models\ApplicationDbContext.cs" />
     <Compile Include="Models\DeviceAtBranchSummaryViewModel.cs" />
     <Compile Include="Models\EnttReportDataContext.cs" />
+    <Compile Include="Models\HourlyInfo.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\NonCoreDataModels.cs" />

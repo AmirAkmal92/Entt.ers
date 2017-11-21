@@ -98,3 +98,165 @@
             };
         });
 }  
+
+function generateBarChart(element, data, height, animate, easing, duration, delay, color, tooltip) {
+
+    // Add data set
+    var bardata = [];
+    $.each(data, function (i, d) {
+        bardata.push(d);
+    });
+
+    //for (var i = 0; i < barQty; i++) {
+    //    bardata.push(Math.round(Math.random() * 10) + 10)
+    //}
+
+    // Main variables
+    var d3Container = d3.select(element),
+        width = d3Container.node().getBoundingClientRect().width;
+
+    // Horizontal
+    var x = d3.scale.ordinal()
+        .rangeBands([0, width], 0.3)
+
+    // Vertical
+    var y = d3.scale.linear()
+        .range([0, height]);
+
+    // Horizontal
+    x.domain(d3.range(0, bardata.length))
+
+    // Vertical
+    y.domain([0, d3.max(bardata)])
+
+    //var xAxis = d3.svg.axis()
+    //    .scale(x)
+    //    .orient("bottom");
+
+    // Add svg element
+    var container = d3Container.append('svg');
+
+    // Add SVG group
+    var svg = container
+        .attr('width', width)
+        .attr('height', height)
+        .append('g');
+
+    //svg.append("g")
+    //    .attr("class", "d3-axis d3-axis-horizontal d3-axis-strong")
+    //    .attr("transform", "translate(0," + height + ")")
+    //    .call(xAxis);
+
+    // Bars
+    var bars = svg.selectAll('rect')
+        .data(bardata)
+        .enter()
+        .append('rect')
+        .attr('class', 'd3-random-bars')
+        .attr('width', x.rangeBand())
+        .attr('x', function (d, i) {
+            return x(i);
+        })
+        .style('fill', color);
+
+    var tip = d3.tip()
+        .attr('class', 'd3-tip')
+        .offset([-10, 0]);
+
+    // Show and hide
+    if (tooltip == "hours" || tooltip == "goal" || tooltip == "items") {
+        bars.call(tip)
+            .on('mouseover', tip.show)
+            .on('mouseout', tip.hide);
+    }
+
+    // Online members tooltip content
+    if (tooltip == "items") {
+        tip.html(function (d, i) {
+            return "<div class='text-center'>" +
+                "<h6 class='no-margin'>" + d + "</h6>" +
+                "<span class='text-size-small'>items</span>" +
+                "<div class='text-size-small'>" + i + ":00" + "</div>" +
+                "</div>"
+        });
+    }
+    
+    // Choose between animated or static
+    if (animate) {
+        withAnimation();
+    } else {
+        withoutAnimation();
+    }
+
+    // Animate on load
+    function withAnimation() {
+        bars
+            .attr('height', 0)
+            .attr('y', height)
+            .transition()
+            .attr('height', function (d) {
+                return y(d);
+            })
+            .attr('y', function (d) {
+                return height - y(d);
+            })
+            .delay(function (d, i) {
+                return i * delay;
+            })
+            .duration(duration)
+            .ease(easing);
+    }
+
+    // Load without animateion
+    function withoutAnimation() {
+        bars
+            .attr('height', function (d) {
+                return y(d);
+            })
+            .attr('y', function (d) {
+                return height - y(d);
+            })
+    }
+
+    // Call function on window resize
+    $(window).on('resize', barsResize);
+
+    // Call function on sidebar width change
+    $(document).on('click', '.sidebar-control', barsResize);
+
+    // Resize function
+    // 
+    // Since D3 doesn't support SVG resize by default,
+    // we need to manually specify parts of the graph that need to 
+    // be updated on window resize
+    function barsResize() {
+
+        // Layout variables
+        width = d3Container.node().getBoundingClientRect().width;
+
+
+        // Layout
+        // -------------------------
+
+        // Main svg width
+        container.attr("width", width);
+
+        // Width of appended group
+        svg.attr("width", width);
+
+        // Horizontal range
+        x.rangeBands([0, width], 0.3);
+
+        //svg.selectAll('.d3-axis-horizontal').call(xAxis);
+
+        // Chart elements
+        // -------------------------
+
+        // Bars
+        svg.selectAll('.d3-random-bars')
+            .attr('width', x.rangeBand())
+            .attr('x', function (d, i) {
+                return x(i);
+            });
+    }
+}
