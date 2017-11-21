@@ -164,7 +164,7 @@ function generateBarChart(element, data, height, animate, easing, duration, dela
         .offset([-10, 0]);
 
     // Show and hide
-    if (tooltip == "hours" || tooltip == "goal" || tooltip == "items") {
+    if (tooltip == "hours" || tooltip == "items") {
         bars.call(tip)
             .on('mouseover', tip.show)
             .on('mouseout', tip.hide);
@@ -233,7 +233,6 @@ function generateBarChart(element, data, height, animate, easing, duration, dela
 
         // Layout variables
         width = d3Container.node().getBoundingClientRect().width;
-
 
         // Layout
         // -------------------------

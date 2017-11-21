@@ -1,5 +1,4 @@
-﻿using OfficeOpenXml;
-using Entt.Ers.Models;
+﻿using Entt.Ers.Models;
 using System.Web.Mvc;
 using Microsoft.Reporting.WebForms;
 using System.Web.UI.WebControls;
@@ -51,6 +50,12 @@ namespace Entt.Ers.Controllers
 
         public ActionResult AcceptanceDetails(string branchCode, double date)
         {
+            var user = m_dbContext.Users.Single(u => u.UserName == User.Identity.Name);
+            if (null != user && !string.IsNullOrEmpty(user.BranchCode) && user.BranchCode != branchCode)
+            {
+                return new HttpStatusCodeResult(403, "You are not allow to view the data");
+            }
+
             var reportDate = DateTime.FromOADate(date);
             ViewBag.Branches = m_enttContext.GetBranchInfo(branchCode).Select(w => new SelectListItem { Text = w.Name, Value = w.Code });
             var reportViewer = ReportEngine.Create();
