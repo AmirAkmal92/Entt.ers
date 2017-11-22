@@ -60,12 +60,36 @@ namespace Entt.Ers.Models
             return stats;
         }
 
-        public async Task<List<AcceptanceByCategory>> GetBranchAcceptanceData(DateTime date, string branchCode)
+        public async Task<List<AcceptanceByCategory>> GetBranchAcceptanceByCategory(DateTime date, string branchCode)
         {
             var list = new List<AcceptanceByCategory>();
 
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["EnttConnectionString"].ConnectionString))
             using (var cmd = new SqlCommand("[Entt].[usp_home_acceptance_category_branch]", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@date", SqlDbType.Date).Value = date;
+                cmd.Parameters.Add("@branchCode", SqlDbType.NVarChar, 50).Value = branchCode;
+
+                await conn.OpenAsync();
+                using (var reader = await cmd.ExecuteReaderAsync())
+                {
+                    while (await reader.ReadAsync())
+                    {
+                        var acceptance = new AcceptanceByCategory { CategoryName = reader.GetString(0), Count = reader.GetInt32(1) };
+                        list.Add(acceptance);
+                    }
+                }
+            }
+            return list;
+        }
+
+        public async Task<List<AcceptanceByCategory>> GetBranchAcceptanceBySource(DateTime date, string branchCode)
+        {
+            var list = new List<AcceptanceByCategory>();
+
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["EnttConnectionString"].ConnectionString))
+            using (var cmd = new SqlCommand("[Entt].[usp_home_acceptance_system_branch]", conn))
             {
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("@date", SqlDbType.Date).Value = date;

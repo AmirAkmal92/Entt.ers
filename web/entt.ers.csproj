@@ -438,6 +438,8 @@
     <Content Include="Views\Versus\HipVsHop.cshtml" />
     <Content Include="Views\Versus\VasnVsPod.cshtml" />
     <Content Include="Views\Versus\SipVsVasn.cshtml" />
+    <Content Include="Views\Versus\IoExceptionVsPackage.cshtml" />
+    <Content Include="Views\Versus\PoAcceptanceVsReso.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

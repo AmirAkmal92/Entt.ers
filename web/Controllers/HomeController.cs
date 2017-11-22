@@ -26,8 +26,11 @@ namespace Entt.Ers.Controllers
                     var branchDeliveriesByHour = await m_enttContext.GetBranchDeliveryDataByHours(DateTime.Today, user.BranchCode);
                     ViewBag.DeliveriesDataHourly = branchDeliveriesByHour.ToArray();
 
-                    var acceptanceByCategories = await m_enttContext.GetBranchAcceptanceData(DateTime.Today, user.BranchCode);
+                    var acceptanceByCategories = await m_enttContext.GetBranchAcceptanceByCategory(DateTime.Today, user.BranchCode);
                     ViewBag.AcceptanceByCategories = acceptanceByCategories.Select(a => new { browser = a.CategoryName, value = a.Count });
+
+                    var acceptanceBySources = await m_enttContext.GetBranchAcceptanceBySource(DateTime.Today, user.BranchCode);
+                    ViewBag.AcceptanceBySources = acceptanceBySources.Select(a => new { browser = a.CategoryName, value = a.Count });
                 }
             }
             return View(model);
