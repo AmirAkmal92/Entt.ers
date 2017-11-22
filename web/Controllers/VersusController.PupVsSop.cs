@@ -53,6 +53,12 @@ namespace Entt.Ers.Controllers
 
         public ActionResult PupVsSopDetails(string branchCode, double date, string day = "7")
         {
+            var user = m_dbContext.Users.Single(u => u.UserName == User.Identity.Name);
+            if (null != user && !string.IsNullOrEmpty(user.BranchCode) && user.BranchCode != branchCode)
+            {
+                return new HttpStatusCodeResult(403, "You are not allow to view the data");
+            }
+
             var reportDate = DateTime.FromOADate(date);
             ViewBag.Branches = m_enttContext.GetBranchInfo(branchCode).Select(w => new SelectListItem { Text = w.Name, Value = w.Code });
             ViewBag.ReportDays = ApplicationHelper.GetReportDays().Select(w => new SelectListItem { Text = w.Value, Value = w.Key.ToString() });
