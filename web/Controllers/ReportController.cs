@@ -30,7 +30,10 @@ namespace Entt.Ers.Controllers
             if (ModelState.IsValid)
             {
                 DataSet dataset;
-                dataset = m_enttContext.AcceptanceBranchReportDataSet(model.ReportDate, model.SelectedBranch);
+                dataset = model.SelectedBranch == "All" ?
+                    m_enttContext.AcceptanceAllReportDataSet(model.ReportDate) :
+                    m_enttContext.AcceptanceBranchReportDataSet(model.ReportDate, model.SelectedBranch);
+                //dataset = m_enttContext.AcceptanceBranchReportDataSet(model.ReportDate, model.SelectedBranch);
                 reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\Entt\Acceptance.rdlc";
 
                 var parameters = new List<ReportParameter>

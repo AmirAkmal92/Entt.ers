@@ -114,6 +114,20 @@ namespace Entt.Ers.Models
             return dataset;
         }
 
+        public DataSet AcceptanceAllReportDataSet(DateTime reportDate)
+        {
+            var dataset = new DataSet();
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["EnttConnectionString"].ConnectionString))
+            using (var cmd = new SqlCommand("Entt.usp_acceptance_all", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@reportDate", SqlDbType.DateTime).Value = reportDate;
+                var sqlDataAapter = new SqlDataAdapter(cmd);
+                sqlDataAapter.Fill(dataset);
+            }
+            return dataset;
+        }
+
         public DataSet AcceptanceBranchReportDataSet(DateTime reportDate, string branchCode)
         {
             var dataset = new DataSet();

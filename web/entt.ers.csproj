@@ -441,6 +441,7 @@
     <Content Include="Views\Versus\IoExceptionVsPackage.cshtml" />
     <Content Include="Views\Versus\PoAcceptanceVsReso.cshtml" />
     <Content Include="Views\Versus\SopVsSipDetails.cshtml" />
+    <Content Include="Views\Versus\PupVsSopDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -483,6 +484,8 @@
     <Content Include="Reports\Versus\HandoverVsPod.rdlc" />
     <Content Include="Reports\Versus\SopVsSip.rdlc" />
     <Content Include="Reports\Versus\SopVsSipDetails.rdlc" />
+    <Content Include="Reports\Versus\PupVsSop.rdlc" />
+    <Content Include="Reports\Versus\PupVsSopDetails.rdlc" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
