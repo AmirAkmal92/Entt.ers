@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+<Report xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:cl="http://schemas.microsoft.com/sqlserver/reporting/2008/01/componentdefinition" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition">
   <Body>
         <ReportItems>
           <Textbox Name="Textbox23">
@@ -9,7 +9,7 @@
               <Paragraph>
                 <TextRuns>
                   <TextRun>
-                    <Value>SOP vs SIP DETAILS REPORT</Value>
+                    <Value>SOP vs SIP DETAILS REPORT (Without SIP)</Value>
                     <Style>
                       <FontStyle>Normal</FontStyle>
                       <FontFamily>Verdana</FontFamily>
@@ -1350,13 +1350,6 @@ No</Value>
                               <TextRuns>
                                 <TextRun>
                                   <Value>Total SOP Without SIP : </Value>
-                                  <ActionInfo>
-                                    <Actions>
-                                      <Action>
-                                        <Hyperlink>="javascript:void(window.open('http://10.1.1.123:8036/Versus/SopVsNoSipDetails?branchCode=" + Parameters!branchCode.Value + "&amp;date=" + Parameters!reportDate.Value.ToOADate().ToString() + "&amp;day=" + Parameters!day.Value.ToString() + "','_blank'))"</Hyperlink>
-                                      </Action>
-                                    </Actions>
-                                  </ActionInfo>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -1554,6 +1547,7 @@ No</Value>
         <ConnectString>Data Source=10.1.16.124;Initial Catalog=Entt;User Id=sa;Password=P@ssw0rd</ConnectString>
         <Prompt>Specify a user name and password for data source AcceptanceDataSet:</Prompt>
       </ConnectionProperties>
+      <rd:SecurityType>DataBase</rd:SecurityType>
       <rd:DataSourceID>0cd4d366-ac8e-4d34-8ad2-96b517f86818</rd:DataSourceID>
     </DataSource>
   </DataSources>

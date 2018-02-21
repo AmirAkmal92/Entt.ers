@@ -225,6 +225,13 @@
                                 </TextRun>
                                 <TextRun>
                                   <Value>=Fields!BranchName.Value</Value>
+                                  <ActionInfo>
+                                    <Actions>
+                                      <Action>
+                                        <Hyperlink>="javascript:void(window.open('http://10.1.1.123:8036/Versus/ExpectedArrivalDetailsReport?branchCode=" + Fields!BranchCode.Value + "&amp;date=" + Parameters!reportDate.Value.ToOADate().ToString() + "','_blank'))"</Hyperlink>
+                                      </Action>
+                                    </Actions>
+                                  </ActionInfo>
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                   </Style>

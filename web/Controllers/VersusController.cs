@@ -93,6 +93,7 @@ namespace Entt.Ers.Controllers
                 {
                     new ReportParameter("reportDate", model.ReportDate.ToShortDateString())
                 };
+                reportViewer.LocalReport.EnableHyperlinks = true;
                 reportViewer.LocalReport.SetParameters(parameters);
                 reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", dataset.Tables[0]));
             }
@@ -101,7 +102,31 @@ namespace Entt.Ers.Controllers
             ViewBag.Branches = GetUserViewBranches().Select(w => new SelectListItem { Text = w.Name, Value = w.Code });
             return View(model);
         }
-                        
+
+        public ActionResult ExpectedArrivalDetailsReport(string branchCode, double date)
+        {
+            var reportDate = DateTime.FromOADate(date);
+            ViewBag.Branches = m_enttContext.GetBranchInfo(branchCode).Select(w => new SelectListItem { Text = w.Name, Value = w.Code });
+            var reportViewer = ReportEngine.Create();
+
+            var dataset = m_enttContext.ExpectedArrivalBranchReportDetailsDataSet(reportDate.Date, branchCode);
+            reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\Versus\ExpectedArrivalDestinationOfficeDetails.rdlc";
+            var parameters = new List<ReportParameter>
+                {
+                    new ReportParameter("reportDate", reportDate.ToShortDateString()),
+                    new ReportParameter("branchCode", branchCode)
+                };
+            reportViewer.LocalReport.EnableHyperlinks = true;
+            reportViewer.LocalReport.SetParameters(parameters);
+            reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", dataset.Tables[0]));
+            ViewBag.TotalRows = dataset.Tables[0].Rows.Count;
+            ViewBag.ReportViewer = reportViewer;
+            var model = new StandardReportViewModel { ReportDate = reportDate, SelectedBranch = branchCode };
+            return View(model);
+
+        }
+
+
         public ActionResult HandoverPodReport()
         {
             var reportViewer = ReportEngine.Create();

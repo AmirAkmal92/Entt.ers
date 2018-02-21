@@ -25,6 +25,7 @@
     <UseGlobalApplicationHostFile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -334,6 +335,8 @@
       <DependentUpon>PittisNonCoreProdDataSet.xsd</DependentUpon>
     </Content>
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="Reports\Versus\SopVsNoSipDetails.rdlc" />
+    <Content Include="Reports\Versus\ExpectedArrivalDestinationOfficeDetails.rdlc" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap_multiselect.js" />
     <Content Include="Scripts\bootstrap_select.min.js" />
@@ -442,6 +445,8 @@
     <Content Include="Views\Versus\PoAcceptanceVsReso.cshtml" />
     <Content Include="Views\Versus\SopVsSipDetails.cshtml" />
     <Content Include="Views\Versus\PupVsSopDetails.cshtml" />
+    <Content Include="Views\Versus\SopVsNoSipDetails.cshtml" />
+    <Content Include="Views\Versus\ExpectedArrivalDetailsReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

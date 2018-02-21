@@ -114,6 +114,27 @@ namespace Entt.Ers.Models
             return dataset;
         }
 
+        public DataSet ExpectedArrivalBranchReportDetailsDataSet(DateTime reportDate, string branchCode)
+        {
+            var dataset = new DataSet();
+            var timeReportDate = reportDate;
+            if (DateTime.Now.Hour < 9 && reportDate.Date == DateTime.Today.Date)
+            {
+                timeReportDate = timeReportDate.AddDays(-1);
+            }
+
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["EnttConnectionString"].ConnectionString))
+            using (var cmd = new SqlCommand("Entt.usp_expected_arrival_branch_details_report", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@reportDate", SqlDbType.Date).Value = timeReportDate;
+                cmd.Parameters.Add("@branchCode", SqlDbType.NVarChar, 50).Value = branchCode;
+                var sqlDataAapter = new SqlDataAdapter(cmd);
+                sqlDataAapter.Fill(dataset);
+            }
+            return dataset;
+        }
+
         public DataSet AcceptanceAllReportDataSet(DateTime reportDate)
         {
             var dataset = new DataSet();
