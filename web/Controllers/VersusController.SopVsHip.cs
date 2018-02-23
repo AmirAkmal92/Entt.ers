@@ -66,11 +66,42 @@ namespace Entt.Ers.Controllers
                     new ReportParameter("day", day),
                     new ReportParameter("branchCode", branchCode)
                 };
+            reportViewer.LocalReport.EnableHyperlinks = true;
             reportViewer.LocalReport.SetParameters(parameters);
             reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", dataset.Tables[0]));
             ViewBag.TotalRows = dataset.Tables[0].Rows.Count;
             ViewBag.ReportViewer = reportViewer;
             var model = new PrefixReportViewModel { ReportDate = reportDate, ReportDay = day, SelectedBranch = branchCode };
+            return View(model);
+        }
+
+        public ActionResult SopVsNoHipDetails(string branchCode, double date, string day = "7")
+        {
+            var user = m_dbContext.Users.Single(u => u.UserName == User.Identity.Name);
+            if (null != user && !string.IsNullOrEmpty(user.BranchCode) && user.BranchCode != branchCode)
+            {
+                return new HttpStatusCodeResult(403, "You are not allow to view the data");
+            }
+
+            var reportDate = DateTime.FromOADate(date);
+            ViewBag.Branches = m_enttContext.GetBranchInfo(branchCode).Select(w => new SelectListItem { Text = w.Name, Value = w.Code });
+            ViewBag.ReportDays = ApplicationHelper.GetReportDays().Select(w => new SelectListItem { Text = w.Value, Value = w.Key.ToString() });
+            var reportViewer = ReportEngine.Create();
+
+            var dataset = m_enttContext.GetSopVsNoHipDetailsReportDataSet(reportDate.Date, int.Parse(day), branchCode);
+            reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\Versus\SopVsNoHipDetails.rdlc";
+            var parameters = new List<ReportParameter>
+                {
+                    new ReportParameter("reportDate", reportDate.ToShortDateString()),
+                    new ReportParameter("day", day),
+                    new ReportParameter("branchCode", branchCode)
+                };
+            reportViewer.LocalReport.EnableHyperlinks = true;
+            reportViewer.LocalReport.SetParameters(parameters);
+            reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", dataset.Tables[0]));
+            ViewBag.TotalRows = dataset.Tables[0].Rows.Count;
+            ViewBag.ReportViewer = reportViewer;
+            var model = new StandardReportViewModel { ReportDate = reportDate, SelectedBranch = branchCode };
             return View(model);
         }
     }
