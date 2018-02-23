@@ -337,6 +337,7 @@
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Reports\Versus\SopVsNoSipDetails.rdlc" />
     <Content Include="Reports\Versus\ExpectedArrivalDestinationOfficeDetails.rdlc" />
+    <Content Include="Reports\Versus\SopVsHip.rdlc" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap_multiselect.js" />
     <Content Include="Scripts\bootstrap_select.min.js" />
