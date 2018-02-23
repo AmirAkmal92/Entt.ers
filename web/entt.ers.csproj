@@ -338,6 +338,7 @@
     <Content Include="Reports\Versus\SopVsNoSipDetails.rdlc" />
     <Content Include="Reports\Versus\ExpectedArrivalDestinationOfficeDetails.rdlc" />
     <Content Include="Reports\Versus\SopVsHip.rdlc" />
+    <Content Include="Reports\Versus\SopVsHipDetails.rdlc" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap_multiselect.js" />
     <Content Include="Scripts\bootstrap_select.min.js" />
@@ -448,6 +449,7 @@
     <Content Include="Views\Versus\PupVsSopDetails.cshtml" />
     <Content Include="Views\Versus\SopVsNoSipDetails.cshtml" />
     <Content Include="Views\Versus\ExpectedArrivalDetailsReport.cshtml" />
+    <Content Include="Views\Versus\SopVsHipDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
