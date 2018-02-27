@@ -1,0 +1,136 @@
+﻿@using System.Configuration;
+
+@{
+    ViewBag.Title = "SNB Financial Reports";
+}
+
+@section PageHeader {
+    <ul class="breadcrumb breadcrumb-caret position-left">
+        <li><a href="/">Home</a></li>
+        <li><a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?">Sales &amp; Billing</a></li>
+        <li class="active">Financial Report</li>
+    </ul>
+}
+
+    <div class="row">
+        <div class="panel panel-default border-grey">
+            <div class="panel-heading">
+                <h5 class="panel-title"><i class="icon-file-stats text-size-base position-left"></i>Financial Reports<a class="heading-elements-toggle"><i class="icon-more"></i></a></h5>
+                <div class="heading-elements">
+                    <ul class="icons-list">
+                        <li><a data-action="collapse" class=""></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <ul class="list list-icons">
+                            <li>
+                                <i class="icon-file-stats text-success position-left"></i>
+                                <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fFinancial%2f1.+Summary+Billing+Transaction" target="_blank">Summary Billing Transaction</a>
+                            </li>
+                            <li>
+                                <i class="icon-file-stats text-success position-left"></i>
+                                <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fFinancial%2f2.+Summary+Report+on+Product+and+PPL" target="_blank">Summary Report on Product and PPL</a>
+                            </li>
+                            <li>
+                                <i class="icon-file-stats text-success position-left"></i>
+                                <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fFinancial%2f3.+Report+On+Contract+Customer+Sales+Transaction" target="_blank">Report On Contract Customer Sales Transaction</a>
+                            </li>
+                            <li>
+                                <i class="icon-file-stats text-success position-left"></i>
+                                <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fFinancial%2f4.+Revenue+Contract+Customer+By+Industry" target="_blank">Revenue Contract Customer By Industry</a>
+                            </li>
+                            <li>
+                                <i class="icon-file-stats text-success position-left"></i>
+                                <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fFinancial%2f5.Insurance+For+Parcel" target="_blank">Insurance For Parcel</a>
+                            </li>
+                            <li>
+                                <i class="icon-file-stats text-success position-left"></i>
+                                <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fFinancial%2f6.+Surcharge+Report" target="_blank">Surcharge Report</a>
+                            </li>
+                            <li>
+                                <i class="icon-file-stats text-success position-left"></i>
+                                <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fFinancial%2f7.+Value+Added+Report+Report" target="_blank">Value Added Report Report</a>
+                            </li>
+                            <li>
+                                <i class="icon-file-stats text-success position-left"></i>
+                                <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fFinancial%2f8.+Monthly+Insurance+Declaration+for+Contract+Customer" target="_blank">Monthly Insurance Declaration for Contract Customer</a>
+                            </li>
+                            <li>
+                                <i class="icon-file-stats text-success position-left"></i>
+                                <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fFinancial%2f9.+Type+of+Dispute" target="_blank">Type of Dispute</a>
+                            </li>
+                            <li>
+                                <i class="icon-file-stats text-success position-left"></i>
+                                <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fFinancial%2f10.Account+Management+Report" target="_blank">Account Management Report</a>
+                            </li>
+                            <li>
+                                <i class="icon-file-stats text-success position-left"></i>
+                                <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fFinancial%2f11.+Invoice+Details+Report" target="_blank">Invoice Details Report</a>
+                            </li>
+                            <li>
+                                <i class="icon-file-stats text-success position-left"></i>
+                                <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fFinancial%2f12.+EMS+Volume+Routing+By+Destination+Country" target="_blank">EMS Volume Routing By Destination Country</a>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="col-sm-6">
+                        <ul class="list list-icons">
+                            <li>
+                                <i class="icon-file-stats text-success position-left"></i>
+                                <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fFinancial%2f13.+EMS+Volume+Routing+By+Acceptance+Office" target="_blank">EMS Volume Routing By Acceptance Office</a>
+                            </li>
+                            <li>
+                                <i class="icon-file-stats text-success position-left"></i>
+                                <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fFinancial%2f14.EMS+Posting+Profiling+By+Acceptance+Office" target="_blank">EMS Posting Profiling By Acceptance Office</a>
+                            </li>
+                            <li>
+                                <i class="icon-file-stats text-success position-left"></i>
+                                <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fFinancial%2f15.EMS+Posting+Profiling+By+Destination+Country" target="_blank">EMS Posting Profiling By Destination Country</a>
+                            </li>
+                            <li>
+                                <i class="icon-file-stats text-success position-left"></i>
+                                <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fFinancial%2f16.EMS+Sales+Report+By+Acceptance+Office" target="_blank">EMS Sales Report By Acceptance Office</a>
+                            </li>
+                            <li>
+                                <i class="icon-file-stats text-success position-left"></i>
+                                <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fFinancial%2f17.EMS+Sales+Report+By+Destination+Country" target="_blank">EMS Sales Report By Destination Country</a>
+                            </li>
+                            <li>
+                                <i class="icon-file-stats text-success position-left"></i>
+                                <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fFinancial%2f18.Parcel+Sales+Report+By+Destination+Country" target="_blank">Parcel Sales Report By Destination Country</a>
+                            </li>
+                            <li>
+                                <i class="icon-file-stats text-success position-left"></i>
+                                <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fFinancial%2f19.Parcel+Sales+Report+By+Acceptance+Office" target="_blank">Parcel Sales Report By Acceptance Office</a>
+                            </li>
+                            <li>
+                                <i class="icon-file-stats text-success position-left"></i>
+                                <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fFinancial%2f20.+Prepaid+Parcel+Sales+Report+By+Acceptance+Office" target="_blank">Prepaid Parcel Sales Report By Acceptance Office</a>
+                            </li>
+                            <li>
+                                <i class="icon-file-stats text-success position-left"></i>
+                                <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fFinancial%2f21.+Summary+By+Courier+Service" target="_blank">Summary By Courier Service</a>
+                            </li>
+                            <li>
+                                <i class="icon-file-stats text-success position-left"></i>
+                                <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fFinancial%2f22.+Details+Contract+Customer+Revenue+For+Courier+Service" target="_blank">Details Contract Customer Revenue For Courier Service</a>
+                            </li>
+                            <li>
+                                <i class="icon-file-stats text-success position-left"></i>
+                                <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fFinancial%2f23.Insurance+Declaration" target="_blank">Insurance Declaration</a>
+                            </li>
+                            <li>
+                                <i class="icon-file-stats text-success position-left"></i>
+                                <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fFinancial%2f24.+Revenue+and+Volume+for+Trading+Item" target="_blank">Revenue and Volume for Trading Item</a>
+                            </li>
+                        </ul>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+

@@ -219,6 +219,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
+    <Compile Include="Controllers\SalesBillingController.cs" />
     <Compile Include="Controllers\VersusController.cs" />
     <Compile Include="Controllers\VersusController.NoAcceptance.cs" />
     <Compile Include="Controllers\VersusController.SipVsVasn.cs" />
@@ -453,6 +454,8 @@
     <Content Include="Views\Versus\ExpectedArrivalDetailsReport.cshtml" />
     <Content Include="Views\Versus\SopVsHipDetails.cshtml" />
     <Content Include="Views\Versus\SopVsNoHipDetails.cshtml" />
+    <Content Include="Views\SalesBilling\Financial.cshtml" />
+    <Content Include="Views\SalesBilling\Management.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

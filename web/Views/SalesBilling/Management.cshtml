@@ -1,0 +1,152 @@
+﻿@using System.Configuration;
+
+@{
+    ViewBag.Title = "SNB Mangement Reports";
+}
+
+@section PageHeader {
+    <ul class="breadcrumb breadcrumb-caret position-left">
+        <li><a href="/">Home</a></li>
+        <li><a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?">Sales &amp; Billing</a></li>
+        <li class="active">Management Report</li>
+    </ul>
+}
+
+<div class="row">
+    <div class="panel panel-default border-grey">
+        <div class="panel-heading">
+            <h5 class="panel-title"><i class="icon-file-spreadsheet text-size-base position-left"></i>Management Reports<a class="heading-elements-toggle"><i class="icon-more"></i></a></h5>
+            <div class="heading-elements">
+                <ul class="icons-list">
+                    <li><a data-action="collapse" class=""></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-6">
+                    <ul class="list list-icons">
+                        <li>
+                            <i class="icon-file-stats text-success position-left"></i>
+                            <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fManagement%2f1.+Average+Revenue+Per+Item+-+PosLaju+Product" target="_blank">Average Revenue Per Item - PosLaju Product</a>
+                        </li>
+                        <li>
+                            <i class="icon-file-stats text-success position-left"></i>
+                            <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fManagement%2f2.+Average+Revenue+Per+Item+-+Prepaid+Envelope++and+Box+Type" target="_blank">Average Revenue Per Item - Prepaid Envelope  and Box Type</a>
+                        </li>
+                        <li>
+                            <i class="icon-file-stats text-success position-left"></i>
+                            <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fManagement%2f3.+Revenue+-+Contract+By+State" target="_blank">Revenue - Contract By State</a>
+                        </li>
+                        <li>
+                            <i class="icon-file-stats text-success position-left"></i>
+                            <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fManagement%2f4.+Revenue+-+Contract+By+Centre" target="_blank">Revenue - Contract By Centre</a>
+                        </li>
+                        <li>
+                            <i class="icon-file-stats text-success position-left"></i>
+                            <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fManagement%2f5.+Revenue+-+Parcel_PLD1006+and+PLD1007+(Centre+and+Po)" target="_blank">Revenue - Parcel_PLD1006 and PLD1007 (Centre and PO)</a>
+                        </li>
+                        <li>
+                            <i class="icon-file-stats text-success position-left"></i>
+                            <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fManagement%2f6.+Revenue+-+Parcel+(PLD1006_PLD1007)" target="_blank">Revenue - Parcel (PLD1006_PLD1007)</a>
+                        </li>
+                        <li>
+                            <i class="icon-file-stats text-success position-left"></i>
+                            <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fManagement%2f7.+Revenue+-+Pos+Express+by+Centre+and+PO" target="_blank">Revenue - Pos Express by Centre and PO</a>
+                        </li>
+                        <li>
+                            <i class="icon-file-stats text-success position-left"></i>
+                            <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fManagement%2f8.+Revenue+-+Pos+Express+by+Centre" target="_blank">Revenue - Pos Express by Centre</a>
+                        </li>
+                        <li>
+                            <i class="icon-file-stats text-success position-left"></i>
+                            <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fManagement%2f9.+Revenue+-+Prepaid+by+Centre+and+PO" target="_blank">Revenue - Prepaid by Centre and PO</a>
+                        </li>
+                        <li>
+                            <i class="icon-file-stats text-success position-left"></i>
+                            <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fManagement%2f10.+Revenue+-+Prepaid+by+Centre" target="_blank">Revenue - Prepaid by Centre</a>
+                        </li>
+                        <li>
+                            <i class="icon-file-stats text-success position-left"></i>
+                            <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fManagement%2f10.Report+Contract+Customer+By+Industry" target="_blank">Report Contract Customer By Industry</a>
+                        </li>
+                        <li>
+                            <i class="icon-file-stats text-success position-left"></i>
+                            <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fManagement%2f11.+Revenue+-+Contract+Bulk+Package+(PEP)" target="_blank">Revenue - Contract Bulk Package (PEP)</a>
+                        </li>
+                        <li>
+                            <i class="icon-file-stats text-success position-left"></i>
+                            <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fManagement%2f12.+Revenue+-+Contract+Borneo+Economy+Express+(BEE)" target="_blank">Revenue - Contract Borneo Economy Express (BEE)</a>
+                        </li>
+                        <li>
+                            <i class="icon-file-stats text-success position-left"></i>
+                            <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fManagement%2f13.+Revenue+-+Putrajaya+Express+(Contract)" target="_blank">Revenue - Putrajaya Express (Contract)</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="col-sm-6">
+                    <ul class="list list-icons">
+                        <li>
+                            <i class="icon-file-stats text-success position-left"></i>
+                            <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fManagement%2f14.+Volume+-+Contract+By+State" target="_blank">Volume - Contract By State</a>
+                        </li>
+                        <li>
+                            <i class="icon-file-stats text-success position-left"></i>
+                            <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fManagement%2f15.+Volume+-+Contract+By+Centre" target="_blank">Volume - Contract By Centre</a>
+                        </li>
+                        <li>
+                            <i class="icon-file-stats text-success position-left"></i>
+                            <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fManagement%2f16.+Volume+-+Parcel_PLD1006+and+PLD1007+(Centre+and+PO)" target="_blank">Volume - Parcel_PLD1006 and PLD1007 (Centre and PO)</a>
+                        </li>
+                        <li>
+                            <i class="icon-file-stats text-success position-left"></i>
+                            <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fManagement%2f17.+Volume+-+Parcel+(PLD1006_PLD1007)" target="_blank">Volume - Parcel (PLD1006_PLD1007)</a>
+                        </li>
+                        <li>
+                            <i class="icon-file-stats text-success position-left"></i>
+                            <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fManagement%2f18.+Volume+-+Pos+Express+by+(Centre+and+PO)" target="_blank">Volume - Pos Express by (Centre and PO)</a>
+                        </li>
+                        <li>
+                            <i class="icon-file-stats text-success position-left"></i>
+                            <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fManagement%2f19.+Volume+-+Prepaid+by+(Centre+and+PO)" target="_blank">Volume - Prepaid by (Centre and PO)</a>
+                        </li>
+                        <li>
+                            <i class="icon-file-stats text-success position-left"></i>
+                            <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fManagement%2f20.Revenue+and+Volume+by+Prepaid+Envelope+and+Box+Type" target="_blank">Revenue and Volume by Prepaid Envelope and Box Type</a>
+                        </li>
+                        <li>
+                            <i class="icon-file-stats text-success position-left"></i>
+                            <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fManagement%2f21.+Volume+-+Contract+Bulk+Package+(PEP)" target="_blank">Volume - Contract Bulk Package (PEP)</a>
+                        </li>
+                        <li>
+                            <i class="icon-file-stats text-success position-left"></i>
+                            <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fManagement%2f22.+Volume+-+Contract+Borneo+Economy+Express+(BEE)" target="_blank">Volume - Contract Borneo Economy Express (BEE)</a>
+                        </li>
+                        <li>
+                            <i class="icon-file-stats text-success position-left"></i>
+                            <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fManagement%2f23.+Volume+-+Putrajaya+Express+(Contract)" target="_blank">Volume - Putrajaya Express (Contract)</a>
+                        </li>
+                        <li>
+                            <i class="icon-file-stats text-success position-left"></i>
+                            <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fManagement%2f25.+Revenue+By+Product+Service+-+Monthly+and+YTD" target="_blank">Revenue By Product Service - Monthly and YTD</a>
+                        </li>
+                        <li>
+                            <i class="icon-file-stats text-success position-left"></i>
+                            <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fManagement%2f26.Revenue+and+Volume+by+Category" target="_blank">Revenue and Volume by Category</a>
+                        </li>
+                        <li>
+                            <i class="icon-file-stats text-success position-left"></i>
+                            <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fManagement%2f29.+Customer+Analysis+-+New+Contract+Customer" target="_blank">Customer Analysis - New Contract Customer</a>
+                        </li>
+                        <li>
+                            <i class="icon-file-stats text-success position-left"></i>
+                            <a href="@ConfigurationManager.AppSettings["SnbReportServerUrl"]?%2fEnTT-SNB%2fManagement%2f30.+New+Contract+-+New+Account+Posting+for+the+Month" target="_blank">New Contract - New Account Posting for the Month</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
