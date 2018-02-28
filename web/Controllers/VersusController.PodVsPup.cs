@@ -66,6 +66,7 @@ namespace Entt.Ers.Controllers
                     new ReportParameter("day", day),
                     new ReportParameter("branchCode", branchCode)
                 };
+            reportViewer.LocalReport.EnableHyperlinks = true;
             reportViewer.LocalReport.SetParameters(parameters);
             reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", dataset.Tables[0]));
             ViewBag.TotalRows = dataset.Tables[0].Rows.Count;

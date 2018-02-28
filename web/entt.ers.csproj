@@ -346,6 +346,8 @@
     <Content Include="Reports\Versus\HipVsHopDetails.rdlc" />
     <Content Include="Reports\Versus\HipVsNoHopDetails.rdlc" />
     <Content Include="Reports\Versus\SipVsVasnDetails.rdlc" />
+    <Content Include="Reports\Versus\VasnVsPod.rdlc" />
+    <Content Include="Reports\Versus\VasnVsPodDetails.rdlc" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap_multiselect.js" />
     <Content Include="Scripts\bootstrap_select.min.js" />
@@ -460,6 +462,10 @@
     <Content Include="Views\Versus\SopVsNoHipDetails.cshtml" />
     <Content Include="Views\SalesBilling\Financial.cshtml" />
     <Content Include="Views\SalesBilling\Management.cshtml" />
+    <Content Include="Views\Versus\SipVsVasnDetails.cshtml" />
+    <Content Include="Views\Versus\HipVsHopDetails.cshtml" />
+    <Content Include="Views\Versus\HipVsNoHopDetails.cshtml" />
+    <Content Include="Views\Versus\VasnVsPodDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
