@@ -342,6 +342,10 @@
     <Content Include="Reports\Versus\SopVsHipDetails.rdlc" />
     <Content Include="Reports\Versus\SopVsNoHipDetails.rdlc" />
     <Content Include="Reports\Versus\HipVsHop.rdlc" />
+    <Content Include="Reports\Versus\SipVsVasn.rdlc" />
+    <Content Include="Reports\Versus\HipVsHopDetails.rdlc" />
+    <Content Include="Reports\Versus\HipVsNoHopDetails.rdlc" />
+    <Content Include="Reports\Versus\SipVsVasnDetails.rdlc" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap_multiselect.js" />
     <Content Include="Scripts\bootstrap_select.min.js" />
