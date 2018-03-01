@@ -661,7 +661,7 @@ No</Value>
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="BranchName">
+                        <Textbox Name="OfficeName">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
@@ -674,7 +674,7 @@ No</Value>
                                   </Style>
                                 </TextRun>
                                 <TextRun>
-                                  <Value>=Fields!BranchName.Value</Value>
+                                  <Value>=Fields!OfficeName.Value</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                   </Style>
@@ -683,7 +683,7 @@ No</Value>
                               <Style />
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>BranchName</rd:DefaultName>
+                          <rd:DefaultName>OfficeName</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -1073,7 +1073,7 @@ No</Value>
                                   </Style>
                                 </TextRun>
                                 <TextRun>
-                                  <Value>=First(Fields!BranchName.Value, "DataSet1")</Value>
+                                  <Value>=First(Fields!OfficeName.Value, "DataSet1")</Value>
                                   <Style>
                                     <FontWeight>Normal</FontWeight>
                                   </Style>
@@ -1575,8 +1575,8 @@ No</Value>
           <DataField>OfficeNo</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="BranchName">
-          <DataField>BranchName</DataField>
+        <Field Name="OfficeName">
+          <DataField>OfficeName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="StateName">

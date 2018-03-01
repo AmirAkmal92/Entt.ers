@@ -356,7 +356,7 @@
                                   <ActionInfo>
                                     <Actions>
                                       <Action>
-                                        <Hyperlink>="javascript:void(window.open('http://10.1.1.123:8036/Versus/PodVsPupDetails?branchCode=" + Fields!OfficeNo.Value + "&amp;date=" + Parameters!reportDate.Value.ToOADate().ToString() + "&amp;day=" + Parameters!day.Value.ToString() + "','_blank'))"</Hyperlink>
+                                        <Hyperlink>="javascript:void(window.open('http://10.1.1.123:8036/Versus/PodVsPupDetails?branchCode=" + Fields!BranchCode.Value + "&amp;date=" + Parameters!reportDate.Value.ToOADate().ToString() + "&amp;day=" + Parameters!day.Value.ToString() + "','_blank'))"</Hyperlink>
                                       </Action>
                                     </Actions>
                                   </ActionInfo>
@@ -384,14 +384,14 @@
                     </TablixCell>
                     <TablixCell>
                       <CellContents>
-                        <Textbox Name="OfficeNo">
+                        <Textbox Name="BranchCode">
                           <CanGrow>true</CanGrow>
                           <KeepTogether>true</KeepTogether>
                           <Paragraphs>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Fields!OfficeNo.Value</Value>
+                                  <Value>=Fields!BranchCode.Value</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                   </Style>
@@ -402,7 +402,7 @@
                               </Style>
                             </Paragraph>
                           </Paragraphs>
-                          <rd:DefaultName>OfficeNo</rd:DefaultName>
+                          <rd:DefaultName>BranchCode</rd:DefaultName>
                           <Style>
                             <Border>
                               <Color>LightGrey</Color>
@@ -425,7 +425,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!TotalPod.Value,"#,#")</Value>
+                                  <Value>=Format(Fields!Total.Value,"#,#")</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                   </Style>
@@ -465,7 +465,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=FormatNumber(Fields!WithPup.Value/Fields!TotalPod.Value*100,1)</Value>
+                                  <Value>=FormatNumber(Fields!WithPup.Value/Fields!Total.Value*100,1)</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                   </Style>
@@ -582,7 +582,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Sum(Fields!TotalPod.Value),"#,#")</Value>
+                                  <Value>=Format(Sum(Fields!Total.Value),"#,#")</Value>
                                   <Style>
                                     <FontStyle>Italic</FontStyle>
                                     <FontSize>9pt</FontSize>
@@ -631,7 +631,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=FormatNumber(Sum(Fields!WithPup.Value)/Sum(Fields!TotalPod.Value)*100,1)</Value>
+                                  <Value>=FormatNumber(Sum(Fields!WithPup.Value)/Sum(Fields!Total.Value)*100,1)</Value>
                                   <Style>
                                     <FontStyle>Italic</FontStyle>
                                     <FontSize>9pt</FontSize>
@@ -764,7 +764,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Sum(Fields!TotalPod.Value),"#,#")</Value>
+                                  <Value>=Format(Sum(Fields!Total.Value),"#,#")</Value>
                                   <Style>
                                     <FontStyle>Italic</FontStyle>
                                     <FontSize>9pt</FontSize>
@@ -805,7 +805,7 @@
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=FormatNumber(Sum(Fields!WithPup.Value)/Sum(Fields!TotalPod.Value),2)</Value>
+                                  <Value>=FormatNumber(Sum(Fields!WithPup.Value)/Sum(Fields!Total.Value),2)</Value>
                                   <Style>
                                     <FontStyle>Italic</FontStyle>
                                     <FontSize>9pt</FontSize>
@@ -976,7 +976,7 @@
                   </Group>
                   <SortExpressions>
                     <SortExpression>
-                      <Value>=Fields!OfficeNo.Value</Value>
+                      <Value>=Fields!BranchCode.Value</Value>
                     </SortExpression>
                   </SortExpressions>
                   <TablixHeader>
@@ -1197,16 +1197,16 @@
           <DataField>StateName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="OfficeNo">
-          <DataField>OfficeNo</DataField>
+        <Field Name="BranchCode">
+          <DataField>BranchCode</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
         <Field Name="BranchName">
           <DataField>BranchName</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
-        <Field Name="TotalPod">
-          <DataField>TotalPod</DataField>
+        <Field Name="Total">
+          <DataField>Total</DataField>
           <rd:TypeName>System.Int32</rd:TypeName>
         </Field>
         <Field Name="WithPup">
