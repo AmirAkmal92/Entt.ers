@@ -4,11 +4,6 @@ namespace Entt.Ers
 {
     public static class StringHelpers
     {
-        public static string ToNullableDateString(this DateTime? val)
-        {
-            return val.HasValue ? val.Value.ToString("dd/MM/yyyy") : string.Empty;
-        }
-
         public static string ToRankDescription(this string rank)
         {
             var description = string.Empty;

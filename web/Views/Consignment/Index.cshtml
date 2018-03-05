@@ -1,0 +1,72 @@
+﻿@using Entt.Ers.Models
+@model ConsignmentViewModel
+
+@{
+    ViewBag.Title = "Consignment Info";
+}
+
+@section PageHeader {
+    <ul class="breadcrumb breadcrumb-caret position-left">
+        <li><a href="/">Home</a></li>
+        <li><a href="#">Sales &amp; Billing</a></li>
+        <li class="active">Consignment Information</li>
+    </ul>
+}
+
+<div class="row">
+    <div class="panel panel-default border-grey">
+        <div class="panel-heading">
+            <h5 class="panel-title"><i class="icon-file-text text-size-base position-left"></i>Consignment Information<a class="heading-elements-toggle"><i class="icon-more"></i></a></h5>
+            <div class="heading-elements">
+                <ul class="icons-list">
+                    <li><a data-action="collapse" class=""></a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="content-group">
+                        <dl>
+                            <dt class="text-size-mini text-bold text-uppercase">Consignment No.</dt>
+                            <dd>@Model.Acceptance.ConsignmentNo</dd>
+                            <dt class="text-size-mini text-bold text-uppercase">Datetime</dt>
+                            <dd>@string.Format("{0:dd-MM-yyyy HH:mm:ss}", Model.Acceptance.DateTime)</dd>
+                        </dl>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="content-group">
+                        <dl>
+                            <dt class="text-size-mini text-bold text-uppercase">Item Category</dt>
+                            <dd>@Model.Acceptance.ItemCategoryDesc</dd>
+                            <dt class="text-size-mini text-bold text-uppercase">Product Type</dt>
+                            <dd>@string.Format("{0:dd-MM-yyyy HH:mm:ss}", Model.Acceptance.ProductTypeDesc)</dd>
+                        </dl>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="content-group">
+                        <dl>
+                            <dt class="text-size-mini text-bold text-uppercase">Weight (kg)</dt>
+                            <dd>@string.Format("{0:F1}", @Model.Acceptance.Weight)</dd>
+                            <dt class="text-size-mini text-bold text-uppercase">Width</dt>
+                            <dd>@string.Format("{0:F1}", Model.Acceptance.Width)</dd>
+                        </dl>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="content-group">
+                        <dl>
+                            <dt class="text-size-mini text-bold text-uppercase">Height</dt>
+                            <dd>@string.Format("{0:F1}", Model.Acceptance.Height)</dd>
+                            <dt class="text-size-mini text-bold text-uppercase">Length</dt>
+                            <dd>@string.Format("{0:F1}", Model.Acceptance.Length)</dd>
+                        </dl>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+

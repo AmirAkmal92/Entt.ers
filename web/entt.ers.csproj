@@ -214,6 +214,7 @@
     <Compile Include="Controllers\ActionController.cs" />
     <Compile Include="Controllers\AimsController.cs" />
     <Compile Include="Controllers\ApplicationBaseController.cs" />
+    <Compile Include="Controllers\ConsignmentController.cs" />
     <Compile Include="Controllers\DemoController.cs" />
     <Compile Include="Controllers\HelperController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -233,6 +234,7 @@
     <Compile Include="Controllers\VersusController.PodVsPup.cs" />
     <Compile Include="Controllers\VersusController.PupVsPod.cs" />
     <Compile Include="DateTimeBinder.cs" />
+    <Compile Include="DbHelper.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -246,7 +248,9 @@
     <Compile Include="Models\AimsReportDataContext.cs" />
     <Compile Include="Models\AimsStockStatusViewModel.cs" />
     <Compile Include="Models\ApplicationDbContext.cs" />
+    <Compile Include="Models\ConsignmentViewModel.cs" />
     <Compile Include="Models\DeviceAtBranchSummaryViewModel.cs" />
+    <Compile Include="Models\EnttReportDataContext.Consignment.cs" />
     <Compile Include="Models\EnttReportDataContext.cs" />
     <Compile Include="Models\EnttReportDataContext.Dashboard.cs" />
     <Compile Include="Models\EnttReportDataContext.SipVersusVasn.cs" />
@@ -466,6 +470,7 @@
     <Content Include="Views\Versus\HipVsHopDetails.cshtml" />
     <Content Include="Views\Versus\HipVsNoHopDetails.cshtml" />
     <Content Include="Views\Versus\VasnVsPodDetails.cshtml" />
+    <Content Include="Views\Consignment\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
