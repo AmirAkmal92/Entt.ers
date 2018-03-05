@@ -23,6 +23,7 @@ SELECT DISTINCT
       ,[VanItemTypeDesc]
       ,[VanSenderName]
       ,[DataFlag]
-  FROM [Entt].[Vasn] 
+FROM [Entt].[Vasn] 
+WHERE [ItemTypeCode] = '01'
   
 GO

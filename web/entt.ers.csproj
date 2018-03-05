@@ -221,6 +221,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\SalesBillingController.cs" />
+    <Compile Include="Controllers\VersusController.SipVsVasnVsPod.cs" />
     <Compile Include="Controllers\VersusController.cs" />
     <Compile Include="Controllers\VersusController.NoAcceptance.cs" />
     <Compile Include="Controllers\VersusController.SipVsVasn.cs" />
@@ -256,6 +257,7 @@
     <Compile Include="Models\EnttReportDataContext.SipVersusVasn.cs" />
     <Compile Include="Models\EnttReportDataContext.IoExceptionVersusPackage.cs" />
     <Compile Include="Models\EnttReportDataContext.PoAcceptanceVersusReso.cs" />
+    <Compile Include="Models\EnttReportDataContext.SipVsVasnVsPod.cs" />
     <Compile Include="Models\EnttReportDataContext.VasnVersusPod.cs" />
     <Compile Include="Models\EnttReportDataContext.SopVersusHip.cs" />
     <Compile Include="Models\EnttReportDataContext.NoAcceptance.cs" />
@@ -352,6 +354,7 @@
     <Content Include="Reports\Versus\SipVsVasnDetails.rdlc" />
     <Content Include="Reports\Versus\VasnVsPod.rdlc" />
     <Content Include="Reports\Versus\VasnVsPodDetails.rdlc" />
+    <Content Include="Reports\Versus\SipVsVasnVsPod.rdlc" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap_multiselect.js" />
     <Content Include="Scripts\bootstrap_select.min.js" />
@@ -471,6 +474,7 @@
     <Content Include="Views\Versus\HipVsNoHopDetails.cshtml" />
     <Content Include="Views\Versus\VasnVsPodDetails.cshtml" />
     <Content Include="Views\Consignment\Index.cshtml" />
+    <Content Include="Views\Versus\SipVsVasnVsPod.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
