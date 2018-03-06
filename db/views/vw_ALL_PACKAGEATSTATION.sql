@@ -11,14 +11,14 @@ GO
 CREATE VIEW [dbo].[vw_ALL_PACKAGEATSTATION]
 AS
 
-SELECT 
-   [DateTime]
-  ,[OfficeNo]
-  ,[CourierId]
-	,[CourierName]
-  ,[ConsignmentNo]
-  ,[StatusCode]
-  ,[StatusCodeDesc]
+SELECT DISTINCT 
+  [DateTime],
+  [OfficeNo],
+  [CourierId],
+  [CourierName],
+  [ConsignmentNo],
+  [StatusCode],
+  [StatusCodeDesc]
   FROM [Entt].[StatusCode] 
   WHERE [StatusCode] IN ('07') AND [ItemTypeCode] = '01'
 

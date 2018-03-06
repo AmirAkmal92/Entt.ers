@@ -11,16 +11,33 @@ GO
 CREATE VIEW [dbo].[vw_ALL_EXCEPTION]
 AS
 
-SELECT 
-   [DateTime]
-  ,[OfficeNo]
-  ,[CourierId]
-	,[CourierName]
-  ,[ConsignmentNo]
-  ,[StatusCode]
-  ,[StatusCodeDesc]
-  FROM [Entt].[StatusCode] 
-  WHERE [StatusCode] IN ('02','03','04','05','06','07','08','09','20','33','34','48') AND [ItemTypeCode] = '01'
+SELECT DISTINCT 
+  [DateTime],
+  [ConsignmentNo],
+  [OfficeNo],
+  [OfficeName],   
+  [Comment],
+  [CourierId],
+  [CourierName],
+  [DeliveryCode]
+  FROM [Entt].[Delivery] d 
+  WHERE [DeliveryCode] IN ('02','03','04','05','06','07') 
+  AND [ItemTypeCode] = '01'
 
+UNION 
+
+SELECT DISTINCT 
+  [DateTime],
+  [ConsignmentNo],
+  [OfficeNo],
+  [OfficeName],   
+  NULL AS [Comment],
+  [CourierId],
+  [CourierName],
+  [StatusCode]
+  FROM [Entt].[StatusCode] s 
+  WHERE [StatusCode] IN ('12','20','34','43','44','45','46','48') 
+  AND [ItemTypeCode] = '01'
+  
 GO
 

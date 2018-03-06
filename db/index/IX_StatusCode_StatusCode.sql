@@ -1,7 +1,8 @@
 USE Entt
 GO
 
-CREATE NONCLUSTERED INDEX IX_StatusCode_StatusCode
-ON [Entt].[StatusCode] (StatusCode,ItemTypeCode)
-INCLUDE (ConsignmentNo, DateTime, CourierId, OfficeNo, OfficeName);
+CREATE NONCLUSTERED INDEX [IX_StatusCode_StatusCode]
+ON [Entt].[StatusCode] ([ItemTypeCode],[DateTime],[StatusCode])
+INCLUDE ([OfficeNo],[OfficeName],[CourierId],[CourierName],[ConsignmentNo])
+
 GO
