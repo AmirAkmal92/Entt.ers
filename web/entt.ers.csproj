@@ -475,6 +475,7 @@
     <Content Include="Views\Versus\VasnVsPodDetails.cshtml" />
     <Content Include="Views\Consignment\Index.cshtml" />
     <Content Include="Views\Versus\SipVsVasnVsPod.cshtml" />
+    <Content Include="Views\Versus\SipVsVasnVsPodDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
