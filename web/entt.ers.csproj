@@ -355,6 +355,9 @@
     <Content Include="Reports\Versus\VasnVsPod.rdlc" />
     <Content Include="Reports\Versus\VasnVsPodDetails.rdlc" />
     <Content Include="Reports\Versus\SipVsVasnVsPod.rdlc" />
+    <Content Include="Reports\Versus\SipVsVasnVsPodDetails.rdlc" />
+    <Content Include="Reports\Versus\IoExceptionVsPackage.rdlc" />
+    <Content Include="Reports\Versus\IoExceptionVsPackageDetails.rdlc" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap_multiselect.js" />
     <Content Include="Scripts\bootstrap_select.min.js" />

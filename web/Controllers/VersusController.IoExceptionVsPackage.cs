@@ -67,10 +67,27 @@ namespace Entt.Ers.Controllers
                     new ReportParameter("day", day),
                     new ReportParameter("branchCode", branchCode)
                 };
+            reportViewer.LocalReport.EnableHyperlinks = true;
             reportViewer.LocalReport.SetParameters(parameters);
             reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", dataset.Tables[0]));
             ViewBag.TotalRows = dataset.Tables[0].Rows.Count;
             ViewBag.ReportViewer = reportViewer;
+            var model = new PrefixReportViewModel { ReportDate = reportDate, ReportDay = day, SelectedBranch = branchCode };
+            return View(model);
+        }
+
+        public ActionResult IoExceptionVsNoPackageDetails(string branchCode, double date, string day = "7")
+        {
+            var reportDate = DateTime.FromOADate(date);
+            ViewBag.Branches = m_enttContext.GetBranchInfo(branchCode).Select(w => new SelectListItem { Text = w.Name, Value = w.Code });
+            ViewBag.ReportDays = ApplicationHelper.GetReportDays().Select(w => new SelectListItem { Text = w.Value, Value = w.Key.ToString() });
+
+            var reportViewer = ReportEngine.Create();
+            //
+            //TODO: queries
+            reportViewer.LocalReport.EnableHyperlinks = true;
+            ViewBag.ReportViewer = reportViewer;
+
             var model = new PrefixReportViewModel { ReportDate = reportDate, ReportDay = day, SelectedBranch = branchCode };
             return View(model);
         }
