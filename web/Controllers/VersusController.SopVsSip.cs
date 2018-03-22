@@ -56,7 +56,8 @@ namespace Entt.Ers.Controllers
             var user = m_dbContext.Users.Single(u => u.UserName == User.Identity.Name);
             if (null != user && !string.IsNullOrEmpty(user.BranchCode) && user.BranchCode != branchCode)
             {
-                return new HttpStatusCodeResult(403, "You are not allow to view the data");
+                if (!User.IsInRole("VersusHQ"))
+                    return new HttpStatusCodeResult(403, "You are not allow to view the data");
             }
 
             var reportDate = DateTime.FromOADate(date);
@@ -86,7 +87,8 @@ namespace Entt.Ers.Controllers
             var user = m_dbContext.Users.Single(u => u.UserName == User.Identity.Name);
             if (null != user && !string.IsNullOrEmpty(user.BranchCode) && user.BranchCode != branchCode)
             {
-                return new HttpStatusCodeResult(403, "You are not allow to view the data");
+                if (!User.IsInRole("VersusHQ"))
+                    return new HttpStatusCodeResult(403, "You are not allow to view the data");
             }
 
             var reportDate = DateTime.FromOADate(date);
