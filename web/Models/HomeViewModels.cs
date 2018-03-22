@@ -16,6 +16,7 @@ namespace Entt.Ers.Models
         public int Acceptances { get; set; }
         public int Deliveries { get; set; }
         public int Unknowns { get; set; }
+        public int ExpectedDeliveries { get; set; }
         public string BranchCode { get; set; }
         public string BranchName { get; set; }
     }

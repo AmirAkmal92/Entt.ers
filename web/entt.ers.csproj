@@ -358,6 +358,7 @@
     <Content Include="Reports\Versus\SipVsVasnVsPodDetails.rdlc" />
     <Content Include="Reports\Versus\IoExceptionVsPackage.rdlc" />
     <Content Include="Reports\Versus\IoExceptionVsPackageDetails.rdlc" />
+    <Content Include="Reports\Versus\HandoverVsPodDetails.rdlc" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap_multiselect.js" />
     <Content Include="Scripts\bootstrap_select.min.js" />
@@ -480,6 +481,7 @@
     <Content Include="Views\Versus\SipVsVasnVsPod.cshtml" />
     <Content Include="Views\Versus\SipVsVasnVsPodDetails.cshtml" />
     <Content Include="Views\Versus\IoExceptionVsPackageDetails.cshtml" />
+    <Content Include="Views\Versus\HandoverPodDetailsReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

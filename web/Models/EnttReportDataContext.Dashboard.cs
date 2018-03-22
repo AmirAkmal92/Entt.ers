@@ -52,7 +52,8 @@ namespace Entt.Ers.Models
                         stats.Acceptances = reader.GetInt32(0);
                         stats.Deliveries = reader.GetInt32(1);
                         stats.Unknowns = reader.GetInt32(2);
-                        stats.BranchName = reader.GetString(3);
+                        stats.ExpectedDeliveries = reader.GetInt32(3);
+                        stats.BranchName = reader.GetString(4);
                         stats.BranchCode = branchCode;
                     }
                 }
