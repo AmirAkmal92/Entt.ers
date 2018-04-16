@@ -482,6 +482,7 @@
     <Content Include="Views\Versus\SipVsVasnVsPodDetails.cshtml" />
     <Content Include="Views\Versus\IoExceptionVsPackageDetails.cshtml" />
     <Content Include="Views\Versus\HandoverPodDetailsReport.cshtml" />
+    <Content Include="Views\Aims\StockStatusSummary.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -157,6 +157,52 @@ namespace Entt.Ers.Controllers
             return View(model);
         }
 
+        public ActionResult StockStatusSummary()
+        {
+            ViewBag.Categories = m_context.GetAssetCategoryList().Select(w => new SelectListItem { Text = w, Value = w });
+
+            var reportViewer = new ReportViewer()
+            {
+                KeepSessionAlive = false,
+                ProcessingMode = ProcessingMode.Local,
+                SizeToReportContent = true,
+                Width = Unit.Percentage(100),
+                Height = Unit.Percentage(100)
+            };
+
+            ViewBag.ReportViewer = reportViewer;
+            var model = new AimsStockStatusViewModel();
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult StockStatusSummary(AimsStockStatusViewModel model)
+        {
+            var reportViewer = new ReportViewer()
+            {
+                KeepSessionAlive = false,
+                ProcessingMode = ProcessingMode.Local,
+                SizeToReportContent = true,
+                Width = Unit.Percentage(100),
+                Height = Unit.Percentage(100)
+            };
+
+            if (ModelState.IsValid && model.SearchCategories != null)
+            {
+                var dataset = m_context.GetStockStatusDataSet(model.SearchCategories);
+                reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\Aims\AimsStockStatusSummaryReport.rdlc";
+                reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", dataset.Tables[0]));
+                //var categoryParameter = new ReportParameter("searchKey", model.SearchCategory);
+                //reportViewer.LocalReport.SetParameters(categoryParameter);
+
+            }
+
+            ViewBag.ReportViewer = reportViewer;
+            ViewBag.Categories = m_context.GetAssetCategoryList().Select(w => new SelectListItem { Text = w, Value = w });
+            return View(model);
+        }
+
         public ActionResult HtmlTableSample()
         {
             var model = new DeviceAtBranchSummaryViewModel { ItemsAtPpl = new List<ItemAtPpl>(), ItemsOutAtPpl = new List<ItemAtPpl>() };
