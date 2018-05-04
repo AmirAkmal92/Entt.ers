@@ -44,6 +44,23 @@ namespace Entt.Ers.Models
             return dataset;
         }
 
+        public DataSet GetDeliveryExceptionBranchDetailsReportDataSet(DateTime reportDate, int day, string branchCode)
+        {
+            var dataset = new DataSet();
+
+            using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["EnttConnectionString"].ConnectionString))
+            using (var cmd = new SqlCommand("usp_dex_vs_pod_branch_details", conn))
+            {
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.Parameters.Add("@reportDate", SqlDbType.Date).Value = reportDate;
+                cmd.Parameters.Add("@day", SqlDbType.Int).Value = day;
+                cmd.Parameters.Add("@branchCode", SqlDbType.NVarChar, 50).Value = branchCode;
+                var sqlDataAapter = new SqlDataAdapter(cmd);
+                sqlDataAapter.Fill(dataset);
+            }
+            return dataset;
+        }
+
         public DataSet HandoverPodReportDataSet(DateTime reportDate, int day)
         {
             var dataset = new DataSet();

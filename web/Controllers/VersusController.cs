@@ -57,6 +57,7 @@ namespace Entt.Ers.Controllers
                     new ReportParameter("day", model.ReportDay)
                 };
 
+                reportViewer.LocalReport.EnableHyperlinks = true;
                 reportViewer.LocalReport.SetParameters(parameters);
                 reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", dataset.Tables[0]));
             }
@@ -65,6 +66,30 @@ namespace Entt.Ers.Controllers
             ViewBag.ReportDays = ApplicationHelper.GetReportDays().Select(w => new SelectListItem { Text = w.Value, Value = w.Key.ToString() });
             ViewBag.Branches = GetUserViewBranches().Select(w => new SelectListItem { Text = w.Name, Value = w.Code });
             return View(model);
+        }
+
+        public ActionResult DeliveryExceptionDetailsReport(string branchCode, double date, string day = "7")
+        {
+            var reportDate = DateTime.FromOADate(date);
+            ViewBag.Branches = m_enttContext.GetBranchInfo(branchCode).Select(w => new SelectListItem { Text = w.Name, Value = w.Code });
+            ViewBag.ReportDays = ApplicationHelper.GetReportDays().Select(w => new SelectListItem { Text = w.Value, Value = w.Key.ToString() });
+            var reportViewer = ReportEngine.Create();
+
+            var dataset = m_enttContext.GetDeliveryExceptionBranchDetailsReportDataSet(reportDate.Date, int.Parse(day), branchCode);
+            reportViewer.LocalReport.ReportPath = Request.MapPath(Request.ApplicationPath) + @"Reports\Versus\DeliveryExceptionVsPodDetails.rdlc";
+            var parameters = new List<ReportParameter>
+                {
+                    new ReportParameter("reportDate", reportDate.ToShortDateString()),
+                    new ReportParameter("day", day),
+                    new ReportParameter("branchCode", branchCode)
+                };
+            reportViewer.LocalReport.EnableHyperlinks = true;
+            reportViewer.LocalReport.SetParameters(parameters);
+            reportViewer.LocalReport.DataSources.Add(new ReportDataSource("DataSet1", dataset.Tables[0]));
+            ViewBag.TotalRows = dataset.Tables[0].Rows.Count;
+            ViewBag.ReportViewer = reportViewer;
+            var model = new PrefixReportViewModel { ReportDate = reportDate, ReportDay = day, SelectedBranch = branchCode };
+            return View(model);            
         }
 
         public ActionResult ExpectedArrivalReport()
