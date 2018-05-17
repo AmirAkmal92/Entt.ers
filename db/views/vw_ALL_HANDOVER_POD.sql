@@ -19,6 +19,7 @@ SELECT
 	[CourierId],
 	[DeliveryCode] AS [Code]
 FROM  dbo.[vw_ALL_POD]
+/*
 UNION 
 SELECT 
 	[DateTime],
@@ -28,6 +29,6 @@ SELECT
 	[CourierId],
 	[StatusCode] AS [Code]
 FROM dbo.[vw_ALL_POD_STATUSCODE] 
-
+*/
 GO
 

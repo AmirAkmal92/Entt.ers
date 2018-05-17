@@ -1601,7 +1601,7 @@ No</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>HIP</Value>
+                                  <Value>Handover 3rd Party</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
@@ -1639,7 +1639,7 @@ No</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>HOP</Value>
+                                  <Value>POD</Value>
                                   <Style>
                                     <FontWeight>Bold</FontWeight>
                                   </Style>
