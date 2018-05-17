@@ -221,6 +221,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\SalesBillingController.cs" />
+    <Compile Include="Controllers\VersusController.Ipc.cs" />
     <Compile Include="Controllers\VersusController.SipVsVasnVsPod.cs" />
     <Compile Include="Controllers\VersusController.cs" />
     <Compile Include="Controllers\VersusController.NoAcceptance.cs" />
@@ -254,6 +255,7 @@
     <Compile Include="Models\EnttReportDataContext.Consignment.cs" />
     <Compile Include="Models\EnttReportDataContext.cs" />
     <Compile Include="Models\EnttReportDataContext.Dashboard.cs" />
+    <Compile Include="Models\EnttReportDataContext.Ipc.cs" />
     <Compile Include="Models\EnttReportDataContext.SipVersusVasn.cs" />
     <Compile Include="Models\EnttReportDataContext.IoExceptionVersusPackage.cs" />
     <Compile Include="Models\EnttReportDataContext.PoAcceptanceVersusReso.cs" />
@@ -360,6 +362,10 @@
     <Content Include="Reports\Versus\IoExceptionVsPackageDetails.rdlc" />
     <Content Include="Reports\Versus\HandoverVsPodDetails.rdlc" />
     <Content Include="Reports\Versus\DeliveryExceptionVsPodDetails.rdlc" />
+    <Content Include="Reports\Versus\PoAcceptanceVsReso.rdlc" />
+    <Content Include="Reports\Versus\PoAcceptanceVsResoDetails.rdlc" />
+    <Content Include="Reports\Versus\IpcItemOverDeclared.rdlc" />
+    <Content Include="Reports\Versus\IpcItemOverDeclaredDetails.rdlc" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap_multiselect.js" />
     <Content Include="Scripts\bootstrap_select.min.js" />
@@ -485,6 +491,13 @@
     <Content Include="Views\Versus\HandoverPodDetailsReport.cshtml" />
     <Content Include="Views\Aims\StockStatusSummary.cshtml" />
     <Content Include="Views\Versus\DeliveryExceptionDetailsReport.cshtml" />
+    <Content Include="Views\Versus\ItemOverDeclared.cshtml" />
+    <Content Include="Views\Versus\ItemUnderDeclared.cshtml" />
+    <Content Include="Views\Versus\IpcNoAcceptance.cshtml" />
+    <Content Include="Views\Versus\ItemOverDeclaredDetails.cshtml" />
+    <Content Include="Views\Versus\ItemUnderDeclaredDetails.cshtml" />
+    <Content Include="Views\Versus\IpcNoAcceptanceDetails.cshtml" />
+    <Content Include="Views\Versus\PoAcceptanceVsResoDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
