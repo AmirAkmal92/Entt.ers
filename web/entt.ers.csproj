@@ -366,6 +366,10 @@
     <Content Include="Reports\Versus\PoAcceptanceVsResoDetails.rdlc" />
     <Content Include="Reports\Versus\IpcItemOverDeclared.rdlc" />
     <Content Include="Reports\Versus\IpcItemOverDeclaredDetails.rdlc" />
+    <Content Include="Reports\Versus\IpcItemUnderDeclared.rdlc" />
+    <Content Include="Reports\Versus\IpcItemUnderDeclaredDetails.rdlc" />
+    <Content Include="Reports\Versus\IpcNoAcceptance.rdlc" />
+    <Content Include="Reports\Versus\IpcNoAcceptanceDetails.rdlc" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\bootstrap_multiselect.js" />
     <Content Include="Scripts\bootstrap_select.min.js" />
