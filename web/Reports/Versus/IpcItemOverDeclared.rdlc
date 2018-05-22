@@ -57,10 +57,6 @@
           <DataField>TotalDocumentWeight</DataField>
           <rd:TypeName>System.Double</rd:TypeName>
         </Field>
-        <Field Name="TotalIpc">
-          <DataField>TotalIpc</DataField>
-          <rd:TypeName>System.Int32</rd:TypeName>
-        </Field>
         <Field Name="TotalIpcWeight">
           <DataField>TotalIpcWeight</DataField>
           <rd:TypeName>System.Decimal</rd:TypeName>
@@ -774,7 +770,7 @@ Merchandise</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Fields!TotalIpc.Value,"#,0")</Value>
+                                  <Value>=Format(Fields!Total.Value,"#,0")</Value>
                                   <Style>
                                     <FontSize>9pt</FontSize>
                                   </Style>
@@ -1057,7 +1053,7 @@ Merchandise</Value>
                             <Paragraph>
                               <TextRuns>
                                 <TextRun>
-                                  <Value>=Format(Sum(Fields!TotalIpc.Value),"#,0")</Value>
+                                  <Value>=Format(Sum(Fields!Total.Value),"#,0")</Value>
                                   <Style>
                                     <FontStyle>Italic</FontStyle>
                                     <FontSize>9pt</FontSize>

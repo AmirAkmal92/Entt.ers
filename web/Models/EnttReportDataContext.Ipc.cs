@@ -17,6 +17,7 @@ namespace Entt.Ers.Models
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["EnttConnectionString"].ConnectionString))
             using (var cmd = new SqlCommand("[Entt].[ipc_item_over_declared_summary]", conn))
             {
+                cmd.CommandTimeout = 80;
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("@reportDate", SqlDbType.Date).Value = reportDate;
                 var sqlDataAapter = new SqlDataAdapter(cmd);
@@ -32,6 +33,7 @@ namespace Entt.Ers.Models
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["EnttConnectionString"].ConnectionString))
             using (var cmd = new SqlCommand("[Entt].[ipc_item_over_declared_branch_summary]", conn))
             {
+                cmd.CommandTimeout = 80;
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("@reportDate", SqlDbType.Date).Value = reportDate;
                 cmd.Parameters.Add("@branchCode", SqlDbType.NVarChar, 50).Value = branchCode;
@@ -65,6 +67,7 @@ namespace Entt.Ers.Models
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["EnttConnectionString"].ConnectionString))
             using (var cmd = new SqlCommand("[Entt].[ipc_item_under_declared_summary]", conn))
             {
+                cmd.CommandTimeout = 80;
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("@reportDate", SqlDbType.Date).Value = reportDate;
                 var sqlDataAapter = new SqlDataAdapter(cmd);
@@ -80,6 +83,7 @@ namespace Entt.Ers.Models
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["EnttConnectionString"].ConnectionString))
             using (var cmd = new SqlCommand("[Entt].[ipc_item_under_declared_branch_summary]", conn))
             {
+                cmd.CommandTimeout = 80;
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("@reportDate", SqlDbType.Date).Value = reportDate;
                 cmd.Parameters.Add("@branchCode", SqlDbType.NVarChar, 50).Value = branchCode;
@@ -113,6 +117,7 @@ namespace Entt.Ers.Models
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["EnttConnectionString"].ConnectionString))
             using (var cmd = new SqlCommand("[Entt].[ipc_no_acceptance_summary]", conn))
             {
+                cmd.CommandTimeout = 80;
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("@reportDate", SqlDbType.Date).Value = reportDate;
                 var sqlDataAapter = new SqlDataAdapter(cmd);
@@ -128,6 +133,7 @@ namespace Entt.Ers.Models
             using (var conn = new SqlConnection(ConfigurationManager.ConnectionStrings["EnttConnectionString"].ConnectionString))
             using (var cmd = new SqlCommand("[Entt].[ipc_no_acceptance_branch_summary]", conn))
             {
+                cmd.CommandTimeout = 80;
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.Parameters.Add("@reportDate", SqlDbType.Date).Value = reportDate;
                 cmd.Parameters.Add("@branchCode", SqlDbType.NVarChar, 50).Value = branchCode;
