@@ -599,11 +599,6 @@
                       <GroupExpression>=Fields!StateName.Value</GroupExpression>
                     </GroupExpressions>
                   </Group>
-                  <SortExpressions>
-                    <SortExpression>
-                      <Value>=Fields!LocationId.Value</Value>
-                    </SortExpression>
-                  </SortExpressions>
                   <TablixHeader>
                     <Size>1.35in</Size>
                     <CellContents>
