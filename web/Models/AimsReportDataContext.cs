@@ -230,7 +230,7 @@ namespace Entt.Ers.Models
 
             var connString = ConfigurationManager.ConnectionStrings["NonCoreConnectionString"].ConnectionString;
             var conn = new SqlConnection(connString);
-            var sql = $"SELECT [BranchCode],[BranchName] FROM [dbo].[BROMBranchProfile] WHERE [BranchTypeId] IN ('B50372AD-E605-4729-872D-4D1C74F6FE6E','1BE640C1-F0A8-4E7C-9D32-2967960E207B','033C76A9-B0F3-4726-8F40-2C3345E3E0A6') ORDER BY [BranchCode]";
+            var sql = $"SELECT [BranchCode],[BranchName] FROM [dbo].[BROMBranchProfile] WHERE [BranchTypeId] IN ('B50372AD-E605-4729-872D-4D1C74F6FE6E','1BE640C1-F0A8-4E7C-9D32-2967960E207B','033C76A9-B0F3-4726-8F40-2C3345E3E0A6','9A8413D0-E3DE-4B6C-9853-A74300D539C6') ORDER BY [BranchCode]";
 
             using (var cmd = new SqlCommand(sql, conn))
             {
