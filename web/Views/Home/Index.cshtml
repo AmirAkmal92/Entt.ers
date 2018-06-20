@@ -49,7 +49,7 @@
                                 <div class="panel bg-teal-400">
                                     <div class="panel-body">
                                         <h3 class="no-margin"><i class="icon-box-add position-left"></i> @string.Format("{0:#,##0}", Model.BranchStatistic.Acceptances)</h3>
-                                        <a href="/Report/Acceptance">Item received</a>
+                                        <a href="/Report/Acceptance">Item Accepted</a>
                                     </div>
                                     <div class="container-fluid">
                                         <div id="acceptance-realtime"></div>
@@ -60,7 +60,7 @@
                                 <div class="panel bg-primary-400">
                                     <div class="panel-body">
                                         <h3 class="no-margin"><i class="icon-truck position-left"></i> @string.Format("{0:#,##0}", Model.BranchStatistic.Deliveries)</h3>
-                                        Item delivered
+                                        Item Delivered
                                     </div>
                                     <div class="container-fluid">
                                         <div id="delivery-realtime"></div>
@@ -152,26 +152,32 @@
                 <div class="container-fluid">
                     <div class="row text-center">
                         <div class="col-md-4">
-                            <div class="content-group">
-                                <h6 class="text-semibold no-margin"><i class="icon-box-add position-left text-slate"></i> @string.Format("{0:#,##0}", Model.Statistic.Acceptances)</h6>
-                                <span class="text-muted text-size-small"><a href="/Report/Acceptance">Acceptance</a></span>
+                            <div class="panel bg-teal-400">
+                                <div class="content-group">
+                                    <h6 class="text-semibold no-margin"><i class="icon-box-add position-left text-slate"></i> @string.Format("{0:#,##0}", Model.Statistic.Acceptances)</h6>
+                                    <span class="text-muted text-size-small"><a href="/Report/Acceptance">Acceptance</a></span>
+                                </div>
+                               </div>
                             </div>
-                        </div>
 
-                        <div class="col-md-4">
-                            <div class="content-group">
-                                <h6 class="text-semibold no-margin"><i class="icon-truck position-left text-slate"></i> @string.Format("{0:#,##0}", Model.Statistic.Deliveries)</h6>
-                                <span class="text-muted text-size-small">Delivery</span>
+                            <div class="col-md-4">
+                                <div class="panel bg-primary-400">
+                                    <div class="content-group">
+                                        <h6 class="text-semibold no-margin"><i class="icon-truck position-left text-slate"></i> @string.Format("{0:#,##0}", Model.Statistic.Deliveries)</h6>
+                                        <span class="text-muted text-size-small">Delivery</span>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
 
-                        <div class="col-md-4">
-                            <div class="content-group">
-                                <h6 class="text-semibold no-margin"><i class="icon-folder-remove position-left text-slate"></i> @string.Format("{0:#,##0}", Model.Statistic.Unknowns)</h6>
-                                <span class="text-muted text-size-small">No Acceptance</span>
+                            <div class="col-md-4">
+                                <div class="panel bg-danger-600">
+                                    <div class="content-group">
+                                        <h6 class="text-semibold no-margin"><i class="icon-folder-remove position-left text-slate"></i> @string.Format("{0:#,##0}", Model.Statistic.Unknowns)</h6>
+                                        <span class="text-muted text-size-small">No Acceptance</span>
+                                    </div>
+                                </div>
                             </div>
                         </div>
-                    </div>
                 </div>
             </div>
         }
